@@ -1,0 +1,36 @@
+<body>
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <img class="mb-4"
+        src="https://img.flaticon.com/icons/png/512/303/303653.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
+        alt="" width="150" height="75">
+      <h1 class="h3 mb-3 font-weight-normal">Registro De Usuario</h1>
+    </div>
+    <form  [formGroup]= "myForm"  (ngSubmit)= "saveUser()">
+      <div class="form-label-group">
+        <input formControlName="NombreU" type="text" id="inputNombreUsuario" maxlength="45" class="form-control"
+          placeholder="Nombre Usuario" required autofocus >
+      </div>
+      <br>
+      <div class="form-label-group">
+        <input formControlName="Password" type="password" id="inputPassword" maxlength="45" class="form-control" placeholder="Password" required autofocus>
+      </div>
+      <br>
+      <div class="form-label-group">
+        <input formControlName="Nombre" type="text" id="inputNombre" maxlength="150" class="form-control" placeholder="Nombre" required
+          autofocus>
+      </div>
+      <br>
+      <div>
+        <select formControlName="type" class="form-select" aria-label="Default select example">
+          <option selected>Selecciona tu usuario</option>
+          <option value="USUARIO">Usuario</option>
+          <option value="AUTOR">Autor/Editor</option>
+        </select>
+      </div>
+      <br>
+      <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+    </form>
+
+  </form>
+</body>
