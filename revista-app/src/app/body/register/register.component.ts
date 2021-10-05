@@ -1,3 +1,4 @@
+import { ServiceHomeService } from './../../../../service/service-home.service';
 import { User } from './../../../objects/User';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Form, FormControl, Validators } from '@angular/forms';
@@ -12,24 +13,25 @@ export class RegisterComponent implements OnInit {
 
 public myForm!: FormGroup;
   constructor(private NewUsuarioService:NewUsuarioService, 
-    private FormBuilder:FormBuilder) {}
+    private FormBuilder:FormBuilder, private service:ServiceHomeService) {}
 
   ngOnInit(): void {
     this.myForm=this.FormBuilder.group({
       NombreU:[null,Validators.required],
       Password:[null,Validators.required],
       Nombre:[null,Validators.required],
-      type:[null,Validators.required]
+      Type:[null,Validators.required]
     })
   }
 
   saveUser(){
    if(this.myForm.valid){
-    this.NewUsuarioService.createUser(new User(this.myForm.value.NombreU,this.myForm.value.Password,this.myForm.value.Nombre,this.myForm.value.UserType))
+    this.NewUsuarioService.createUser(new User(this.myForm.value.NombreU,this.myForm.value.Password,this.myForm.value.Nombre,this.myForm.value.Type))
     .subscribe((created:User)=>{
       console.log(created);
       if(created!=null){
-        //se creo
+        alert("SE CREO CORRECTAMENTE "+this.myForm.value.NombreU)
+        this.CambiarPagina(1);
       }else{
         alert("YA EXISTE EL NOMBRE DE USUARIO")
       }
@@ -38,5 +40,8 @@ public myForm!: FormGroup;
       alert("ERROR AL GUARDAR"+error);
     });
    }
+  }
+  CambiarPagina(number:number){
+    this.service.opcion=number;
   }
 }

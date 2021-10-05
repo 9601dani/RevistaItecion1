@@ -6,6 +6,8 @@ package com.mycompany.revista.controller;
 
 import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.converter.ConverterApi;
+import com.mycompany.revista.converter.UsConverter;
+import com.mycompany.revista.dao.UsuarioDaoImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,10 +43,20 @@ public class registroController extends HttpServlet {
         }
         System.out.println("body:");
         System.out.println(body);
-        ConverterApi nu= new ConverterApi(Usuario.class) {};
-        Usuario usuario = (Usuario) nu.fromJson(body);
+        UsConverter converter= new UsConverter(Usuario.class){};
+        Usuario usuario = converter.fromJson(body);
         System.out.println("------------------");
-        System.out.println(usuario.getNombre());
+        System.out.println(usuario.getTipo_usuario());
+        String result=new UsuarioDaoImpl().registrar(usuario);
+        if(result.equalsIgnoreCase("yes")){
+            response.getWriter().append(converter.toJson(usuario));
+            System.out.println("se guardo");
+        }else{
+            System.out.println("no se guardo");
+        }
+        
+        
+        
     }
 
     /**

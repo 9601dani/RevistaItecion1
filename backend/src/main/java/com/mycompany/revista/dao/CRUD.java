@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public interface CRUD<T> {
     ArrayList<T> listarTodos();
-    void registrar(T t);
+    String registrar(T t);
     void actualizar(T t);
     void eliminar(T t);
     

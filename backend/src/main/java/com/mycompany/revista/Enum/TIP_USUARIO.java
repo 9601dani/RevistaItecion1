@@ -9,5 +9,15 @@ package com.mycompany.revista.Enum;
  * @author daniel
  */
 public enum TIP_USUARIO {
-    USUARIO,AUTOR;
+    USUARIO, AUTOR;
+
+    public static String getTypeUser(TIP_USUARIO type) {
+        if (type.equals(TIP_USUARIO.USUARIO)) {
+            return "USUARIO";
+        } else if (type.equals(TIP_USUARIO.AUTOR)) {
+            return "AUTOR";
+        }
+        return null;
+    }
+
 }
