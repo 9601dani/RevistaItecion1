@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-0 ">
+    <a class="navbar-brand">Bienvenido {{type}}: {{name}} </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse btn" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link">Modificar Perfil</a>
+            </li>
+            <div *ngIf=" getOptionMenu() == 'USUARIO' ">
+                <li class="nav-item active">
+                    <a class="nav-link">Ver Revista</a>
+                </li>
+            </div>
+            <div *ngIf=" getOptionMenu() == 'USUARIO' ">
+                <li class="nav-item active">
+                    <a class="nav-link">Registrar Etiquetas</a>
+                </li>
+            </div>
+            <div *ngIf=" getOptionMenu() == 'AUTOR' ">
+                <li class="nav-item active">
+                    <a class="nav-link">Editar Revista</a>
+                </li>
+            </div>
+            <li class="nav-item active">
+                <a class="nav-link">Cerrar Sesion</a>
+            </li>
+        </ul>
+    </div>
+</nav>

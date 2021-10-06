@@ -7,8 +7,6 @@ package com.mycompany.revista.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +14,7 @@ import java.util.logging.Logger;
  */
 public class Conexion {
     
-    private static Conexion instancia;
-    protected Connection connection=null;
+    private static Connection connection=null;
     private final String USER="root";
     private final String URL="jdbc:mysql://localhost:3306/revista_I";
     private final String PASSWORD="Daniel.123";
@@ -25,14 +22,11 @@ public class Conexion {
     public Conexion(){
         conectar();
     }
-    public static Conexion getInstancia(){
-        if(instancia==null){
-            instancia=new Conexion();
-        }
-        return instancia;
+    public static Connection getInstancia(){
+        return connection;
     }
     
-    public void conectar(){
+    private void conectar(){
          if(connection == null){
             try {
                  Class.forName("com.mysql.cj.jdbc.Driver");

@@ -36,6 +36,12 @@ public class Usuario {
         this.nombre = nombre;
         this.tipo_usuario = tipo_usuario;
     }
+
+    public Usuario(String nombre_usuario, String password) {
+        this.nombre_usuario = nombre_usuario;
+        this.password = password;
+    }
+    
     
     
 
@@ -86,7 +92,7 @@ public class Usuario {
     public void setFoto(Blob foto) {
         this.foto = foto;
     }
-
+    
     public TIP_USUARIO getTipo_usuario() {
         return tipo_usuario;
     }

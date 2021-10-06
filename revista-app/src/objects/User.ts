@@ -5,6 +5,7 @@ export class User {
     password!: String;
     nombre!: String;
     tipo_usuario!: UserType;
+    
     constructor(nombre_usuario:String, password:String,nombre:String, tipo_usuario:UserType){
         this.nombre_usuario=nombre_usuario;
         this.password= password;

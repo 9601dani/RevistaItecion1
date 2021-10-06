@@ -5,10 +5,12 @@
 package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Usuario;
+import java.sql.ResultSet;
 
 /**
  *
  * @author daniel
  */
 public interface UsuarioDao extends CRUD<Usuario> {
+        ResultSet consultarLogin(Usuario t);
 }

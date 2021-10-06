@@ -4,9 +4,17 @@
         <servlet-name>registroController</servlet-name>
         <servlet-class>com.mycompany.revista.controller.registroController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidacionUsuario</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ValidacionUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidacionUsuario</servlet-name>
+        <url-pattern>/ValidacionUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

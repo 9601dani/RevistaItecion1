@@ -17,6 +17,7 @@ com/mycompany/revista/Enum/TIP_USUARIO.class
 com/mycompany/revista/clases/Comentario.class
 com/mycompany/revista/converter/UsConverter.class
 com/mycompany/revista/Enum/ME_GUSTA_SUSCRIPCION.class
+com/mycompany/revista/controller/ValidacionUsuario.class
 com/mycompany/revista/Enum/ESTADO_REV.class
 com/mycompany/revista/clases/Etiqueta_anuncio.class
 com/mycompany/revista/Enum/ESTADO_ANUN.class
@@ -26,6 +27,7 @@ com/mycompany/revista/clases/Categoria.class
 com/mycompany/revista/converter/ConverterApi.class
 com/mycompany/revista/clases/Anuncio.class
 com/mycompany/revista/clases/Recaudacion.class
+com/mycompany/revista/controller/ValidacionUsuario$1.class
 com/mycompany/revista/Enum/SUSCRIP_E.class
 com/mycompany/revista/clases/Porcentaje_soft.class
 com/mycompany/revista/clases/Etiqueta.class

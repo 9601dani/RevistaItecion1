@@ -17,9 +17,13 @@ import { NAnuncioComponent } from './spam/n-anuncio/n-anuncio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewUsuarioService } from 'service/new-usuario.service';
+import { HomeCompleteComponent } from './home-complete/home-complete.component';
+import { LoginSService } from 'service/login-s.service';
+import { HomeUserComponent } from './home-user/home-user.component';
+import { MenuUserComponent } from './menu/menu-user/menu-user.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HeaderComponent,
     MenuComponent,
@@ -31,7 +35,10 @@ import { NewUsuarioService } from 'service/new-usuario.service';
     LoginComponent,
     RegisterComponent,
     NAnuncioComponent,
-  ],
+    HomeCompleteComponent,
+    HomeUserComponent,
+    MenuUserComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -39,7 +46,7 @@ import { NewUsuarioService } from 'service/new-usuario.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ServiceHomeService, NewUsuarioService],
+  providers: [ServiceHomeService, NewUsuarioService,LoginSService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

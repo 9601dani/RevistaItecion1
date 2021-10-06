@@ -19,5 +19,14 @@ public enum TIP_USUARIO {
         }
         return null;
     }
+    
+    public static TIP_USUARIO getTypeUse(String type) {
+        if (type.equals("USUARIO")) {
+            return USUARIO;
+        } else if (type.equals("AUTOR")) {
+            return AUTOR;
+        }
+        return null;
+    }
 
 }

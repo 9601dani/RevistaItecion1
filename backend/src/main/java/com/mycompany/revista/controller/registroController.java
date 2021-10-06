@@ -34,24 +34,23 @@ public class registroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- BufferedReader reader = request.getReader();
+        BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
         while (line != null) {
             body = body + line;
-            line  = reader.readLine();
+            line = reader.readLine();
         }
         System.out.println("body:");
         System.out.println(body);
-        UsConverter converter= new UsConverter(Usuario.class){};
+        UsConverter converter = new UsConverter(Usuario.class) {
+        };
         Usuario usuario = converter.fromJson(body);
-        System.out.println("------------------");
-        System.out.println(usuario.getTipo_usuario());
-        String result=new UsuarioDaoImpl().registrar(usuario);
-        if(result.equalsIgnoreCase("yes")){
+        String result = new UsuarioDaoImpl().registrar(usuario);
+        if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(usuario));
             System.out.println("se guardo");
-        }else{
+        } else {
             System.out.println("no se guardo");
         }
         
