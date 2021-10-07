@@ -1,6 +1,8 @@
 import { LoginSService } from 'service/login-s.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MenuUserService } from 'service/menu-user.service';
+import { User } from 'src/objects/User';
 
 @Component({
   selector: 'app-menu-user',
@@ -10,14 +12,20 @@ import { Component, OnInit } from '@angular/core';
 export class MenuUserComponent implements OnInit {
  name!:String;
  type!:String;
-  constructor(private newNombre: LoginSService) { }
+ user:User=JSON.parse(<string>localStorage.getItem('userS'));
+  constructor(private newNombre: LoginSService, private service:MenuUserService) { }
 
-  ngOnInit() {
-   this.name=this.newNombre.getName();
-   this.type=this.newNombre.getTypeUser();
+  ngOnInit(): void {   
+   console.log(this.user);
+   this.name= this.user.nombre;
+   this.type=this.user.tipo_usuario;
   }
   getOptionMenu(){
     return this.type;
+  }
+
+  CambiarPagina(op:string){
+    this.service.Op=op;
   }
 
 

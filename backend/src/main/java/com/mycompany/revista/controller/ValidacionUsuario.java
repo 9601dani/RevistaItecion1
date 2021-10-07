@@ -40,15 +40,13 @@ public class ValidacionUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             System.out.println("METODO PARA VALIDAR USUARIO ");
-                    BufferedReader reader = request.getReader();
+        BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
         while (line != null) {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         UsConverter converter = new UsConverter(Usuario.class) {
         };
         Usuario usuario = converter.fromJson(body);

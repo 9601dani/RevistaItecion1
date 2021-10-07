@@ -13,4 +13,5 @@ import java.sql.ResultSet;
  */
 public interface UsuarioDao extends CRUD<Usuario> {
         ResultSet consultarLogin(Usuario t);
+        ResultSet obtenerInfo(Usuario t);
 }

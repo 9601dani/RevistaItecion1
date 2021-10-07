@@ -7,25 +7,28 @@
     <div class="collapse navbar-collapse btn" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link">Modificar Perfil</a>
+                <a (click)="CambiarPagina('perfil')" class="nav-link">Perfil</a>
+            </li>
+            <li class="nav-item active">
+                <a (click)="CambiarPagina('modPerfil')" class="nav-link">Modificar Perfil</a>
             </li>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
-                    <a class="nav-link">Ver Revista</a>
+                    <a  (click)="CambiarPagina('verRevista')" class="nav-link">Ver Revista</a>
                 </li>
             </div>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
-                    <a class="nav-link">Registrar Etiquetas</a>
+                    <a (click)="CambiarPagina('registrarEtiqueta')" class="nav-link">Registrar Etiquetas</a>
                 </li>
             </div>
             <div *ngIf=" getOptionMenu() == 'AUTOR' ">
                 <li class="nav-item active">
-                    <a class="nav-link">Editar Revista</a>
+                    <a (click)="CambiarPagina('editarRevista')" class="nav-link">Editar Revista</a>
                 </li>
             </div>
             <li class="nav-item active">
-                <a class="nav-link">Cerrar Sesion</a>
+                <a (click)="CambiarPagina('cerrarSesion')" class="nav-link">Cerrar Sesion</a>
             </li>
         </ul>
     </div>

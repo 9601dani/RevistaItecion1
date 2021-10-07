@@ -1,0 +1,59 @@
+<br><br>
+<body>
+  <p>{{userF?.nombre_usuario}}</p>
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <img class="mb-4"
+        src="https://img.flaticon.com/icons/png/512/303/303653.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
+        alt="" width="275" height="200">
+      <h1 class="h3 mb-3 font-weight-normal">{{userF.nombre_usuario}} </h1>
+    </div>
+    <div class="form-label-group">
+      <a>Nombre de Usuario:</a>
+      <b></b>
+      <input class="form-control" placeholder="{{(userF.nombre_usuario)}}" readonly>
+    </div>
+    <br>
+    <a>Contraseña:</a>
+    <div class="form-label-group">
+      <input type="password" class="form-control" placeholder="********" readonly>
+    </div>
+    <br>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col">
+          <a>Descripcion Personal:</a>
+          <div class="form-label-group">
+            <textarea name="textarea" disabled rows="5" cols="25"> {{userF.des_personal}} </textarea>
+          </div>
+        </div>
+        <div class="col">
+          <a>Descripcion Hobbies:</a>
+          <div class="form-label-group">
+            <textarea name="textarea" disabled rows="5" cols="25"> {{userF.des_hobbies}} </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <a>Nombre Registrado:</a>
+    <div class="form-label-group">
+      <input class="form-control" placeholder=" {{userF.nombre}} " readonly>
+    </div>
+    <br>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col">
+          <div class="form-label-group">
+            <button class="btn btn-lg btn-primary btn-block" >Añadir Etiquetas</button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-label-group">
+            <button class="btn btn-lg btn-primary btn-block" (click)="CambiarPagina('modPerfil')" >Actualizar Perfil</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>

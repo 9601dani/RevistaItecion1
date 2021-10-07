@@ -84,5 +84,28 @@ private final String SELECTLOGIN="SELECT * FROM usuario WHERE nombre_usuario=?";
         }
         return null;
     }
+
+    @Override
+    public ResultSet obtenerInfo(Usuario t) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            
+                query = Conexion.getInstancia().prepareStatement(SELECTLOGIN);
+                System.out.println(t.getNombre_usuario()+" -------->");
+                query.setString(1, t.getNombre_usuario());
+                datosObtenidos = query.executeQuery();
+            if (datosObtenidos!=null && datosObtenidos.next()) {
+                return datosObtenidos;
+            }else{
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    }
     
 }

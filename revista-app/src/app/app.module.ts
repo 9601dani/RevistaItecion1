@@ -1,3 +1,5 @@
+import { ObtenerInfoUserService } from './../../service/obtener-info-user.service';
+import { PerfilHomeComponent } from './body/perfil-home/perfil-home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,6 +23,9 @@ import { HomeCompleteComponent } from './home-complete/home-complete.component';
 import { LoginSService } from 'service/login-s.service';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { MenuUserComponent } from './menu/menu-user/menu-user.component';
+import { ModPerfilComponent } from './body/perfil-home/mod-perfil/mod-perfil.component';
+import { VerRevistaComponent } from './body/perfil-home/ver-revista/ver-revista.component';
+import { RegistrarEtiquetaComponent } from './body/perfil-home/registrar-etiqueta/registrar-etiqueta.component';
 
 @NgModule({
   declarations: [	
@@ -37,7 +42,11 @@ import { MenuUserComponent } from './menu/menu-user/menu-user.component';
     NAnuncioComponent,
     HomeCompleteComponent,
     HomeUserComponent,
-    MenuUserComponent
+    MenuUserComponent,
+    PerfilHomeComponent,
+    ModPerfilComponent,
+    VerRevistaComponent,
+    RegistrarEtiquetaComponent
    ],
   imports: [
     BrowserModule,
@@ -46,7 +55,7 @@ import { MenuUserComponent } from './menu/menu-user/menu-user.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ServiceHomeService, NewUsuarioService,LoginSService],
+  providers: [ServiceHomeService, NewUsuarioService,LoginSService, ObtenerInfoUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

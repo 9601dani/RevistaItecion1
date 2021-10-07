@@ -31,10 +31,11 @@ export class LoginComponent implements OnInit {
       .subscribe((created:User)=>{
         console.log(created);
         if(created!=null){
+          localStorage.removeItem("userS");
+          localStorage.setItem("userS",JSON.stringify(created));
           alert("INICIO DE SESION CORRECTO");
           this.route.navigate(['user-home/',this.formLogin.value.inputNombreUsuario]);
-          this.LoginSService.setName(created.nombre);
-          this.LoginSService.setTypeUser(created.tipo_usuario);
+
         }else{
           alert("NO SE INICIO SESION REVISA LOS DATOS INGRESADOS");
           

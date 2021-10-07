@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    JSON.parse(<string>localStorage.getItem("user"));
   }
 
 }
