@@ -18,7 +18,8 @@ import java.util.ArrayList;
  */
 public class UsuarioDaoImpl extends Conexion implements UsuarioDao{
 private final String AÑADIR_CLIENTE="INSERT INTO usuario (nombre_usuario, password, nombre,tipo_usuario) VALUES (?,?,?,?);";
-private final String SELECTLOGIN="SELECT * FROM usuario WHERE nombre_usuario=?";    
+private final String SELECTLOGIN="SELECT * FROM usuario WHERE nombre_usuario=?"; 
+private final String UPDATE="UPDATE usuario SET password=?, nombre=?, des_personal=?,des_hobbies=? WHERE nombre_usuario=?"; 
     public UsuarioDaoImpl(){
         new Conexion();
     }
@@ -51,8 +52,20 @@ private final String SELECTLOGIN="SELECT * FROM usuario WHERE nombre_usuario=?";
     }
 
     @Override
-    public void actualizar(Usuario t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String actualizar(Usuario t) {
+         try{
+            PreparedStatement query= Conexion.getInstancia().prepareStatement(UPDATE);
+            query.setString(1,t.getPassword());
+            query.setString(2, t.getNombre());
+            query.setString(3, t.getDes_personal());
+            query.setString(4, t.getDes_hobbies());
+            query.setString(5,t.getNombre_usuario());
+            query.executeUpdate();
+            return "yes";
+        }catch(SQLException e){
+            System.out.println(e+" buscame aqui");
+            return "no";
+        }   
     }
 
     @Override

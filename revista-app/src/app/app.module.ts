@@ -26,6 +26,14 @@ import { MenuUserComponent } from './menu/menu-user/menu-user.component';
 import { ModPerfilComponent } from './body/perfil-home/mod-perfil/mod-perfil.component';
 import { VerRevistaComponent } from './body/perfil-home/ver-revista/ver-revista.component';
 import { RegistrarEtiquetaComponent } from './body/perfil-home/registrar-etiqueta/registrar-etiqueta.component';
+import { LoginAdminComponent } from './body/login/login-admin/login-admin.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { MenuAdminComponent } from './menu/menu-admin/menu-admin.component';
+import { AsigEtiquetaComponent } from './body/login/login-admin/asig-etiqueta/asig-etiqueta.component';
+import { HomeLoginComponent } from './body/login/login-admin/home-login/home-login.component';
+import { CrearAdminComponent } from './body/login/login-admin/crear-admin/crear-admin.component';
+import { ModAdminComponent } from './body/login/login-admin/mod-admin/mod-admin.component';
+import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final/mod-admin-final.component';
 
 @NgModule({
   declarations: [	
@@ -46,14 +54,23 @@ import { RegistrarEtiquetaComponent } from './body/perfil-home/registrar-etiquet
     PerfilHomeComponent,
     ModPerfilComponent,
     VerRevistaComponent,
-    RegistrarEtiquetaComponent
+    RegistrarEtiquetaComponent,
+    LoginAdminComponent,
+    HomeAdminComponent,
+    MenuAdminComponent,
+    AsigEtiquetaComponent,
+    HomeLoginComponent,
+    CrearAdminComponent,
+    ModAdminComponent,
+    ModAdminFinalComponent
    ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [ServiceHomeService, NewUsuarioService,LoginSService, ObtenerInfoUserService],
   bootstrap: [AppComponent]

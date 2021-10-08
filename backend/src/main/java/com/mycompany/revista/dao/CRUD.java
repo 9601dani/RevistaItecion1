@@ -4,6 +4,7 @@
  */
 package com.mycompany.revista.dao;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public interface CRUD<T> {
     ArrayList<T> listarTodos();
     String registrar(T t);
-    void actualizar(T t);
+    String actualizar(T t);
     void eliminar(T t);
     
 }

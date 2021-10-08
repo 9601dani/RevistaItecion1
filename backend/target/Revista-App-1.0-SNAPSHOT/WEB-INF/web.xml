@@ -12,6 +12,34 @@
         <servlet-name>GetInfoUser</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetInfoUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidacionAdmin</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ValidacionAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewAdmin</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.NewAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetInfoAdmin</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetInfoAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAdmin</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateA</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateA</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveEtiqueta</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveEtiqueta</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -23,6 +51,34 @@
     <servlet-mapping>
         <servlet-name>GetInfoUser</servlet-name>
         <url-pattern>/GetInfoUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/UpdateUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidacionAdmin</servlet-name>
+        <url-pattern>/ValidacionAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewAdmin</servlet-name>
+        <url-pattern>/NewAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetInfoAdmin</servlet-name>
+        <url-pattern>/GetInfoAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAdmin</servlet-name>
+        <url-pattern>/UpdateAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateA</servlet-name>
+        <url-pattern>/UpdateA</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveEtiqueta</servlet-name>
+        <url-pattern>/SaveEtiqueta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

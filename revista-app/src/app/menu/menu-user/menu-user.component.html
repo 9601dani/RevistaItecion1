@@ -9,9 +9,6 @@
             <li class="nav-item active">
                 <a (click)="CambiarPagina('perfil')" class="nav-link">Perfil</a>
             </li>
-            <li class="nav-item active">
-                <a (click)="CambiarPagina('modPerfil')" class="nav-link">Modificar Perfil</a>
-            </li>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
                     <a  (click)="CambiarPagina('verRevista')" class="nav-link">Ver Revista</a>
@@ -28,7 +25,7 @@
                 </li>
             </div>
             <li class="nav-item active">
-                <a (click)="CambiarPagina('cerrarSesion')" class="nav-link">Cerrar Sesion</a>
+                <a (click)= "cerrarSesion()" class="nav-link">Cerrar Sesion</a>
             </li>
         </ul>
     </div>

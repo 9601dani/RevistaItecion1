@@ -10,4 +10,18 @@ package com.mycompany.revista.clases;
  */
 public class Etiqueta {
     private String nombre_etiqueta;
+
+    public Etiqueta(String nombre_etiqueta) {
+        this.nombre_etiqueta = nombre_etiqueta;
+    }
+
+    public String getNombre_etiqueta() {
+        return nombre_etiqueta;
+    }
+
+    public void setNombre_etiqueta(String nombre_etiqueta) {
+        this.nombre_etiqueta = nombre_etiqueta;
+    }
+    
+    
 }

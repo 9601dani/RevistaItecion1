@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row" style="background-color:beige">
+        <div class="col-sm">
+            NOMBRE DE USUARIO:
+        </div>
+        <div class="col-sm">
+            NOMBRE:
+        </div>
+        <div class="col-sm">
+            CONTRASEÑA:
+        </div>
+        <div class="col-sm">
+            ESTADO:
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+<br><br>
+<form>
+    <div *ngFor="let admin of listAdmins">
+        <div class="container">
+            <div class="row" style="background-color:khaki">
+                <div class="col-sm">
+                    <div>{{admin.nombre_usuario}} </div>
+                </div>
+                <div class="col-sm">
+                    <div>{{admin.nombre}} </div>
+                </div>
+                <div class="col-sm">
+                    <div *ngFor="let sada for admin.password.length"></div>
+                        <hr>
+                </div>
+                <div class="col-sm">
+                    <div>{{admin.estado}} </div>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-primary btn-block" (click)="editarUser(admin.nombre_usuario,admin.nombre,admin.password,admin.estado)" >Editar</button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</form>
+<div *ngIf=" getOpcion()==(1) ">
+    <form [formGroup]= "myForm">
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <input formControlName="username" type="text" [(ngModel)]="this.username" >
+                    </div>
+                    <div class="col-sm">
+                        <input formControlName="name" type="text" [(ngModel)]="this.name" >
+                    </div>
+                    <div class="col-sm">
+                        <input  formControlName="pass" type="password" [(ngModel)]="this.pass" >
+                    </div>
+                    <div class="col-sm">
+                        <input formControlName="estado" type="text" readonly [(ngModel)]="this.estado" >
+                    </div>
+                    <div class="col-sm">
+                        <button class="btn btn-primary btn-block" type="submit" (click)= "updateAdmin()" >Actualizar</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+    <div class="col-sm" *ngIf="this.estado=='ACTIVO'">
+        <button class="btn btn-primary btn-block" (click) = " desUser() ">Desactivar Usuario</button>
+    </div>
+    <br>
+    <div class="col-sm" *ngIf="this.estado=='DESACTIVO'">
+        <button class="btn btn-primary btn-block" (click) = " activarUser() ">Activar Usuario</button>
+    </div>
+</div>

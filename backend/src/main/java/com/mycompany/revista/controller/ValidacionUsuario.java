@@ -5,7 +5,6 @@
 package com.mycompany.revista.controller;
 
 import static com.mycompany.revista.Enum.TIP_USUARIO.getTypeUse;
-import static com.mycompany.revista.Enum.TIP_USUARIO.getTypeUser;
 import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.converter.UsConverter;
 import com.mycompany.revista.dao.UsuarioDaoImpl;

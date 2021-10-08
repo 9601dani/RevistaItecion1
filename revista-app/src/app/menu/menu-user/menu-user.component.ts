@@ -13,7 +13,8 @@ export class MenuUserComponent implements OnInit {
  name!:String;
  type!:String;
  user:User=JSON.parse(<string>localStorage.getItem('userS'));
-  constructor(private newNombre: LoginSService, private service:MenuUserService) { }
+  constructor(private newNombre: LoginSService, private service:MenuUserService,
+    private route:Router) { }
 
   ngOnInit(): void {   
    console.log(this.user);
@@ -26,6 +27,9 @@ export class MenuUserComponent implements OnInit {
 
   CambiarPagina(op:string){
     this.service.Op=op;
+  }
+  cerrarSesion(){
+    this.route.navigate(['/']);
   }
 
 

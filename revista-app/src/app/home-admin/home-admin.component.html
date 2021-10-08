@@ -1,0 +1,22 @@
+<app-menu-admin></app-menu-admin>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <div *ngIf="getOpcionA()== 'asignarEtiqueta' ">
+               <app-asig-etiqueta></app-asig-etiqueta>
+            </div>
+            <div *ngIf="getOpcionA()== '' ">
+                <app-home-login></app-home-login>
+             </div>
+            <div *ngIf="getOpcionA()== 'modAdmin' ">
+                <app-mod-admin></app-mod-admin>
+            </div>
+            <div *ngIf="getOpcionA()=='crearPerfilAdmin'">
+                <app-crear-admin></app-crear-admin>
+            </div>
+        </div>
+        <div class="col">
+            <app-spam></app-spam>
+        </div>
+    </div>
+</div>

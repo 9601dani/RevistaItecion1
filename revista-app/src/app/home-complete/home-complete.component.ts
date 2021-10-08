@@ -1,3 +1,4 @@
+import { UserComplete } from 'src/objects/UserComplete';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +11,8 @@ export class HomeCompleteComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.removeItem("userComplete");
+    localStorage.removeItem("userS");
   }
 
 }

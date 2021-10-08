@@ -1,3 +1,4 @@
+import { Admin } from './../src/objects/Admin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,5 +14,9 @@ export class NewUsuarioService {
 
   public createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.API_URL+"/user", user);
+  }
+
+  public createAdmin(user: Admin): Observable<Admin> {
+    return this.httpClient.post<Admin>(this.API_URL+"/newAdmin", user);
   }
 }

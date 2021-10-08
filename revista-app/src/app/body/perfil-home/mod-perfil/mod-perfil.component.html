@@ -1,1 +1,58 @@
-<p>mod-perfil works!</p>
+<br><br>
+
+<body>
+    <form class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4"
+                src="https://img.flaticon.com/icons/png/512/303/303653.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
+                alt="" width="275" height="200">
+            <h1 class="h3 mb-3 font-weight-normal">{{userCom.nombre_usuario}} </h1>
+        </div>
+        <div class="form-label-group">
+            <a>Nombre de Usuario:</a>
+            <b></b>
+            <input class="form-control" value="{{(userCom.nombre_usuario)}}" readonly>
+        </div>
+    </form>
+    <br>
+    <form [formGroup]= "formUpdate"  (ngSubmit)= "updateUser()" >
+        <a>Contraseña:</a>
+        <div class="form-label-group">
+            <input formControlName="inputPassword" type="password" class="form-control"
+                 [(ngModel)]="userCom.password">
+        </div>
+        <br>
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col">
+                    <a>Descripcion Personal:</a>
+                    <div class="form-label-group">
+                        <textarea formControlName="inputPersona"  name="textarea" rows="5" cols="25"  [(ngModel)]= "userCom.des_personal" ></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <a>Descripcion Hobbies:</a>
+                    <div class="form-label-group">
+                        <textarea formControlName="inputHobbies" name="textarea" rows="5" cols="25" [(ngModel)]= "userCom.des_hobbies" > </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <a>Nombre Registrado:</a>
+        <div class="form-label-group">
+            <input formControlName="inputName" class="form-control" [(ngModel)]= "userCom.nombre">
+        </div>
+        <br>
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="form-label-group">
+                        <button class="btn btn-lg btn-primary btn-block" (click)="CambiarPagina('modPerfil')">Guardar
+                            Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

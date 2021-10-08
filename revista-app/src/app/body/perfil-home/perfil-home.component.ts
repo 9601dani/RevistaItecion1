@@ -27,6 +27,8 @@ export class PerfilHomeComponent implements OnInit {
     this.ObtenerInfoUserService.createUser(new UserComplete(String(username),'  ',' ',' ',' ',this.photo,UserType.AUTOR))
     .subscribe((usuario:UserComplete)=>{
       this.userF= usuario;
+      localStorage.removeItem("userComplete");
+      localStorage.setItem("userComplete",JSON.stringify(usuario));
       console.log("---------");
       console.log(usuario.foto);
       
