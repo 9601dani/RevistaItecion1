@@ -11,5 +11,5 @@ import com.mycompany.revista.clases.Etiqueta;
  * @author daniel
  */
 public interface EtiquetaDao extends CRUD<Etiqueta>{
-    
+        
 }

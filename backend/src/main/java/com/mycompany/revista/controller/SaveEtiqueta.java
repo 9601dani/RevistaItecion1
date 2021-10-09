@@ -33,7 +33,7 @@ public class SaveEtiqueta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      System.out.println("VAMOS A GUARDAR UNA ETIQUETA");
+      System.out.println("VAMOS A MANDAR LAS ETIQUETAS");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();

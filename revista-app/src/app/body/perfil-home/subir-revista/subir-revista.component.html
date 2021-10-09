@@ -1,0 +1,74 @@
+<body>
+    <br>
+    <form class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="https://graficaslapaz.es/wp-media/uploads/2015/08/3.1.6.1-ICONO-REVISTAS-COLOR.png"
+                alt="" width="150" height="75">
+            <h1 class="h3 mb-3 font-weight-normal">Subir Revista</h1>
+        </div>
+        <form [formGroup]= "formRevista" (ngSubmit)="saveRevista()">
+            <a>Nombre de revista</a>
+            <div class="form-label-group">
+                <input formControlName="nomRevista" type="text" maxlength="45" class="form-control"
+                    placeholder="Nombre de Revista" required autofocus>
+            </div>
+            <br>
+            <a>Fecha de Publicacion:</a>
+            <div class="form-label-group">
+                <input formControlName="fecha_publicacion" type="date" class="form-control" required autofocus>
+            </div>
+            <br>
+            <a>Descripcion de la Revista:</a>
+            <div class="form-label-group">
+                <textarea placeholder="Pon una descripcion corta" formControlName="descripcion" type="text" maxlength="150" class="form-control" required
+                    autofocus></textarea>
+            </div>
+            <br>
+            <a>Costo de Suscripcion:</a>
+            <div class="form-label-group">
+                <input placeholder="Define el costo de suscripcion" formControlName="costoSuscripcion" type="number" class="form-control" required autofocus>
+            </div>
+            <br>
+            <a>Seleccione una opcion: 'Me Gustas'</a>
+            <div>
+                <select formControlName="like" class="form-select" aria-label="Default select example">
+                    <option value="ACEPTA_LIKE">ACEPTAR ME GUSTA</option>
+                    <option value="NO_ACEPTA_LIKE">NO ACEPTAR ME GUSTA</option>
+                </select>
+            </div>
+            <br>
+            <a>Seleccione una opcion: 'Comentarios'</a>
+            <div>
+                <select formControlName="Dcomentario" class="form-select" aria-label="Default select example">
+                    <option value="ACEPTA_COMENTARIO">ACEPTAR COMENTARIOS</option>
+                    <option value="NO_ACEPTA_COMENTARIO">NO ACEPTAR COMENTARIOS</option>
+                </select>
+            </div>
+            <br>
+            <a>Seleccione una opcion: 'Suscripciones'</a>
+            <div>
+                <select formControlName="Dsuscripcion" class="form-select" aria-label="Default select example">
+                    <option value="ACEPTA_SUSCRIPCION">ACEPTAR SUSCRIPCIONES</option>
+                    <option value="NO_ACEPTA_SUSCRIPCION">NO ACEPTAR SUSCRIPCIONES</option>
+                </select>
+            </div>
+            <br>
+            <a>Seleccione una categoria: </a>
+            <div>
+                <select formControlName="Dcategoria" class="form-select" aria-label="Default select example">
+                    <option  *ngFor= "let cat of categorias" value=" {{cat.nombre_categoria}} "> {{cat.nombre_categoria}} </option>
+                  </select> 
+            </div>
+            <br>
+            <a>Subir archivo: </a>
+            <div>
+                <input placeholder="Subir archivo" formControlName="fileRevista" type="file" accept=".pdf" class="form-control" required autofocus>
+            </div>
+            <br>
+
+            <button [disabled]= "formRevista.invalid" class="btn btn-lg btn-primary btn-block"
+                type="submit">Subir Revista</button>
+        </form>
+
+    </form>
+</body>

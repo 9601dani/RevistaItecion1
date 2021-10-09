@@ -1,66 +1,65 @@
+<app-header></app-header>
 <div class="container">
-    <div class="row" style="background-color:beige">
-        <div class="col-sm">
-            NOMBRE DE USUARIO:
-        </div>
-        <div class="col-sm">
-            NOMBRE:
-        </div>
-        <div class="col-sm">
-            CONTRASEÑA:
-        </div>
-        <div class="col-sm">
-            ESTADO:
-        </div>
-        <div class="col-sm">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE DE USUARIO</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">CONTRASEÑA</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col"> &nbsp; </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let admin of listAdmins">
+                        <th scope="row">{{ admin.nombre_usuario}}</th>
+                        <td>{{ admin.nombre }}</td>
+                        <td>
+                            <a></a>
+                            <hr>
+                        </td>
+                        <td>{{ admin.estado }}</td>
+                        <td>
+                            <a (click)="editarUser(admin.nombre_usuario,admin.nombre,admin.password,admin.estado)"
+                                class="btn btn-primary btn-block">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<br><br>
-<form>
-    <div *ngFor="let admin of listAdmins">
-        <div class="container">
-            <div class="row" style="background-color:khaki">
-                <div class="col-sm">
-                    <div>{{admin.nombre_usuario}} </div>
-                </div>
-                <div class="col-sm">
-                    <div>{{admin.nombre}} </div>
-                </div>
-                <div class="col-sm">
-                    <div *ngFor="let sada for admin.password.length"></div>
-                        <hr>
-                </div>
-                <div class="col-sm">
-                    <div>{{admin.estado}} </div>
-                </div>
-                <div class="col-sm">
-                    <button class="btn btn-primary btn-block" (click)="editarUser(admin.nombre_usuario,admin.nombre,admin.password,admin.estado)" >Editar</button>
-                </div>
-            </div>
-        </div>
-        <br>
-    </div>
-</form>
+<br>
 <div *ngIf=" getOpcion()==(1) ">
-    <form [formGroup]= "myForm">
+    <form [formGroup]= "myForm" >
+        <h1> Editar Usuario: </h1>
+        <br>
         <div>
             <div class="container">
                 <div class="row" style="background-color:khaki">
                     <div class="col-sm">
-                        <input formControlName="username" type="text" [(ngModel)]="this.username" >
+                        <a>nombre de usuario: </a>
+                        <input formControlName="username" type="text" [(ngModel)]="this.username">
                     </div>
                     <div class="col-sm">
-                        <input formControlName="name" type="text" [(ngModel)]="this.name" >
+                        <a>nombre: </a>
+                        <input formControlName="name" type="text" [(ngModel)]="this.name">
                     </div>
                     <div class="col-sm">
-                        <input  formControlName="pass" type="password" [(ngModel)]="this.pass" >
+                        <a>contraseña: </a>
+                        <input formControlName="pass" type="password" readonly [(ngModel)]="this.pass">
                     </div>
                     <div class="col-sm">
-                        <input formControlName="estado" type="text" readonly [(ngModel)]="this.estado" >
+                        <a>estado: </a>
+                        <input formControlName="estado" type="text" readonly [(ngModel)]="this.estado">
                     </div>
                     <div class="col-sm">
-                        <button class="btn btn-primary btn-block" type="submit" (click)= "updateAdmin()" >Actualizar</button>
+                        <button class="btn btn-primary btn-block" type="submit"
+                            (click)="updateAdmin()">Actualizar</button>
                     </div>
                 </div>
             </div>
@@ -68,10 +67,10 @@
         </div>
     </form>
     <div class="col-sm" *ngIf="this.estado=='ACTIVO'">
-        <button class="btn btn-primary btn-block" (click) = " desUser() ">Desactivar Usuario</button>
+        <button class="btn btn-primary btn-block" (click)=" desUser() ">Desactivar Usuario</button>
     </div>
     <br>
     <div class="col-sm" *ngIf="this.estado=='DESACTIVO'">
-        <button class="btn btn-primary btn-block" (click) = " activarUser() ">Activar Usuario</button>
+        <button class="btn btn-primary btn-block" (click)=" activarUser() ">Activar Usuario</button>
     </div>
 </div>

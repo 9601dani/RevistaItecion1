@@ -40,6 +40,18 @@
         <servlet-name>SaveEtiqueta</servlet-name>
         <servlet-class>com.mycompany.revista.controller.SaveEtiqueta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getEtiquetas</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.getEtiquetas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveEtiquetaUser</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.saveEtiquetaUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getCategoria</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.getCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -79,6 +91,18 @@
     <servlet-mapping>
         <servlet-name>SaveEtiqueta</servlet-name>
         <url-pattern>/SaveEtiqueta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getEtiquetas</servlet-name>
+        <url-pattern>/getEtiquetas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveEtiquetaUser</servlet-name>
+        <url-pattern>/saveEtiquetaUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getCategoria</servlet-name>
+        <url-pattern>/getCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

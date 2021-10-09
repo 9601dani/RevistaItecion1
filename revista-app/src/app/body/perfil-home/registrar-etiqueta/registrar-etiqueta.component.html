@@ -1,1 +1,23 @@
-<p>registrar-etiqueta works!</p>
+<body>
+    <form class="form-signin">
+      <div class="text-center mb-4">
+          <br><br>
+        <img class="mb-4"
+          src="https://previews.123rf.com/images/lineartestpilot/lineartestpilot1502/lineartestpilot150202097/36102146-de-dibujos-animados-retro-del-estilo-del-c%C3%B3mic-libro-de-hechizos-de-magia.jpg"
+          alt="" width="200" height="125">
+        <h1 class="h3 mb-3 font-weight-normal">Registro de Etiquetas</h1>
+      </div>
+      <form [formGroup]= "myFormAsig" (ngSubmit)= "saveEtiquetaUser()" > 
+        <div class="form-label-group">
+            <a>Selecciona el Nombre de la Etiqueta:</a>
+            <select formControlName="etiquetaN" class="form-select" aria-label="Default select example">
+                <option  *ngFor="let etiq of etiquetas" value=" {{etiq.nombre_etiqueta}} "> {{etiq.nombre_etiqueta}} </option>
+              </select> 
+        </div>
+        <br>
+        <button class="btn btn-primary btn-block" type="submit"> Añadir a mi lista</button> 
+      </form>
+    </form>
+    <br><br>
+    <button class="btn btn-primary btn-block" type="submit"> Ver mis etiquetas</button>
+  </body>

@@ -1,3 +1,4 @@
+import { NewUsuarioService } from 'service/new-usuario.service';
 import { ServiceHomeService } from './../../../../service/service-home.service';
 import { User } from './../../../objects/User';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ import { LoginSService } from 'service/login-s.service';
 export class RegisterComponent implements OnInit {
 
 public myForm!: FormGroup;
-  constructor(private LoginSService: LoginSService,private FormBuilder:FormBuilder, private service:ServiceHomeService) {}
+  constructor(private NewUsuarioService:NewUsuarioService,private FormBuilder:FormBuilder, private service:ServiceHomeService) {}
 
   ngOnInit(): void {
     this.myForm=this.FormBuilder.group({
@@ -25,7 +26,7 @@ public myForm!: FormGroup;
 
   saveUser(){
    if(this.myForm.valid){
-    this.LoginSService.createUser(new User(this.myForm.value.NombreU,this.myForm.value.Password,this.myForm.value.Nombre,this.myForm.value.Type))
+    this.NewUsuarioService.createUser(new User(this.myForm.value.NombreU,this.myForm.value.Password,this.myForm.value.Nombre,this.myForm.value.Type))
     .subscribe((created:User)=>{
       console.log(created);
       if(created!=null){

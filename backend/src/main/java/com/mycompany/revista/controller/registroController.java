@@ -49,9 +49,9 @@ public class registroController extends HttpServlet {
         String result = new UsuarioDaoImpl().registrar(usuario);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(usuario));
-            System.out.println("se actualizo");
+            System.out.println("se registro");
         } else {
-            System.out.println("no se actualizo");
+            System.out.println("no se registro");
         }
         
         

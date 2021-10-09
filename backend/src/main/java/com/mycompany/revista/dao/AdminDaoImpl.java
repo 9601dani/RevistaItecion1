@@ -6,7 +6,6 @@ package com.mycompany.revista.dao;
 
 import static com.mycompany.revista.Enum.ESTADO_ADM.getAdmin;
 import com.mycompany.revista.clases.Administrador;
-import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,6 +50,7 @@ private final String DESACTIVATE ="UPDATE administrador SET estado=? WHERE nombr
     @Override
     public String actualizar(Administrador t) {
       try{
+          
             PreparedStatement query= Conexion.getInstancia().prepareStatement(UPDATE);
             query.setString(1,t.getPassword());
             query.setString(2, t.getNombre());
@@ -111,6 +111,7 @@ private final String DESACTIVATE ="UPDATE administrador SET estado=? WHERE nombr
         }
         return null;
     }
+    
 
     @Override
     public String desactivar(Administrador t) {

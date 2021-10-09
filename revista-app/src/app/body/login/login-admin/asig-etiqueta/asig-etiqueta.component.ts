@@ -32,7 +32,7 @@ etiq!:Etiqueta;
           this.etiq=created;
           this.service.Opcion='';
         }else{
-          alert("NO SE PUDO GUARDAR, FAVOR VERIFICA TUS DATOS");
+          alert("NO SE PUDO GUARDAR, PARECE QUE YA EXISTE LA ETIQUETA");
           
         }
       },(error:any)=>{

@@ -16,7 +16,8 @@ export class MenuUserComponent implements OnInit {
   constructor(private newNombre: LoginSService, private service:MenuUserService,
     private route:Router) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {  
+    this.service.Op='perfil'; 
    console.log(this.user);
    this.name= this.user.nombre;
    this.type=this.user.tipo_usuario;
@@ -29,7 +30,11 @@ export class MenuUserComponent implements OnInit {
     this.service.Op=op;
   }
   cerrarSesion(){
+    this.service.Op='';
     this.route.navigate(['/']);
+  }
+  getUser():String{
+return this.user.nombre_usuario;
   }
 
 

@@ -77,7 +77,7 @@ public class GetInfoAdmin extends HttpServlet {
         }
     }
 
-    public String toJson(ArrayList<Administrador> object) {
+    private String toJson(ArrayList<Administrador> object) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String string = "[";
         for (Administrador data : object) {

@@ -34,6 +34,7 @@ import { HomeLoginComponent } from './body/login/login-admin/home-login/home-log
 import { CrearAdminComponent } from './body/login/login-admin/crear-admin/crear-admin.component';
 import { ModAdminComponent } from './body/login/login-admin/mod-admin/mod-admin.component';
 import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final/mod-admin-final.component';
+import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-revista.component';
 
 @NgModule({
   declarations: [	
@@ -62,7 +63,8 @@ import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final
     HomeLoginComponent,
     CrearAdminComponent,
     ModAdminComponent,
-    ModAdminFinalComponent
+    ModAdminFinalComponent,
+    SubirRevistaComponent
    ],
   imports: [
     BrowserModule,

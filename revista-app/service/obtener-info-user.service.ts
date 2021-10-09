@@ -1,3 +1,5 @@
+import { Categoria } from './../src/objects/Categoria';
+import { EtiquetaUser } from './../src/objects/EtiquetaUser';
 import { Admin } from './../src/objects/Admin';
 import { Etiqueta } from './../src/objects/Etiqueta';
 import { HttpClient } from '@angular/common/http';
@@ -32,6 +34,19 @@ export class ObtenerInfoUserService {
 
   public saveEtiqueta(user:Etiqueta): Observable<Etiqueta> {
     return this.httpClient.post<Etiqueta>(this.API_URL+"/saveEtiqueta",user);
+  }
+
+  public getEtiqueta(): Observable<Array<Etiqueta>>{
+    return this.httpClient.post<Array<Etiqueta>>(this.API_URL+"/getEtiqueta","user");
+  }
+  public getCategoria(): Observable<Array<Categoria>>{
+    return this.httpClient.post<Array<Categoria>>(this.API_URL+"/getCategoriaN","user");
+  }
+
+  public getEtiquetaUser(name:EtiquetaUser): Observable<EtiquetaUser>{
+    console.log("------>");
+    console.log(name);
+    return this.httpClient.post<EtiquetaUser>(this.API_URL+"/saveEtiquetaU",name);
   }
 
   
