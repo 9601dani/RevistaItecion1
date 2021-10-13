@@ -116,20 +116,16 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
             string += gson.toJson(data, Etiqueta.class) + ",";
         }
         string = string.substring(0, string.length() - 1) + "]";
-        System.out.println("------->\n" + string);
         return string;
     }
 
     public static String toJsonCA(ArrayList<Categoria> object) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        System.out.println("prueba1");
         String string = "[";
         for (Categoria data : object) {
             string += gson.toJson(data, Categoria.class) + ",";
         }
-        System.out.println("++  "+ string);
         string = string.substring(0, string.length() - 1) + "]";
-        System.out.println("------->\n" + string);
         return string;
     }
 

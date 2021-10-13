@@ -9,5 +9,23 @@ package com.mycompany.revista.Enum;
  * @author daniel
  */
 public enum COMENTARIO_E {
-    ACEPTA_COMENTARIO,NO_ACEPTA_COMENTARIO;
+    ACEPTA_COMENTARIO, NO_ACEPTA_COMENTARIO;
+
+    public static String getCom(COMENTARIO_E type) {
+        if (type.equals(COMENTARIO_E.ACEPTA_COMENTARIO)) {
+            return "ACEPTA_COMENTARIO";
+        } else if (type.equals(COMENTARIO_E.NO_ACEPTA_COMENTARIO)) {
+            return "NO_ACEPTA_COMENTARIO";
+        }
+        return null;
+    }
+
+    public static COMENTARIO_E getCom(String type) {
+        if (type.equals("ACEPTA_COMENTARIO")) {
+            return ACEPTA_COMENTARIO;
+        } else if (type.equals("NO_ACEPTA_COMENTARIO")) {
+            return NO_ACEPTA_COMENTARIO;
+        }
+        return null;
+    }
 }

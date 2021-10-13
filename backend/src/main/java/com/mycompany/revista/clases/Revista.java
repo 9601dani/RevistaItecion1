@@ -9,6 +9,7 @@ import com.mycompany.revista.Enum.ESTADO_REV;
 import com.mycompany.revista.Enum.ME_GUSTA_E;
 import com.mycompany.revista.Enum.SUSCRIP_E;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Date;
 public class Revista {
     private int id_revista;
     private String nombre_revista;
-    private Byte  archivo;
+    private Blob  archivo;
     private Date fecha_publicacion;
     private String descripcion;
     private Date fecha_aceptacion;
@@ -34,7 +35,7 @@ public class Revista {
     
    //CONSTRUCTOR COMPLETO
 
-    public Revista(int id_revista, String nombre_revista, Byte archivo, Date fecha_publicacion, String descripcion, Date fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, Date fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+    public Revista(int id_revista, String nombre_revista, Blob archivo, Date fecha_publicacion, String descripcion, Date fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, Date fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
         this.id_revista = id_revista;
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
@@ -53,7 +54,7 @@ public class Revista {
     }
     ///CONSTRUCTOR SEMI
 
-    public Revista(String nombre_revista, Byte archivo, Date fecha_publicacion, String descripcion, Date fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, Date fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+    public Revista(String nombre_revista, Blob archivo, Date fecha_publicacion, String descripcion, Date fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, Date fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
         this.fecha_publicacion = fecha_publicacion;
@@ -86,11 +87,11 @@ public class Revista {
         this.nombre_revista = nombre_revista;
     }
 
-    public Byte getArchivo() {
+    public Blob getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(Byte archivo) {
+    public void setArchivo(Blob archivo) {
         this.archivo = archivo;
     }
 

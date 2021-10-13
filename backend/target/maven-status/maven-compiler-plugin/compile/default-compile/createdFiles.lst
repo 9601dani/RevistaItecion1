@@ -3,6 +3,7 @@ com/mycompany/revista/dao/UsuarioDaoImpl.class
 com/mycompany/revista/dao/EAutorDaoImpl.class
 com/mycompany/revista/clases/Tipo_anuncio.class
 com/mycompany/revista/conexion/Conexion.class
+com/mycompany/revista/dao/RevistaDaoImpl.class
 com/mycompany/revista/controller/GetInfoUser.class
 com/mycompany/revista/controller/NewAdmin.class
 com/mycompany/revista/clases/Usuario.class
@@ -11,6 +12,7 @@ com/mycompany/revista/Enum/ESTADO_ADM.class
 com/mycompany/revista/dao/EtiquetaDao.class
 com/mycompany/revista/clases/Etiqueta_revista.class
 com/mycompany/revista/Enum/TIP_USUARIO.class
+com/mycompany/revista/dao/RevistaDao.class
 com/mycompany/revista/controller/UpdateAdmin.class
 com/mycompany/revista/controller/ValidacionUsuario.class
 com/mycompany/revista/Enum/ESTADO_ANUN.class
@@ -18,6 +20,7 @@ com/mycompany/revista/Enum/ESTADO_SUS.class
 com/mycompany/revista/controller/registroController$1.class
 com/mycompany/revista/converter/ConverterApi.class
 com/mycompany/revista/clases/Anuncio.class
+com/mycompany/revista/converter/RevistaConverter.class
 com/mycompany/revista/controller/UpdateAdmin$1.class
 com/mycompany/revista/converter/AdminConverter.class
 com/mycompany/revista/controller/GetInfoUser$1.class
@@ -51,10 +54,12 @@ com/mycompany/revista/controller/GetInfoAdmin.class
 com/mycompany/revista/clases/Etiqueta_anuncio.class
 com/mycompany/revista/clases/Categoria.class
 com/mycompany/revista/controller/NewAdmin$1.class
+com/mycompany/revista/controller/SaveRevista.class
 com/mycompany/revista/converter/EtiquetaConverter.class
 com/mycompany/revista/clases/Recaudacion.class
 com/mycompany/revista/controller/ValidacionUsuario$1.class
 com/mycompany/revista/Enum/SUSCRIP_E.class
 com/mycompany/revista/controller/getCategoria.class
+com/mycompany/revista/controller/SaveRevista$1.class
 com/mycompany/revista/controller/UpdateA$1.class
 com/mycompany/revista/clases/Etiqueta.class

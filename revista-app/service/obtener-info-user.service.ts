@@ -1,3 +1,4 @@
+import { SafeUrl } from '@angular/platform-browser';
 import { Categoria } from './../src/objects/Categoria';
 import { EtiquetaUser } from './../src/objects/EtiquetaUser';
 import { Admin } from './../src/objects/Admin';
@@ -11,6 +12,7 @@ import { UserComplete } from 'src/objects/UserComplete';
   providedIn: 'root'
 })
 export class ObtenerInfoUserService {
+  previsualizacion!:String;
   readonly API_URL = "http://localhost:8082/Revista-App";
   constructor(private httpClient: HttpClient) { }
 
@@ -48,6 +50,15 @@ export class ObtenerInfoUserService {
     console.log(name);
     return this.httpClient.post<EtiquetaUser>(this.API_URL+"/saveEtiquetaU",name);
   }
+  changePrevisualizacion(pre:String){
+    this.previsualizacion=pre;
+  }
+  getPrevisualizacion():String{
+    return this.previsualizacion;
+
+  }
+
+
 
   
 }

@@ -52,6 +52,10 @@
         <servlet-name>getCategoria</servlet-name>
         <servlet-class>com.mycompany.revista.controller.getCategoria</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveRevista</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveRevista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>getCategoria</servlet-name>
         <url-pattern>/getCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveRevista</servlet-name>
+        <url-pattern>/SaveRevista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

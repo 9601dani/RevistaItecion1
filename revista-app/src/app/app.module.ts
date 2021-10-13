@@ -35,7 +35,8 @@ import { CrearAdminComponent } from './body/login/login-admin/crear-admin/crear-
 import { ModAdminComponent } from './body/login/login-admin/mod-admin/mod-admin.component';
 import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final/mod-admin-final.component';
 import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-revista.component';
-
+import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
+import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component' ;
 @NgModule({
   declarations: [	
     AppComponent,
@@ -64,7 +65,10 @@ import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-re
     CrearAdminComponent,
     ModAdminComponent,
     ModAdminFinalComponent,
-    SubirRevistaComponent
+    SubirRevistaComponent,
+    MostrarPdfComponent,
+    
+
    ],
   imports: [
     BrowserModule,
@@ -72,9 +76,13 @@ import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-re
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PdfViewerModule
+    
   ],
   providers: [ServiceHomeService, NewUsuarioService,LoginSService, ObtenerInfoUserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+ }
