@@ -5,11 +5,12 @@
 package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Revista;
+import java.util.ArrayList;
 
 /**
  *
  * @author daniel
  */
 public interface RevistaDao extends CRUD<Revista>{
-    
+    ArrayList<Revista> listarAlgunos(String name);
 }

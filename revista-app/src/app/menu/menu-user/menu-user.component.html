@@ -24,6 +24,11 @@
                     <a (click)="CambiarPagina('subirRevista')" class="nav-link">Subir Revista</a>
                 </li>
             </div>
+            <div *ngIf=" getOptionMenu() == 'AUTOR' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('verMisRevistas')" class="nav-link">Ver Mis Revistas</a>
+                </li>
+            </div>
             <li class="nav-item active">
                 <a (click)= "cerrarSesion()" class="nav-link">Cerrar Sesion</a>
             </li>

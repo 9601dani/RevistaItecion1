@@ -22,7 +22,7 @@ public enum ESTADO_REV {
         return null;
     }
     
-    public static ESTADO_REV getRev(String type) {
+    public static ESTADO_REV getRev1(String type) {
         if (type.equals("ACEPTADA")) {
             return ACEPTADA;
         } else if (type.equals("DENEGADA")) {

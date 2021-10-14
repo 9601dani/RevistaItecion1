@@ -56,6 +56,14 @@
         <servlet-name>SaveRevista</servlet-name>
         <servlet-class>com.mycompany.revista.controller.SaveRevista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OnlyFile</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.OnlyFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetRevista</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetRevista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>SaveRevista</servlet-name>
         <url-pattern>/SaveRevista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OnlyFile</servlet-name>
+        <url-pattern>/OnlyFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRevista</servlet-name>
+        <url-pattern>/GetRevista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

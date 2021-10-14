@@ -36,7 +36,8 @@ import { ModAdminComponent } from './body/login/login-admin/mod-admin/mod-admin.
 import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final/mod-admin-final.component';
 import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-revista.component';
 import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
-import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component' ;
+import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component';
+import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver-mis-revistas.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -67,6 +68,7 @@ import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component' ;
     ModAdminFinalComponent,
     SubirRevistaComponent,
     MostrarPdfComponent,
+    VerMisRevistasComponent,
     
 
    ],

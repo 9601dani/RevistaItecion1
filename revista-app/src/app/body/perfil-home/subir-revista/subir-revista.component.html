@@ -69,13 +69,18 @@
             </div>
             <br>
             <div>
-                <button [disabled]="formRevista.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Subir
+                <button [disabled]= "formRevista.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Subir
                     Revista</button>
             </div>
-            <div class="text-center" *ngIf="previsualizacion">
-                <app-mostrar-pdf></app-mostrar-pdf>
+            <br>
+            <div class="text-center" *ngIf= "previsualizacion">
+                <h2>Mostrando previsualizacion del archivo: </h2>
+                <div class="container">
+                    <pdf-viewer  [src]= "previsualizacion"></pdf-viewer>
+                    <br>
+                </div>
+                <br>
             </div>
         </form>
-
     </form>
 </body>

@@ -13,7 +13,7 @@ public enum SUSCRIP_E {
 
     public static String getSus(SUSCRIP_E type) {
         if (type.equals(SUSCRIP_E.ACEPTA_SUSCRIPCION)) {
-            return "ACEPTA_SUSCIPCION";
+            return "ACEPTA_SUSCRIPCION";
         } else if (type.equals(SUSCRIP_E.NO_ACEPTA_SUSCRIPCION)) {
             return "NO_ACEPTA_SUSCRIPCION";
         }
