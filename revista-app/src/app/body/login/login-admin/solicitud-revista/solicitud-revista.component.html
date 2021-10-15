@@ -1,0 +1,67 @@
+<h3 class="text-center"> ESTAS SON LAS SOLICITUDES DE REVISTAS: </h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID REVISTA</th>
+                        <th scope="col">NOMBRE REVISTA</th>
+                        <th scope="col">ESTADO REVISTA</th>
+                        <th scope="col">USUARIO SOLICITANTE</th>
+                        <th scope="col"> &nbsp; </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rev of revistas">
+                        <th scope="row">{{ rev.id_revista}}</th>
+                        <td>{{ rev.nombre_revista }}</td>
+                        <td> {{rev.estado_revista}} </td>
+                        <td>{{ rev.nombre_usuario }}</td>
+                        <td>
+                            <a  (click)="admitirRev(rev.fecha_aceptacion, rev.costo_dia, rev.fecha_mod_costo,rev.id_revista)"
+                                class="btn btn-primary btn-block">
+                               Admitir Revista
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div *ngIf=" getAdd()==(1) ">
+    <form [formGroup]= "myForm" >
+        <h1> Aceptar Revista </h1>
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Revista Id: </a>
+                        <input type="text"  readonly value="{{this.username}}">
+                    </div>
+                    <div class="col-sm">
+                        <a>Fecha Aceptacion </a>
+                             <input formControlName="fecha_acep" type="date" [(ngModel)]="this.fecha_acep">
+                    </div>
+                    <div class="col-sm">
+                        <a>Costo por dia: </a>
+                        <input formControlName="costo_dia" type="number" [(ngModel)]="this.costo_dia">
+                    </div>
+                    <div class="col-sm">
+                        <a>fecha de ultima modificacion: </a>
+                        <input formControlName="fecha_mod_costo" type="date" [(ngModel)]="this.fecha_mod_costo">
+                    </div>
+                    <div class="col-sm">
+                        <button [disabled]= "myForm.invalid" class="btn btn-primary btn-block" type="submit"
+                        (click)="admitirRevFinal()"  >ADMITIR</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>

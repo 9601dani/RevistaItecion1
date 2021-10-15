@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { User } from 'src/objects/User';
+import { RevistaForAdmin } from 'src/objects/RevistaForAdmin';
+import { AdmitirRevista } from 'src/objects/AdmitirRevista';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,9 @@ export class MenuAutorService {
     let httpParams = new HttpParams()
     .append("user", this.user.nombre_usuario);
     return this.httpClient.get<Array<RevAutor>>(this.API_URL+"/getFileautor",{ params: httpParams});
+  }
+  public getFiles(): Observable<Array<RevistaForAdmin>> {
+    return this.httpClient.get<Array<RevistaForAdmin>>(this.API_URL+"/getRevEspera");
   }
 
 
@@ -49,6 +54,18 @@ export class MenuAutorService {
     .append("user", this.revs.nombre_usuario);
 
     return this.httpClient.post<Etiqueta>(this.API_URL+"/onlyFile", formData,{ params: httpParams});
-}
+  }
+
+  public admitirRev(rev: AdmitirRevista): Observable<Etiqueta> {
+    let date = formatDate(new Date(rev.fecha_aceptacion),'yyyy-MM-dd','en-US');
+    let date1 = formatDate(new Date(rev.fecha_mod_costo),'yyyy-MM-dd','en-US');
+    let httpParams = new HttpParams()
+    .append("id", rev.id_revista)
+    .append("fecha_acep", date)
+    .append("costo", rev.costo_dia)
+    .append("fecha_mod", date1)
+    .append("estadoRev", rev.estado_revista)
+    return this.httpClient.get<Etiqueta>(this.API_URL+"/aceptarRev",{ params: httpParams});
+  }
 
 }

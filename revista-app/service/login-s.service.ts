@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { AdmitirRevista } from './../src/objects/AdmitirRevista';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Admin } from 'src/objects/Admin';
+import { Etiqueta } from 'src/objects/Etiqueta';
 import { User } from 'src/objects/User';
+import { formatDate } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +22,7 @@ export class LoginSService {
   public createAdmin(user: Admin): Observable<Admin> {
     return this.httpClient.post<Admin>(this.API_URL+"/loginAdmin", user);
   }
+
 
   setName(name: String){
     this.name=name;

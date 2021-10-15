@@ -1,3 +1,4 @@
+import { MenuAdminService } from 'service/menu-admin.service';
 import { LoginSService } from './../../../../../service/login-s.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ import { AdminType } from 'src/objects/AdminType';
 export class LoginAdminComponent implements OnInit {
 formAdmin!:FormGroup;
   constructor(private LoginSService: LoginSService, 
-    private FormBuilder:FormBuilder, private route: Router) { }
+    private FormBuilder:FormBuilder, private route: Router, private MenuAdminService:MenuAdminService) { }
 
   ngOnInit(): void {
      this.formAdmin=this.FormBuilder.group({
@@ -30,6 +31,7 @@ formAdmin!:FormGroup;
         if(created!=null){
           localStorage.setItem("Admin",JSON.stringify(created));
           alert("INICIO DE SESION CORRECTO");
+          this.MenuAdminService.Opcion='';
           this.route.navigate(['user-admin/',created.nombre_usuario]);
         }else{
           alert("NO SE INICIO SESION REVISA LOS DATOS INGRESADOS\nO DIRIGITE A ADMINISTRACION PUEDE QUE TU\nUSUARIO NO ESTE ACTIVO");

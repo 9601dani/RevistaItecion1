@@ -5,6 +5,7 @@ com/mycompany/revista/clases/Tipo_anuncio.class
 com/mycompany/revista/conexion/Conexion.class
 com/mycompany/revista/dao/RevistaDaoImpl.class
 com/mycompany/revista/controller/GetInfoUser.class
+com/mycompany/revista/controller/GetRevistaEspera.class
 com/mycompany/revista/controller/NewAdmin.class
 com/mycompany/revista/clases/Usuario.class
 com/mycompany/revista/converter/EAutorConverter.class
@@ -25,6 +26,7 @@ com/mycompany/revista/controller/UpdateAdmin$1.class
 com/mycompany/revista/converter/AdminConverter.class
 com/mycompany/revista/controller/GetInfoUser$1.class
 com/mycompany/revista/clases/Porcentaje_soft.class
+com/mycompany/revista/controller/AceptarRev.class
 com/mycompany/revista/dao/AdminDao.class
 com/mycompany/revista/clases/Etiqueta_autor.class
 com/mycompany/revista/dao/AdminDaoImpl.class
@@ -42,6 +44,7 @@ com/mycompany/revista/controller/saveEtiquetaUser.class
 com/mycompany/revista/controller/OnlyFile.class
 com/mycompany/revista/clases/Administrador.class
 com/mycompany/revista/clases/Revista.class
+com/mycompany/revista/controller/ActuRev.class
 com/mycompany/revista/controller/SaveEtiqueta$1.class
 com/mycompany/revista/clases/Comentario.class
 com/mycompany/revista/converter/UsConverter.class

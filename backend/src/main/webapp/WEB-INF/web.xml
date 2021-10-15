@@ -64,6 +64,18 @@
         <servlet-name>GetRevista</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetRevista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetRevistaEspera</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetRevistaEspera</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AceptarRev</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.AceptarRev</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActuRev</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ActuRev</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>GetRevista</servlet-name>
         <url-pattern>/GetRevista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRevistaEspera</servlet-name>
+        <url-pattern>/GetRevistaEspera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AceptarRev</servlet-name>
+        <url-pattern>/AceptarRev</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActuRev</servlet-name>
+        <url-pattern>/ActuRev</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

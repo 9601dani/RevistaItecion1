@@ -38,6 +38,7 @@ import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-re
 import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
 import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component';
 import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver-mis-revistas.component';
+import { SolicitudRevistaComponent } from './body/login/login-admin/solicitud-revista/solicitud-revista.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -69,6 +70,7 @@ import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver
     SubirRevistaComponent,
     MostrarPdfComponent,
     VerMisRevistasComponent,
+    SolicitudRevistaComponent,
     
 
    ],

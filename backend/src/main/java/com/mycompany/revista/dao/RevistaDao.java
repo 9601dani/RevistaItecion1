@@ -13,4 +13,12 @@ import java.util.ArrayList;
  */
 public interface RevistaDao extends CRUD<Revista>{
     ArrayList<Revista> listarAlgunos(String name);
+
+    /**
+     *
+     * @return
+     */
+    ArrayList<Revista> listarEnEspera();
+    
+    String AceptarRevista(Revista r);
 }

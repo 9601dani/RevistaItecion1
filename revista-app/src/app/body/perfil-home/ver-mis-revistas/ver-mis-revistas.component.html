@@ -1,1 +1,93 @@
-<p>ver-mis-revistas works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID REVISTA</th>
+                        <th scope="col">NOMBRE REVISTA</th>
+                        <th scope="col">ESTADO REVISTA</th>
+                        <th scope="col">ARCHIVO</th>
+                        <th scope="col"> &nbsp; </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rev of revistas">
+                        <th scope="row">{{ rev.id_revista}}</th>
+                        <td>{{ rev.nombre_revista }}</td>
+                        <td> {{rev.estado_revista}} </td>
+                        <td>{{ rev.archivo }}</td>
+                        <td>
+                            <a (click)="modRev(rev.id_revista,rev.nombre_revista,rev.descripcion,rev.costo_suscripcion,rev.me_gusta,rev.comentario,rev.suscripciones)"
+                                class="btn btn-primary btn-block">
+                                Modificar Revista
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br><br>
+<div *ngIf=" getMod()==(1) ">
+    <form [formGroup]= "myForm" >
+        <h1> Modifica tu Revista </h1>
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Revista Id: </a>
+                        <input type="text"  readonly value="{{this.id}}">
+                    </div>
+                    <div class="col-sm">
+                        <a>Nombre de revista: </a>
+                        <input formControlName="nombre" type="text" [(ngModel)]="this.nombre">
+                    </div>
+                    <div class="col-sm">
+                        <a>Descripcion: </a>
+                             <textarea style="width: 250px; height: 250px; " formControlName="des" type="text" [(ngModel)]= "this.descripcion"></textarea>
+                    </div>
+                    <div class="col-sm">
+                        <a>Costo de Suscripcion: </a>
+                        <input formControlName="costo_sus" type="number" [(ngModel)]="this.costoSuscripcion">
+                    </div>
+                    <div>
+                        <br>
+                        <a>LOS SIGUIENTES DATOS PUEDES DEJARLOS EN BLANCO Y SE MANTENDRAN LOS DATOS YA REGISTRADOS </a>
+                        <br>
+                    </div>
+                    <a>Seleccione una opcion: 'Me Gustas'</a>
+                    <div>
+                        <select formControlName="like" class="form-select" aria-label="Default select example">
+                            <option value="ACEPTA_LIKE">ACEPTAR ME GUSTA</option>
+                            <option value="NO_ACEPTA_LIKE">NO ACEPTAR ME GUSTA</option>
+                        </select>
+                    </div>
+                    <a>Seleccione una opcion: 'Comentarios'</a>
+                    <div>
+                        <select formControlName="Dcomentario" class="form-select" aria-label="Default select example">
+                            <option value="ACEPTA_COMENTARIO">ACEPTAR COMENTARIOS</option>
+                            <option value="NO_ACEPTA_COMENTARIO">NO ACEPTAR COMENTARIOS</option>
+                        </select>
+                    </div>
+                    <br>
+                    <a>Seleccione una opcion: 'Suscripciones'</a>
+                    <div>
+                        <select formControlName="Dsuscripcion" class="form-select" aria-label="Default select example">
+                            <option value="ACEPTA_SUSCRIPCION">ACEPTAR SUSCRIPCIONES</option>
+                            <option value="NO_ACEPTA_SUSCRIPCION">NO ACEPTAR SUSCRIPCIONES</option>
+                        </select>
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button class="btn btn-primary btn-block" type="submit"
+                         (click)="modRevFinal()" >Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>

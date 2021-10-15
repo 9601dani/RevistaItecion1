@@ -6,7 +6,7 @@ import { Suscrip_E } from "./ENUMS/Suscrip_E";
 export class RevAutor {
     id_revista!: number;
     nombre_revista!: string;
-    archivo!:Blob;
+    archivo!:File;
     fecha_publicacion!: Date;
     descripcion!: string;
     estado_revista!: Estado_Rev;
@@ -17,7 +17,7 @@ export class RevAutor {
     suscripciones!: Suscrip_E;
     nombre_categoria!: string;
 
-    constructor(id_revista:number,nombre_revista: string,archivo:Blob, fecha_publicacion: Date, descripcion: string, estado_revista: Estado_Rev, costo_dia: number, costo_suscripcion: number, me_gusta: Me_Gusta_E, comentario: Comentario_E, suscripciones: Suscrip_E, nombre_categoria: string) {
+    constructor(id_revista:number,nombre_revista: string,archivo:File, fecha_publicacion: Date, descripcion: string, estado_revista: Estado_Rev, costo_dia: number, costo_suscripcion: number, me_gusta: Me_Gusta_E, comentario: Comentario_E, suscripciones: Suscrip_E, nombre_categoria: string) {
         this.id_revista=id_revista;
         this.nombre_revista = nombre_revista;
         this.archivo=archivo;

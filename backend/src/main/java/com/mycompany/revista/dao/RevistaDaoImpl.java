@@ -25,8 +25,12 @@ import java.sql.ResultSet;
  * @author daniel
  */
 public class RevistaDaoImpl implements RevistaDao {
-     private final String SELECTSPECIAL = "SELECT * FROM revista WHERE nombre_usuario=?";
+
+    private final String SELECTSPECIAL = "SELECT * FROM revista WHERE nombre_usuario=?";
     private final String SAVER = "INSERT INTO revista(nombre_revista,archivo,fecha_publicacion,descripcion,estado_revista,costo_suscripcion,me_gusta,comentario,suscripciones,nombre_categoria,nombre_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    private final String SELECTESPERA = "SELECT * FROM revista WHERE estado_revista='EN_ESPERA'";
+    private final String ACEPTARREV = "UPDATE revista SET fecha_aceptacion=?, estado_revista=?,costo_dia=?, fecha_mod_costo=? WHERE id_revista=?";
+    private final String UPDATE = "UPDATE revista SET nombre_revista=?, descripcion=?,costo_suscripcion=?, me_gusta=?,comentario=?,suscripciones=? WHERE id_revista=?";
 
     public RevistaDaoImpl() {
         new Conexion();
@@ -63,7 +67,25 @@ public class RevistaDaoImpl implements RevistaDao {
 
     @Override
     public String actualizar(Revista t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(UPDATE);
+             System.out.println("---->"+ t.getNombre_revista());
+            query.setString(1, t.getNombre_revista());
+            query.setString(2, t.getDescripcion());
+            query.setBigDecimal(3, t.getCosto_suscripcion());
+            query.setString(4, getLike(t.getMe_gusta()));
+            query.setString(5, getCom(t.getComentario()));
+            query.setString(6, getSus(t.getSuscripciones()));
+            System.out.println("---->"+ t.getId_revista());
+            query.setInt(7, t.getId_revista());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("aqui error");
+            return "no";
+        }
+    
     }
 
     @Override
@@ -83,7 +105,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"),datosObtenidos.getString("nombre_revista"),datosObtenidos.getBinaryStream("archivo"), datosObtenidos.getString("fecha_publicacion"),datosObtenidos.getString("descripcion"),getRev1(datosObtenidos.getString("estado_revista")),datosObtenidos.getBigDecimal("costo_suscripcion"),getLike(datosObtenidos.getString("me_gusta")),getCom(datosObtenidos.getString("comentario")),getSus(datosObtenidos.getString("suscripciones")),datosObtenidos.getString("nombre_categoria"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBinaryStream("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
                         listA.add(userN);
                     }
                     return listA;
@@ -110,5 +132,54 @@ public class RevistaDaoImpl implements RevistaDao {
         }
         string = string.substring(0, string.length() - 1) + "]";
         return string;
+    }
+
+    @Override
+    public ArrayList<Revista> listarEnEspera() {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Revista> listA = new ArrayList<Revista>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTESPERA);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBinaryStream("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
+                        listA.add(userN);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+
+    }
+
+    @Override
+    public String AceptarRevista(Revista r) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(ACEPTARREV);
+            query.setDate(1, r.getFecha_aceptacion());
+            query.setString(2, getRev(r.getEstado_revista()));
+            query.setBigDecimal(3, r.getCosto_dia());
+            query.setDate(4, r.getFecha_mod_costo());
+            query.setInt(5, r.getId_revista());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("aqui error");
+            return "no";
+        }
+
     }
 }

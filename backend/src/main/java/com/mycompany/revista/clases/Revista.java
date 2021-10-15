@@ -42,7 +42,7 @@ public class Revista {
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
         this.fecha_publicacion = fecha_publicacion;
-        this.descripcion = descripcion;
+        this.descripcion = descripcion;                                                                                                                                                                                                                                                                                                          
         this.fecha_aceptacion = fecha_aceptacion;
         this.estado_revista = estado_revista;
         this.costo_dia = costo_dia;
@@ -100,6 +100,25 @@ public class Revista {
         this.suscripciones = suscripciones;
         this.nombre_categoria = nombre_categoria;
     }
+
+    public Revista(int id_revista, String fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, String fecha_mod_costo) {
+        this.id_revista = id_revista;
+        this.fecha_aceptacion = fecha_aceptacion;
+        this.estado_revista = estado_revista;
+        this.costo_dia = costo_dia;
+        this.fecha_mod_costo = fecha_mod_costo;
+    }
+
+    public Revista(int id_revista, String nombre_revista, String descripcion, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones) {
+        this.id_revista = id_revista;
+        this.nombre_revista = nombre_revista;
+        this.descripcion = descripcion;
+        this.costo_suscripcion = costo_suscripcion;
+        this.me_gusta = me_gusta;
+        this.comentario = comentario;
+        this.suscripciones = suscripciones;
+    }
+    
     
     
     
