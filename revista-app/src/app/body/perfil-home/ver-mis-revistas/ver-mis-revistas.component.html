@@ -9,6 +9,8 @@
                         <th scope="col">ESTADO REVISTA</th>
                         <th scope="col">ARCHIVO</th>
                         <th scope="col"> &nbsp; </th>
+                        <th scope="col"> &nbsp; </th>
+                        <th scope="col"> &nbsp; </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -16,11 +18,22 @@
                         <th scope="row">{{ rev.id_revista}}</th>
                         <td>{{ rev.nombre_revista }}</td>
                         <td> {{rev.estado_revista}} </td>
-                        <td>{{ rev.archivo }}</td>
+                        <td>aqui va el archivo</td>
                         <td>
                             <a (click)="modRev(rev.id_revista,rev.nombre_revista,rev.descripcion,rev.costo_suscripcion,rev.me_gusta,rev.comentario,rev.suscripciones)"
                                 class="btn btn-primary btn-block">
                                 Modificar Revista
+                            </a>
+                        </td>
+                        <td>
+                            <a (click)="mostrarRevista(rev.archivo)" class="btn btn-primary btn-block">
+                                Mostrar Revista
+                            </a>
+                        </td>
+                        <td>
+                            <a (click)="asignarEtiqueta(rev.id_revista,rev.nombre_revista)"
+                                class="btn btn-primary btn-block">
+                                Asignar Etiquetas
                             </a>
                         </td>
                     </tr>
@@ -31,7 +44,7 @@
 </div>
 <br><br>
 <div *ngIf=" getMod()==(1) ">
-    <form [formGroup]= "myForm" >
+    <form [formGroup]="myForm">
         <h1> Modifica tu Revista </h1>
         <br>
         <div>
@@ -39,7 +52,7 @@
                 <div class="row" style="background-color:khaki">
                     <div class="col-sm">
                         <a>Revista Id: </a>
-                        <input type="text"  readonly value="{{this.id}}">
+                        <input type="text" readonly value="{{this.id}}">
                     </div>
                     <div class="col-sm">
                         <a>Nombre de revista: </a>
@@ -47,7 +60,8 @@
                     </div>
                     <div class="col-sm">
                         <a>Descripcion: </a>
-                             <textarea style="width: 250px; height: 250px; " formControlName="des" type="text" [(ngModel)]= "this.descripcion"></textarea>
+                        <textarea style="width: 250px; height: 250px; " formControlName="des" type="text"
+                            [(ngModel)]="this.descripcion"></textarea>
                     </div>
                     <div class="col-sm">
                         <a>Costo de Suscripcion: </a>
@@ -82,12 +96,53 @@
                     </div>
                     <div class="col-sm">
                         <br>
-                        <button class="btn btn-primary btn-block" type="submit"
-                         (click)="modRevFinal()" >Guardar Cambios</button>
+                        <button class="btn btn-primary btn-block" type="submit" (click)="modRevFinal()">Guardar
+                            Cambios</button>
                     </div>
                 </div>
             </div>
             <br>
         </div>
     </form>
+</div>
+<div *ngIf=" getMod()==(2) ">
+    <form [formGroup]="myForm2">
+        <h1> Asignar Etiqueta:</h1>
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Revista Id: </a>
+                        <input type="text" formControlName="id" readonly [(ngModel)]="this.id">
+                    </div>
+                    <div class="col-sm">
+                        <a>Nombre de revista: </a>
+                        <input formControlName="nombre" type="text" readonly [(ngModel)]="this.nombre">
+                    </div>
+                    <div>
+                        <a>Selecciona el Nombre de la Etiqueta:</a>
+                        <select formControlName="etiquetaN" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let etiq of etiquetas" value=" {{etiq.nombre_etiqueta}} ">
+                                {{etiq.nombre_etiqueta}} </option>
+                        </select>
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button class="btn btn-primary btn-block" type="submit" (click)="asignarEtiquetaFinal()">Guardar
+                            Asignar etiqueta</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>
+<div class="text-center" *ngIf="pre">
+    <h2>Mostrando previsualizacion del archivo: </h2>
+    <div class="container">
+        <pdf-viewer [src]="pre"></pdf-viewer>
+        <br>
+    </div>
+    <br>
 </div>

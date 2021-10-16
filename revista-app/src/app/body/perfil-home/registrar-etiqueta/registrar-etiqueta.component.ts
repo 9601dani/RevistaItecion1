@@ -50,7 +50,7 @@ export class RegistrarEtiquetaComponent implements OnInit {
       if(created!=null){
        alert("SE GUARDO ETIQUETA");
       }else{
-        alert("ERROR AQUI");
+        alert("PARECE QUE YA TIENE ESTA ETIQUETA ASIGNADA");
       }
 
     },(error:any)=>{

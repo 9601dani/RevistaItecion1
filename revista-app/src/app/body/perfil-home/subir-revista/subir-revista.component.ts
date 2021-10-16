@@ -24,10 +24,11 @@ cat!:Categoria;
 public previsualizacion!: String;
 public pre!:string;
 public archivos:any=[]
-arch!:File;
+arch!:string;
 fileUploaded: boolean = false;
 messageUpload: String = '';
 user!:User;
+
   constructor(private FormBuilder:FormBuilder,private ObtenerInfoUserService: ObtenerInfoUserService,
     private sanitizer: DomSanitizer, private MenuAutorService:MenuAutorService, private service: MenuUserService) { 
    

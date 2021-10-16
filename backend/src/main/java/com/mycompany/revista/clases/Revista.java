@@ -21,7 +21,8 @@ import java.time.LocalDate;
 public class Revista {
     private int id_revista;
     private String nombre_revista;
-    private InputStream archivo;
+    private byte[] archivo;
+    private String arch;
     private String fecha_publicacion;
     private String descripcion;
     private String fecha_aceptacion;
@@ -37,7 +38,7 @@ public class Revista {
     
    //CONSTRUCTOR COMPLETO
 
-    public Revista(int id_revista, String nombre_revista, InputStream archivo, String fecha_publicacion, String descripcion, String fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, String fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+    public Revista(int id_revista, String nombre_revista, byte[] archivo, String fecha_publicacion, String descripcion, String fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, String fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
         this.id_revista = id_revista;
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
@@ -56,7 +57,7 @@ public class Revista {
     }
     ///CONSTRUCTOR SEMI
 
-    public Revista(String nombre_revista, InputStream archivo, String fecha_publicacion, String descripcion, String fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, String fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+    public Revista(String nombre_revista, byte[] archivo, String fecha_publicacion, String descripcion, String fecha_aceptacion, ESTADO_REV estado_revista, BigDecimal costo_dia, String fecha_mod_costo, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
         this.fecha_publicacion = fecha_publicacion;
@@ -73,7 +74,7 @@ public class Revista {
         this.nombre_usuario = nombre_usuario;
     }
 
-    public Revista(String nombre_revista, InputStream archivo, String fecha_publicacion, String descripcion, ESTADO_REV estado_revista, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+    public Revista(String nombre_revista, byte[] archivo, String fecha_publicacion, String descripcion, ESTADO_REV estado_revista, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
         this.fecha_publicacion = fecha_publicacion;
@@ -87,7 +88,7 @@ public class Revista {
         this.nombre_usuario = nombre_usuario;
     }
 
-    public Revista(int id_revista, String nombre_revista, InputStream archivo, String fecha_publicacion, String descripcion, ESTADO_REV estado_revista, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria) {
+    public Revista(int id_revista, String nombre_revista, byte[] archivo, String fecha_publicacion, String descripcion, ESTADO_REV estado_revista, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria) {
         this.id_revista = id_revista;
         this.nombre_revista = nombre_revista;
         this.archivo = archivo;
@@ -119,6 +120,20 @@ public class Revista {
         this.suscripciones = suscripciones;
     }
     
+        public Revista(int id_revista, String nombre_revista, String arch, String fecha_publicacion, String descripcion, ESTADO_REV estado_revista, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria) {
+        this.id_revista = id_revista;
+        this.nombre_revista = nombre_revista;
+        this.arch= arch;
+        this.fecha_publicacion = fecha_publicacion;
+        this.descripcion = descripcion;
+        this.estado_revista = estado_revista;
+        this.costo_suscripcion = costo_suscripcion;
+        this.me_gusta = me_gusta;
+        this.comentario = comentario;
+        this.suscripciones = suscripciones;
+        this.nombre_categoria = nombre_categoria;
+    }
+    
     
     
     
@@ -140,11 +155,11 @@ public class Revista {
         this.nombre_revista = nombre_revista;
     }
 
-    public InputStream getArchivo() {
+    public byte[] getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(InputStream archivo) {
+    public void setArchivo(byte[] archivo) {
         this.archivo = archivo;
     }
 
@@ -245,7 +260,6 @@ public class Revista {
     public void setNombre_usuario(String nombre_usuario) {
         this.nombre_usuario = nombre_usuario;
     }
-    
     
     
 }

@@ -42,7 +42,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 public class OnlyFile extends HttpServlet {
 
     public static final String PATH = "/home/daniel/Prueba";
-
+     private byte[] imagenBytes;
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -51,15 +51,19 @@ public class OnlyFile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("RECIBI UN ARCHIVO");
+        System.out.println("RE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  CIBI UN ARCHIVO");
         //recibo atributos
-
         Part filePart = request.getPart("datafile");
         String fileName = filePart.getHeader("Content-type");
         InputStream fileStream = filePart.getInputStream();
+        
+        this.imagenBytes= fileStream.readAllBytes();
+        System.out.println(this.imagenBytes);
+        
         System.out.println(fileName);
         System.out.println(filePart.getHeader("Content-disposition"));
 
@@ -74,7 +78,7 @@ public class OnlyFile extends HttpServlet {
             System.out.println(fileStream+" -----> mandando el archivo");
             
             Revista rev;
-            rev = new Revista(request.getParameter("nombre_rev"),fileStream  , request.getParameter("fecha_pu"), request.getParameter("descripcion"),
+            rev = new Revista(request.getParameter("nombre_rev"),this.imagenBytes , request.getParameter("fecha_pu"), request.getParameter("descripcion"),
                     getRev1(request.getParameter("estado")), new BigDecimal(request.getParameter("costo")), getLike(request.getParameter("me")),
                     getCom(request.getParameter("com")), getSus(request.getParameter("sus")), request.getParameter("ca"), request.getParameter("user"));
             RevistaDaoImpl registro = new RevistaDaoImpl();

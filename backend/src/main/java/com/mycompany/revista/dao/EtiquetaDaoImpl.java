@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.revista.clases.Categoria;
 import com.mycompany.revista.clases.Etiqueta;
+import com.mycompany.revista.clases.Etiqueta_revista;
 import com.mycompany.revista.conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
     private final String SAVE = "INSERT INTO etiqueta VALUES (?)";
     private final String SELECTALL = "SELECT * FROM etiqueta";
     private final String SELECTALLC = "SELECT * FROM categoria";
+    private final String SAVEREV = "INSERT INTO etiqueta_revista VALUES (?,?)";
 
     public EtiquetaDaoImpl() {
         new Conexion();
@@ -41,7 +43,6 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
                     while (datosObtenidos.next()) {
                         Etiqueta userN = new Etiqueta(datosObtenidos.getString("nombre_etiqueta"));
                         listA.add(userN);
-                        System.out.println(listA);
                     }
                     return listA;
                 } catch (SQLException ex) {
@@ -67,7 +68,7 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
             datosObtenidos = query.executeQuery();
             if (datosObtenidos != null) {
                 try {
-                    while(datosObtenidos.next()) {
+                    while (datosObtenidos.next()) {
                         Categoria userN = new Categoria(datosObtenidos.getString("nombre_categoria"));
                         listA.add(userN);
                     }
@@ -127,6 +128,21 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
         }
         string = string.substring(0, string.length() - 1) + "]";
         return string;
+    }
+
+    @Override
+    public String saveEtiquetaRev(Etiqueta_revista t) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(SAVEREV);
+            query.setString(1, t.getNombre_etiqueta());
+            query.setInt(2, t.getId_revista());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
+
     }
 
 }

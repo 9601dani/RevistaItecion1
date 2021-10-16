@@ -1,9 +1,9 @@
 import { Byte } from "@angular/compiler/src/util";
 
 export class Rev{
-    archivo!:File[];
+    archivo!:string[];
 
-    constructor(archivo:File[]){
+    constructor(archivo:string[]){
         this.archivo=archivo;   
     }
 }

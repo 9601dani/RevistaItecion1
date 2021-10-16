@@ -76,6 +76,10 @@
         <servlet-name>ActuRev</servlet-name>
         <servlet-class>com.mycompany.revista.controller.ActuRev</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SavEtiquetaRev</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SavEtiquetaRev</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>ActuRev</servlet-name>
         <url-pattern>/ActuRev</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavEtiquetaRev</servlet-name>
+        <url-pattern>/SavEtiquetaRev</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

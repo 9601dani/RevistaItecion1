@@ -5,11 +5,12 @@
 package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Etiqueta;
+import com.mycompany.revista.clases.Etiqueta_revista;
 
 /**
  *
  * @author daniel
  */
 public interface EtiquetaDao extends CRUD<Etiqueta>{
-        
+        String saveEtiquetaRev(Etiqueta_revista t);
 }

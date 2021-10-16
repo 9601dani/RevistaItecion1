@@ -35,10 +35,10 @@ export class MenuAutorService {
   }
 
 
-  public fileUpload(fileToUpload: File): Observable<Etiqueta> {
-    const formData: FormData = new FormData();
+  public fileUpload(fileToUpload: string): Observable<Etiqueta> {
+    const formData= new FormData();
 
-    formData.append("datafile", fileToUpload, fileToUpload.name);
+    formData.append("datafile", fileToUpload, "fileToUpload.name");
     this.revs=JSON.parse(<string>localStorage.getItem('nRev'));
     let date = formatDate(new Date(this.revs.fecha_publicacion),'yyyy-MM-dd','en-US');
     let httpParams = new HttpParams()

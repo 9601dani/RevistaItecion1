@@ -12,7 +12,7 @@ import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 })
 export class ModPerfilComponent implements OnInit {
 userCom:UserComplete = JSON.parse(<string>localStorage.getItem('userComplete'));
-photo!:Blob;
+photo!:string;
 public formUpdate!: FormGroup;
   constructor( private service: MenuUserService,private FormBuilder:FormBuilder,
     private ObtenerInfoUserService:ObtenerInfoUserService) { }

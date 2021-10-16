@@ -6,11 +6,11 @@ export class UserComplete{
     public nombre!: String;
     public des_personal!:String;
     public des_hobbies!:String;
-    public foto!:Blob;
+    public foto!:string;
     public tipo_usuario!: UserType;
 
     
-    constructor(nombre_usuario:String, password:String,nombre:String,des_personal:String,des_hobbies:String, foto:Blob,tipo_usuario:UserType){
+    constructor(nombre_usuario:String, password:String,nombre:String,des_personal:String,des_hobbies:String, foto:string,tipo_usuario:UserType){
         this.nombre_usuario=nombre_usuario;
         this.password= password;
         this.nombre=nombre;

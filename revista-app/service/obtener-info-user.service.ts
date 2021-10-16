@@ -1,3 +1,4 @@
+import { EtiquetaRev } from './../src/objects/EtiquetaRev';
 import { SafeUrl } from '@angular/platform-browser';
 import { Categoria } from './../src/objects/Categoria';
 import { EtiquetaUser } from './../src/objects/EtiquetaUser';
@@ -38,6 +39,10 @@ export class ObtenerInfoUserService {
     return this.httpClient.post<Etiqueta>(this.API_URL+"/saveEtiqueta",user);
   }
 
+  public saveEtiquetaRev(et:EtiquetaRev): Observable<Etiqueta> {
+    return this.httpClient.post<Etiqueta>(this.API_URL+"/etiquetaRev",et);
+  }
+
   public getEtiqueta(): Observable<Array<Etiqueta>>{
     return this.httpClient.post<Array<Etiqueta>>(this.API_URL+"/getEtiqueta","user");
   }
@@ -46,8 +51,6 @@ export class ObtenerInfoUserService {
   }
 
   public getEtiquetaUser(name:EtiquetaUser): Observable<EtiquetaUser>{
-    console.log("------>");
-    console.log(name);
     return this.httpClient.post<EtiquetaUser>(this.API_URL+"/saveEtiquetaU",name);
   }
   changePrevisualizacion(pre:String){

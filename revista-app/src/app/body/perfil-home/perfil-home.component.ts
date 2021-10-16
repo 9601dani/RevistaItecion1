@@ -13,9 +13,12 @@ import { MenuUserService } from 'service/menu-user.service';
 })
 export class PerfilHomeComponent implements OnInit {
   usernamefinal!:string;
-  photo!:Blob;  
+  photo!:string;  
   userF!:UserComplete;
   public previsualizacion!:any;
+
+  private selectedFile!:string;
+  imgURL: any;
 
   constructor(private route: ActivatedRoute,private  ObtenerInfoUserService:ObtenerInfoUserService,
     private sanitizer: DomSanitizer, private MenuUserService: MenuUserService) { }
@@ -31,6 +34,7 @@ export class PerfilHomeComponent implements OnInit {
       localStorage.setItem("userComplete",JSON.stringify(usuario));
       console.log("---------");
       console.log(usuario.foto);
+      this.mostrarRevista(usuario.foto)
       
     })
   }
@@ -61,4 +65,17 @@ export class PerfilHomeComponent implements OnInit {
   CambiarPagina(op:string){
     this.MenuUserService.Op=op;
   }
+
+  mostrarRevista(arch:string){
+    let reader = new FileReader();
+    reader.readAsDataURL(new Blob([arch],{type: 'application/pdf'}));
+    reader.onload = (event2) => {
+      this.imgURL = reader.result;
+      this.imgURL= this.sanitizer.bypassSecurityTrustUrl(this.imgURL);
+      console.log(this.imgURL)
+    };
+  
+ 
+   }
+  
 }
