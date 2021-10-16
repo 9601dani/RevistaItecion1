@@ -1,3 +1,4 @@
+import { Porcentaje } from './../src/objects/Porcentaje';
 import { EtiquetaRev } from './../src/objects/EtiquetaRev';
 import { SafeUrl } from '@angular/platform-browser';
 import { Categoria } from './../src/objects/Categoria';
@@ -60,7 +61,12 @@ export class ObtenerInfoUserService {
     return this.previsualizacion;
 
   }
-
+  public getPorcentaje(): Observable<Array<Porcentaje>>{
+    return this.httpClient.get<Array<Porcentaje>>(this.API_URL+"/porcentajeSoft");
+  }
+  public updatePorcentaje(porce:Porcentaje): Observable<Etiqueta>{
+    return this.httpClient.post<Etiqueta>(this.API_URL+"/porcentajeSoft",porce);
+  }
 
 
   

@@ -80,6 +80,10 @@
         <servlet-name>SavEtiquetaRev</servlet-name>
         <servlet-class>com.mycompany.revista.controller.SavEtiquetaRev</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getPorcentaje</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.getPorcentaje</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>SavEtiquetaRev</servlet-name>
         <url-pattern>/SavEtiquetaRev</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getPorcentaje</servlet-name>
+        <url-pattern>/getPorcentaje</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

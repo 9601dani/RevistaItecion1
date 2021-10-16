@@ -1,12 +1,12 @@
 import { AdminType } from './AdminType';
 
 export class Admin {
-    nombre_usuario!:String;
+    nombre_usuario!:string;
     password!:String;
     nombre!:String;
     estado!:AdminType;
 
-    constructor(nombre_usuario:String, password:String, nombre:String, estado:AdminType){
+    constructor(nombre_usuario:string, password:String, nombre:String, estado:AdminType){
         this.nombre_usuario=nombre_usuario;
         this.password=password;
         this.nombre=nombre;
@@ -29,7 +29,7 @@ export class Admin {
     return this.estado;
   }
 
-  public setNombre_usuario(nombre_usuario:String){
+  public setNombre_usuario(nombre_usuario:string){
     this.nombre_usuario=nombre_usuario;
   }
 

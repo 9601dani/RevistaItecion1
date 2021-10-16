@@ -16,6 +16,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ESTADO_SUS.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/AdminDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/EAutorDao.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/getPorcentaje.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveRevista.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/AdminDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ValidacionAdmin.java
@@ -30,6 +31,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Recaudacion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ME_GUSTA_E.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveEtiqueta.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/PorcentajeConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/conexion/Conexion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/saveEtiquetaUser.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Etiqueta_anuncio.java
@@ -53,11 +55,13 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/AdminConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ESTADO_ANUN.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/getCategoria.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/PorcentajeDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/TIP_USUARIO.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Revista.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ESTADO_REV.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/EtiquetaDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ActuRev.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetRevistaEspera.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/PorcentajeDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/EtiquetaRevConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ME_GUSTA_SUSCRIPCION.java

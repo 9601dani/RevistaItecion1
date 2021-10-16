@@ -63,7 +63,7 @@ myForm!:FormGroup;
   }
 
   updateAdmin(){
-    this.ObtenerInfoUserService.updateAdmin(new Admin(this.username, this.pass,this.name,this.estado)).subscribe((created:Admin)=>{
+    this.ObtenerInfoUserService.updateAdmin(new Admin(this.username.toString(), this.pass,this.name,this.estado)).subscribe((created:Admin)=>{
       console.log(created);
       if(created!=null){
         alert("Se Actualizo con Exito");
@@ -79,7 +79,7 @@ myForm!:FormGroup;
   }
   desUser(){
     this.ObtenerInfoUserService.updateAdmin
-    this.ObtenerInfoUserService.outAdmin(new Admin(this.username, this.pass,this.name,AdminType.DESACTIVO)).subscribe((created:Admin)=>{
+    this.ObtenerInfoUserService.outAdmin(new Admin(this.username.toString(), this.pass,this.name,AdminType.DESACTIVO)).subscribe((created:Admin)=>{
       console.log(created);
       if(created!=null){
         alert("Se Desactivo con Exito");
@@ -94,7 +94,7 @@ myForm!:FormGroup;
   }
   activarUser(){
     this.ObtenerInfoUserService.updateAdmin
-    this.ObtenerInfoUserService.outAdmin(new Admin(this.username, this.pass,this.name,AdminType.ACTIVO)).subscribe((created:Admin)=>{
+    this.ObtenerInfoUserService.outAdmin(new Admin(this.username.toString(), this.pass,this.name,AdminType.ACTIVO)).subscribe((created:Admin)=>{
       console.log(created);
       if(created!=null){
         alert("Se Activo con Exito");

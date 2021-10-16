@@ -2,6 +2,7 @@ com/mycompany/revista/controller/UpdateUser$1.class
 com/mycompany/revista/dao/UsuarioDaoImpl.class
 com/mycompany/revista/dao/EAutorDaoImpl.class
 com/mycompany/revista/clases/Tipo_anuncio.class
+com/mycompany/revista/converter/PorcentajeConverter.class
 com/mycompany/revista/converter/EtiquetaRevConverter.class
 com/mycompany/revista/conexion/Conexion.class
 com/mycompany/revista/dao/RevistaDaoImpl.class
@@ -39,15 +40,18 @@ com/mycompany/revista/controller/UpdateA.class
 com/mycompany/revista/clases/Suscripcion.class
 com/mycompany/revista/clases/Anunciante.class
 com/mycompany/revista/controller/UpdateUser.class
+com/mycompany/revista/controller/getPorcentaje.class
 com/mycompany/revista/controller/registroController.class
 com/mycompany/revista/dao/UsuarioDao.class
 com/mycompany/revista/dao/EtiquetaDaoImpl.class
+com/mycompany/revista/dao/PorcentajeDaoImpl.class
 com/mycompany/revista/controller/saveEtiquetaUser.class
 com/mycompany/revista/controller/OnlyFile.class
 com/mycompany/revista/clases/Administrador.class
 com/mycompany/revista/clases/Revista.class
 com/mycompany/revista/controller/ActuRev.class
 com/mycompany/revista/controller/SaveEtiqueta$1.class
+com/mycompany/revista/dao/PorcentajeDao.class
 com/mycompany/revista/clases/Comentario.class
 com/mycompany/revista/converter/UsConverter.class
 com/mycompany/revista/Enum/ME_GUSTA_SUSCRIPCION.class

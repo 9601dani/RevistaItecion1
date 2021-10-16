@@ -1,0 +1,40 @@
+<h1> Porcentaje Software: </h1>
+    <div *ngFor="let porc of objetPo" class="container">
+        <div class="row" style="background-color: cadetblue;">
+            <div class="col-sm">
+                <br>
+                <a>Ultimo usuario en modificarlo: </a>
+                <input  type="text" readonly value="{{porc.nombre_usuario}}">
+                <br><br>
+            </div>  
+            <br><br>        
+        </div>
+    </div>
+<form [formGroup]= "myForm" >
+    <h3> Editar Porcentaje: </h3>
+    <br>
+    <div>
+        <div class="container">
+            <div class="row" style="background-color: cadetblue;">
+                <div class="col-sm">
+                    <a>Porcentaje: (en %) </a>
+                    <input formControlName="porcentaje" type="number" [(ngModel)]="this.porcentaje">
+                </div>
+                <div class="col-sm">
+                    <a>Fecha de Modificacion </a>
+                    <input formControlName="fecha_mod" type="date" [(ngModel)]="this.fecha_mod">
+                </div>
+                <div class="col-sm">
+                    <br>
+                    <button [disabled]= "myForm.invalid" class="btn btn-primary btn-block" type="submit"
+                        (click)="updatePorcentaje()">Guardar Cambios</button>
+                    <br>
+                </div>
+                <br><br>
+            </div>
+            <br>
+        </div>
+        <br>
+    </div>
+</form>
+

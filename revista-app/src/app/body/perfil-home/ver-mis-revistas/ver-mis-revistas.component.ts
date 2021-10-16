@@ -184,14 +184,17 @@ export class VerMisRevistasComponent implements OnInit {
       if(created!=null){
         if(created.nombre_etiqueta=="yes"){
           alert("SE GUARDO ETIQUETA DE LA REVISTA");
+          this.opcio = 0;
         }
        
       }else{
         alert("PARECE QUE YA ESTA ASIGNADA ESTA ETIQUETA");
+        this.opcio = 0;
       }
 
     },(error:any)=>{
       alert("ERROR AL GUARDAR"+ error);
+      this.opcio = 0;
     });
 
   }

@@ -14,12 +14,12 @@ import java.util.Date;
 public class Porcentaje_soft {
     private int id_porcentaje;
     private BigDecimal porcentaje;
-    private Date fecha_ultima_modificacion;
+    private String fecha_ultima_modificacion;
     private String nombre_usuario;
     
     //CONSTRUCTOR COMPLETO
 
-    public Porcentaje_soft(int id_porcentaje, BigDecimal porcentaje, Date fecha_ultima_modificacion, String nombre_usuario) {
+    public Porcentaje_soft(int id_porcentaje, BigDecimal porcentaje, String fecha_ultima_modificacion, String nombre_usuario) {
         this.id_porcentaje = id_porcentaje;
         this.porcentaje = porcentaje;
         this.fecha_ultima_modificacion = fecha_ultima_modificacion;
@@ -27,7 +27,7 @@ public class Porcentaje_soft {
     }
     //CONSTRUCTOR PARCIAL
 
-    public Porcentaje_soft(BigDecimal porcentaje, Date fecha_ultima_modificacion, String nombre_usuario) {
+    public Porcentaje_soft(BigDecimal porcentaje, String fecha_ultima_modificacion, String nombre_usuario) {
         this.porcentaje = porcentaje;
         this.fecha_ultima_modificacion = fecha_ultima_modificacion;
         this.nombre_usuario = nombre_usuario;
@@ -51,11 +51,11 @@ public class Porcentaje_soft {
         this.porcentaje = porcentaje;
     }
 
-    public Date getFecha_ultima_modificacion() {
+    public String getFecha_ultima_modificacion() {
         return fecha_ultima_modificacion;
     }
 
-    public void setFecha_ultima_modificacion(Date fecha_ultima_modificacion) {
+    public void setFecha_ultima_modificacion(String fecha_ultima_modificacion) {
         this.fecha_ultima_modificacion = fecha_ultima_modificacion;
     }
 
