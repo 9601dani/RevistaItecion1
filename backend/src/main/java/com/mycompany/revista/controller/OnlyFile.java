@@ -29,7 +29,9 @@ import com.mycompany.revista.clases.Etiqueta;
 import com.mycompany.revista.converter.EtiquetaConverter;
 import com.mycompany.revista.converter.RevistaConverter;
 import com.mycompany.revista.dao.RevistaDaoImpl;
+import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  *
@@ -38,6 +40,7 @@ import java.math.BigDecimal;
 @WebServlet("/onlyFile")
 @MultipartConfig(location = "/tmp")
 public class OnlyFile extends HttpServlet {
+
     public static final String PATH = "/home/daniel/Prueba";
 
     /**
@@ -48,48 +51,47 @@ public class OnlyFile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("RECIBI UN ARCHIVO");
         //recibo atributos
-      
-        
-        
+
         Part filePart = request.getPart("datafile");
         String fileName = filePart.getHeader("Content-type");
         InputStream fileStream = filePart.getInputStream();
         System.out.println(fileName);
         System.out.println(filePart.getHeader("Content-disposition"));
 
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(fileStream))) {
+        try ( BufferedReader in = new BufferedReader(new InputStreamReader(fileStream))) {
             String line = in.readLine();
             while (line != null) {
                 line = in.readLine();
             }
-          //  String filePath = PATH + "/" + "archivo";
-         //   filePart.write(filePath);
-             Revista rev;
-            rev = new Revista(request.getParameter("nombre_rev"),fileStream,request.getParameter("fecha_pu"),request.getParameter("descripcion"),
-                    getRev1(request.getParameter("estado")),new BigDecimal(request.getParameter("costo")),getLike(request.getParameter("me")),
-                    getCom(request.getParameter("com")),getSus(request.getParameter("sus")),request.getParameter("ca"),request.getParameter("user"));
-            RevistaDaoImpl registro= new RevistaDaoImpl();
-            String m=registro.registrar(rev);
+            //  String filePath = PATH + "/" + "archivo";
+            //   filePart.write(filePath);
+            
+            System.out.println(fileStream+" -----> mandando el archivo");
+            
+            Revista rev;
+            rev = new Revista(request.getParameter("nombre_rev"),fileStream  , request.getParameter("fecha_pu"), request.getParameter("descripcion"),
+                    getRev1(request.getParameter("estado")), new BigDecimal(request.getParameter("costo")), getLike(request.getParameter("me")),
+                    getCom(request.getParameter("com")), getSus(request.getParameter("sus")), request.getParameter("ca"), request.getParameter("user"));
+            RevistaDaoImpl registro = new RevistaDaoImpl();
+            String m = registro.registrar(rev);
             EtiquetaConverter converter = new EtiquetaConverter(Etiqueta.class);
-            
-            
-             if (m.equalsIgnoreCase("yes")) {
+
+            if (m.equalsIgnoreCase("yes")) {
                 response.getWriter().append(converter.toJson(new Etiqueta("yes")));
                 System.out.println("se guardo");
             } else {
                 System.out.println("no se guardo");
             }
-            
-            
+
         } catch (Exception ex) {
             // manejo de error
-        }    }
+        }
+    }
 
     /**
      * Returns a short description of the servlet.
