@@ -27,18 +27,47 @@ import java.sql.ResultSet;
 public class RevistaDaoImpl implements RevistaDao {
 
     private final String SELECTSPECIAL = "SELECT * FROM revista WHERE nombre_usuario=?";
+    private final String SELECTFORCATEGORIA = "SELECT * FROM revista WHERE nombre_categoria=?";
+    private final String SELECT = "SELECT * FROM revista WHERE id_revista=?";
     private final String SAVER = "INSERT INTO revista(nombre_revista,archivo,fecha_publicacion,descripcion,estado_revista,costo_suscripcion,me_gusta,comentario,suscripciones,nombre_categoria,nombre_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     private final String SELECTESPERA = "SELECT * FROM revista WHERE estado_revista='EN_ESPERA'";
+    private final String SELECTACEPTADA = "SELECT * FROM revista WHERE estado_revista='ACEPTADA'";
     private final String ACEPTARREV = "UPDATE revista SET fecha_aceptacion=?, estado_revista=?,costo_dia=?, fecha_mod_costo=? WHERE id_revista=?";
     private final String UPDATE = "UPDATE revista SET nombre_revista=?, descripcion=?,costo_suscripcion=?, me_gusta=?,comentario=?,suscripciones=? WHERE id_revista=?";
-
+    private final String GETLIKES = "SELECT COUNT(s.me_gusta) as MG FROM revista as rv INNER JOIN suscripcion as s WHERE rv.id_revista=? AND rv.id_revista= s.id_revista;";
     public RevistaDaoImpl() {
         new Conexion();
     }
 
     @Override
     public ArrayList<Revista> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Revista> listA = new ArrayList<Revista>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTACEPTADA);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
+                        listA.add(userN);
+                    }
+                    System.out.println("retorne la lista");
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+
     }
 
     @Override
@@ -67,16 +96,16 @@ public class RevistaDaoImpl implements RevistaDao {
 
     @Override
     public String actualizar(Revista t) {
-         try {
+        try {
             PreparedStatement query = Conexion.getInstancia().prepareStatement(UPDATE);
-             System.out.println("---->"+ t.getNombre_revista());
+            System.out.println("---->" + t.getNombre_revista());
             query.setString(1, t.getNombre_revista());
             query.setString(2, t.getDescripcion());
             query.setBigDecimal(3, t.getCosto_suscripcion());
             query.setString(4, getLike(t.getMe_gusta()));
             query.setString(5, getCom(t.getComentario()));
             query.setString(6, getSus(t.getSuscripciones()));
-            System.out.println("---->"+ t.getId_revista());
+            System.out.println("---->" + t.getId_revista());
             query.setInt(7, t.getId_revista());
             query.executeUpdate();
             return "yes";
@@ -85,7 +114,7 @@ public class RevistaDaoImpl implements RevistaDao {
             System.out.println("aqui error");
             return "no";
         }
-    
+
     }
 
     @Override
@@ -181,5 +210,113 @@ public class RevistaDaoImpl implements RevistaDao {
             return "no";
         }
 
+    }
+
+    @Override
+    public ResultSet BuscarUnaRevista(int id) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECT);
+            query.setInt(1, id);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+               return datosObtenidos;
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    }
+
+    @Override
+    public int Cantidad_Likes(int id) {
+       ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(GETLIKES);
+            query.setInt(1, id);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null && datosObtenidos.next()) {
+               return datosObtenidos.getInt("MG");
+            } else {
+                System.out.println("mande nulo 1");
+                return 1;
+            }
+        } catch (SQLException ex) {
+            System.out.println("error sql");
+            System.out.println(ex);
+            
+        }
+        return 1;
+    }
+
+    @Override
+    public ArrayList<Revista> listarAlgunosForName(String name_revista) {
+    ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Revista> listA = new ArrayList<Revista>();
+        System.out.println(name_revista);
+        try {
+            query = Conexion.getInstancia().prepareStatement("SELECT * FROM revista WHERE nombre_revista like"+"'%"+name_revista+"%'");
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        listA.add(userN);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;    
+    
+    }
+
+    @Override
+    public ArrayList<Revista> listarAlgunosForCategoria(String categoria) {
+    ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Revista> listA = new ArrayList<Revista>();
+        System.out.println(categoria);
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTFORCATEGORIA);
+            query.setString(1, categoria);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        listA.add(userN);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    
+                    System.out.println(ex);
+                    return null;
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;       
+    
     }
 }

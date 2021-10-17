@@ -16,7 +16,11 @@ export class RegistrarEtiquetaComponent implements OnInit {
   etiq!:Etiqueta;
   userJ!:User;
   userFinal!:String;
-
+  //otras variables
+formControl2!:number;
+//for user
+etiquetasU!:Array<Etiqueta>;
+etiqU!:Etiqueta;
   constructor(private FormBuilder:FormBuilder, private ObtenerInfoUserService: ObtenerInfoUserService) { }
 
   ngOnInit(): void {
@@ -56,6 +60,34 @@ export class RegistrarEtiquetaComponent implements OnInit {
     },(error:any)=>{
       alert("ERROR AL GUARDAR"+ error);
     });
+  }
+
+  getMyEtiquetas(){
+    this.userJ= JSON.parse(<string>localStorage.getItem('userS'));
+    this.userFinal=this.userJ.nombre_usuario;
+    this.ObtenerInfoUserService.getMyEtiqueta(this.userJ.nombre_usuario).subscribe((created:Etiqueta[])=>{
+       console.log(created);
+       if(created!=null){
+        this.etiquetasU=created;
+        this.formControl2=1;
+       }else{
+         alert("NO TIENES ETIQUETAS ASIGNADAS");
+       }
+ 
+     },(error:any)=>{
+       alert("ERROR AL GUARDAR"+ error);
+     });
+   }
+
+   setForm2(option:number){
+    this.formControl2=option;
+  }
+  getForm2():number{
+    return this.formControl2;
+  }
+  deleteMyEtiqueta(et:string){
+    console.log(et);
+
   }
 
 }

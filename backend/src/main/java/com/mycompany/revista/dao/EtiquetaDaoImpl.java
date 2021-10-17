@@ -23,9 +23,10 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
 
     private final String SAVE = "INSERT INTO etiqueta VALUES (?)";
     private final String SELECTALL = "SELECT * FROM etiqueta";
+    private final String SELECTETFORUSER = "SELECT * FROM etiqueta_autor WHERE nombre_usuario=?";
     private final String SELECTALLC = "SELECT * FROM categoria";
     private final String SAVEREV = "INSERT INTO etiqueta_revista VALUES (?,?)";
-
+    private final String SELECTETFORREV = "SELECT * FROM etiqueta_revista WHERE id_revista=?";
     public EtiquetaDaoImpl() {
         new Conexion();
     }
@@ -143,6 +144,68 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
             return "no";
         }
 
+    }
+
+    @Override
+    public ArrayList<Etiqueta> getETForRev(int id) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Etiqueta> listA = new ArrayList<Etiqueta>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTETFORREV);
+            query.setInt(1, id);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Etiqueta userN = new Etiqueta(datosObtenidos.getString("nombre_etiqueta"));
+                        listA.add(userN);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+
+    @Override
+    public ArrayList<Etiqueta> getETForUser(String user_name) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Etiqueta> listA = new ArrayList<Etiqueta>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTETFORUSER);
+            query.setString(1, user_name);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Etiqueta userN = new Etiqueta(datosObtenidos.getString("nombre_etiqueta"));
+                        listA.add(userN);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
     }
 
 }

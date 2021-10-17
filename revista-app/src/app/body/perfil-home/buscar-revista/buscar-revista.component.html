@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <br>
+            <button (click)="setForm(1)" class="btn btn-primary btn-block" type="submit">Buscar por Nombre</button>
+        </div>
+        <div class="col-sm">
+            <br>
+            <button (click)="setForm(2)" class="btn btn-primary btn-block" type="submit">Buscar por Categoria</button>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+
+<div *ngIf=" getForm()==(1) ">
+    <form [formGroup]= "myForm">
+        <br>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <a>Ingresa el nombre: </a>
+                        <input type="text" formControlName="name">                        
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button [disabled]="this.myForm.invalid" (click)="serchForName()" class="btn btn-primary btn-block" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>
+<div *ngIf=" getForm()==(2) ">
+    <form [formGroup]= "myForm2">
+        <br>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <a>Escoga una Categoria </a>
+                        <select formControlName="categoria" class="form-select" aria-label="Default select example">
+                            <option  *ngFor="let cat of categorias" value=" {{cat.nombre_categoria}} "> {{cat.nombre_categoria}}
+                            </option>
+                        </select>                      
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button (click)="serchForCategoria()" class="btn btn-primary btn-block" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>
+<div *ngIf=" getForm2()==(1) " class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE REVISTA</th>
+                        <th scope="col">COSTO</th>
+                        <th scope="col"> &nbsp; </th>
+                        <th scope="col"> &nbsp; </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rev1 of revista">
+                        <th scope="row">{{ rev1.nombre_revista}}</th>
+                        <td>{{ rev1.costo_suscripcion }}</td>
+                        <td>
+                            <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista)" class="btn btn-primary btn-block">
+                                Previsualizar Revista
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf=" getMod()==(1) ">
+    <form>
+        <h1> Informacion de Revista: {{this.nameRev}} </h1>
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Descripcion: </a>
+                        <br>
+                        <div>
+                            <textarea style="width: 150px; height: 150px;" readonly [value]="this.revi.descripcion"
+                                type="text"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-sm">
+                        <a>Categoria: </a>
+                        <input type="text" readonly [value]="this.revi.categoria">
+                    </div>
+                    <div class="col-sm">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">NOMBRE CATEGORIA:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let et of etiquetas">
+                                    <th scope="row">{{et.nombre_etiqueta}}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm">
+                        <a>Creador de Revista: </a>
+                        <input type="text" readonly [value]="this.revi.nombre_usuario" >
+                    </div>
+                    <div class="col-sm">
+                        <a>Cantidad de Me gusta: </a>
+                        <input type="text" readonly [value]="this.revi.cantidad_like" >
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>

@@ -5,6 +5,7 @@
 package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Revista;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,8 @@ import java.util.ArrayList;
  */
 public interface RevistaDao extends CRUD<Revista>{
     ArrayList<Revista> listarAlgunos(String name);
-
+    ArrayList<Revista> listarAlgunosForName(String name_revista);
+    ArrayList<Revista> listarAlgunosForCategoria(String categoria);
     /**
      *
      * @return
@@ -21,4 +23,6 @@ public interface RevistaDao extends CRUD<Revista>{
     ArrayList<Revista> listarEnEspera();
     
     String AceptarRevista(Revista r);
+    ResultSet BuscarUnaRevista(int id);
+    int Cantidad_Likes(int id);
 }

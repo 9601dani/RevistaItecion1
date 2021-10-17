@@ -84,6 +84,18 @@
         <servlet-name>getPorcentaje</servlet-name>
         <servlet-class>com.mycompany.revista.controller.getPorcentaje</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetRevistasUser</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetRevistasUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetRevistasForName</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetRevistasForName</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetEtiquetasUser</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetEtiquetasUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -167,6 +179,18 @@
     <servlet-mapping>
         <servlet-name>getPorcentaje</servlet-name>
         <url-pattern>/getPorcentaje</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRevistasUser</servlet-name>
+        <url-pattern>/GetRevistasUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRevistasForName</servlet-name>
+        <url-pattern>/GetRevistasForName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetEtiquetasUser</servlet-name>
+        <url-pattern>/GetEtiquetasUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

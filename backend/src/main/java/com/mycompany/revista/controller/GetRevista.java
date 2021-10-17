@@ -36,9 +36,9 @@ public class GetRevista extends HttpServlet {
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println(" aqui ando en el get");
-        System.out.println("Vamos a buscar las revistas de "+ request.getParameter("user"));
+        System.out.println("Vamos a buscar las revistas de "+ request.getParameter("categoria"));
        ArrayList<Revista> listA= new ArrayList<Revista>();
-        listA = new RevistaDaoImpl().listarAlgunos(request.getParameter("user"));
+        listA = new RevistaDaoImpl().listarAlgunos(request.getParameter("categoria"));
         
         if (listA != null) {
              response.getWriter().write(toJsonRev(listA));

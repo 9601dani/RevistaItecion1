@@ -6,6 +6,7 @@ package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Etiqueta;
 import com.mycompany.revista.clases.Etiqueta_revista;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,4 +14,6 @@ import com.mycompany.revista.clases.Etiqueta_revista;
  */
 public interface EtiquetaDao extends CRUD<Etiqueta>{
         String saveEtiquetaRev(Etiqueta_revista t);
+        ArrayList<Etiqueta> getETForRev(int id);
+        ArrayList<Etiqueta> getETForUser(String user_name );
 }

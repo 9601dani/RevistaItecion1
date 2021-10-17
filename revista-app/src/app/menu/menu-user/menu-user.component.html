@@ -19,6 +19,11 @@
                     <a (click)="CambiarPagina('registrarEtiqueta')" class="nav-link">Registrar Etiquetas</a>
                 </li>
             </div>
+            <div *ngIf=" getOptionMenu() == 'USUARIO' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('buscarRevista')" class="nav-link">Buscar Revista</a>
+                </li>
+            </div>
             <div *ngIf=" getOptionMenu() == 'AUTOR' ">
                 <li class="nav-item active">
                     <a (click)="CambiarPagina('subirRevista')" class="nav-link">Subir Revista</a>

@@ -19,5 +19,31 @@
       </form>
     </form>
     <br><br>
-    <button class="btn btn-primary btn-block" type="submit"> Ver mis etiquetas</button>
+    <button (click)="getMyEtiquetas()" class="btn btn-primary btn-block" type="submit"> Ver mis etiquetas</button>
+
+    <br><br>
+    <div *ngIf=" getForm2()==(1) " class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th scope="col">NOMBRE ETIQUETA</th>
+                          <th scope="col"> &nbsp; </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let etiqU of etiquetasU">
+                          <th scope="row">{{ etiqU.nombre_etiqueta}}</th>
+                          <td>
+                              <a (click)="deleteMyEtiqueta(etiq.nombre_etiqueta.toString())" class="btn btn-primary btn-block">
+                                  Eliminar Etiqueta
+                              </a>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
   </body>

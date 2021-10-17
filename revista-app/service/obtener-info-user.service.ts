@@ -5,7 +5,7 @@ import { Categoria } from './../src/objects/Categoria';
 import { EtiquetaUser } from './../src/objects/EtiquetaUser';
 import { Admin } from './../src/objects/Admin';
 import { Etiqueta } from './../src/objects/Etiqueta';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserComplete } from 'src/objects/UserComplete';
@@ -68,6 +68,16 @@ export class ObtenerInfoUserService {
     return this.httpClient.post<Etiqueta>(this.API_URL+"/porcentajeSoft",porce);
   }
 
-
+  public getMyEtiqueta(user:string): Observable<Array<Etiqueta>>{
+    let httpParams = new HttpParams()
+    .append("user", user);
+    return this.httpClient.get<Array<Etiqueta>>(this.API_URL+"/getEtiquetasUser",{ params: httpParams});
+  }
+  public deleteMyEtiqueta(user:string,etiqueta:string): Observable<Array<Etiqueta>>{
+    let httpParams = new HttpParams()
+    .append("user", user)
+    .append("etiqueta", etiqueta);
+    return this.httpClient.get<Array<Etiqueta>>(this.API_URL+"/getEtiquetasUser",{ params: httpParams});
+  }
   
 }

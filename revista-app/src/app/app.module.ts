@@ -40,6 +40,7 @@ import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component';
 import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver-mis-revistas.component';
 import { SolicitudRevistaComponent } from './body/login/login-admin/solicitud-revista/solicitud-revista.component';
 import { PorcentajeSoftComponent } from './body/login/login-admin/porcentaje-soft/porcentaje-soft.component';
+import { BuscarRevistaComponent } from './body/perfil-home/buscar-revista/buscar-revista.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -73,6 +74,7 @@ import { PorcentajeSoftComponent } from './body/login/login-admin/porcentaje-sof
     VerMisRevistasComponent,
     SolicitudRevistaComponent,
     PorcentajeSoftComponent,
+    BuscarRevistaComponent,
     
 
    ],
