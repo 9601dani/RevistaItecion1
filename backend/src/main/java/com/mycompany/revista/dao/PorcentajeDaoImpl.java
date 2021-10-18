@@ -64,8 +64,8 @@ private final String UPDATE = "UPDATE porcentaje_soft SET porcentaje=?,fecha_ult
             PreparedStatement query = Conexion.getInstancia().prepareStatement(UPDATE);
             query.setBigDecimal(1, t.getPorcentaje());
             query.setString(2, t.getFecha_ultima_modificacion());
-             query.setString(3, t.getNombre_usuario());
-              query.setInt(4, t.getId_porcentaje());
+            query.setString(3, t.getNombre_usuario());
+            query.setInt(4, t.getId_porcentaje());
             query.executeUpdate();
             return "yes";
         } catch (SQLException e) {

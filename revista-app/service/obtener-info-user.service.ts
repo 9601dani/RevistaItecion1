@@ -1,3 +1,4 @@
+import { Rev } from './../src/objects/Rev';
 import { Porcentaje } from './../src/objects/Porcentaje';
 import { EtiquetaRev } from './../src/objects/EtiquetaRev';
 import { SafeUrl } from '@angular/platform-browser';
@@ -9,6 +10,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserComplete } from 'src/objects/UserComplete';
+import { Rev2 } from 'src/objects/Rev2';
 
 @Injectable({
   providedIn: 'root'
@@ -73,11 +75,16 @@ export class ObtenerInfoUserService {
     .append("user", user);
     return this.httpClient.get<Array<Etiqueta>>(this.API_URL+"/getEtiquetasUser",{ params: httpParams});
   }
-  public deleteMyEtiqueta(user:string,etiqueta:string): Observable<Array<Etiqueta>>{
+  public deleteMyEtiqueta(user:string,etiqueta:string): Observable<Etiqueta>{
     let httpParams = new HttpParams()
     .append("user", user)
     .append("etiqueta", etiqueta);
-    return this.httpClient.get<Array<Etiqueta>>(this.API_URL+"/getEtiquetasUser",{ params: httpParams});
+    return this.httpClient.post<Etiqueta>(this.API_URL+"/getEtiquetasUser",etiqueta,{ params: httpParams});
+  }
+
+  public getBytesFIle(cadena:Rev): Observable<Rev2>{
+    console.log("voy a mandar"+ cadena.archivo)
+    return this.httpClient.post<Rev2>(this.API_URL+"/getBytes",cadena);
   }
   
 }

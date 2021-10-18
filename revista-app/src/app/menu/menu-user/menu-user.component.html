@@ -34,6 +34,11 @@
                     <a (click)="CambiarPagina('verMisRevistas')" class="nav-link">Ver Mis Revistas</a>
                 </li>
             </div>
+            <div *ngIf=" getOptionMenu() == 'USUARIO' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('misSusccripciones')" class="nav-link">Ver Mis Suscripciones</a>
+                </li>
+            </div>
             <li class="nav-item active">
                 <a (click)= "cerrarSesion()" class="nav-link">Cerrar Sesion</a>
             </li>

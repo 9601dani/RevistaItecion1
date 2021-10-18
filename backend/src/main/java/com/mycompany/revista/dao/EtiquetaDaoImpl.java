@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.revista.clases.Categoria;
 import com.mycompany.revista.clases.Etiqueta;
+import com.mycompany.revista.clases.Etiqueta_autor;
 import com.mycompany.revista.clases.Etiqueta_revista;
 import com.mycompany.revista.conexion.Conexion;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
     private final String SELECTALLC = "SELECT * FROM categoria";
     private final String SAVEREV = "INSERT INTO etiqueta_revista VALUES (?,?)";
     private final String SELECTETFORREV = "SELECT * FROM etiqueta_revista WHERE id_revista=?";
+    private final String DELETEETFORUSER = "DELETE FROM etiqueta_autor WHERE nombre_etiqueta=? AND nombre_usuario=?";
     public EtiquetaDaoImpl() {
         new Conexion();
     }
@@ -206,6 +208,20 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
         System.out.println("mande nulo 2");
         return null;
     
+    }
+
+    @Override
+    public String deleteETForUser(Etiqueta_autor t) {
+         try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(DELETEETFORUSER);
+            query.setString(1, t.getNombre_etiqueta());
+            query.setString(2,t.getNombre_usuario());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
     }
 
 }

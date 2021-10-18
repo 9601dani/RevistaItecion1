@@ -96,6 +96,18 @@
         <servlet-name>GetEtiquetasUser</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetEtiquetasUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetBytesArchvio</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetBytesArchvio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveSuscripcion</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveSuscripcion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveRecaudacion</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveRecaudacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -191,6 +203,18 @@
     <servlet-mapping>
         <servlet-name>GetEtiquetasUser</servlet-name>
         <url-pattern>/GetEtiquetasUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetBytesArchvio</servlet-name>
+        <url-pattern>/GetBytesArchvio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveSuscripcion</servlet-name>
+        <url-pattern>/SaveSuscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveRecaudacion</servlet-name>
+        <url-pattern>/SaveRecaudacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

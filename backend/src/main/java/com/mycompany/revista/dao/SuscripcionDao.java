@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package com.mycompany.revista.dao;
+
+import com.mycompany.revista.clases.Recaudacion;
+import com.mycompany.revista.clases.Suscripcion;
+
+/**
+ *
+ * @author daniel
+ */
+public interface SuscripcionDao extends CRUD<Suscripcion> {
+    String consultar(Suscripcion t);
+    String guardarRecaudacion(Recaudacion t);
+    
+}

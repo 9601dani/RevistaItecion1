@@ -1,3 +1,6 @@
+import { Recaudacion } from './../src/objects/Recaudacion';
+import { Respuesta } from './../src/objects/Respuesta';
+import { Suscripcion } from './../src/objects/Suscripcion';
 import { RevUser } from './../src/objects/RevUser';
 import { RevistaForAdmin } from './../src/objects/RevistaForAdmin';
 import { Etiqueta } from 'src/objects/Etiqueta';
@@ -35,5 +38,12 @@ export class MenuUserService {
     let httpParams = new HttpParams()
     .append("categoria", categoria);
     return this.httpClient.get<Array<RevistaForAdmin>>(this.API_URL+"/getRevistasForName",{ params: httpParams});
+  }
+
+  public saveSuscripcion(sus:Suscripcion): Observable<Respuesta> {
+    return this.httpClient.post<Respuesta>(this.API_URL+"/saveSuscripcion",sus);
+  }
+  public saveRecaudacion(recaudacion:Recaudacion): Observable<Respuesta> {
+    return this.httpClient.post<Respuesta>(this.API_URL+"/saveRecaudacion",recaudacion);
   }
 }

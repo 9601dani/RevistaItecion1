@@ -5,6 +5,7 @@
 package com.mycompany.revista.controller;
 
 import com.mycompany.revista.clases.Etiqueta;
+import com.mycompany.revista.clases.Etiqueta_autor;
 import com.mycompany.revista.converter.EtiquetaConverter;
 import com.mycompany.revista.dao.EtiquetaDaoImpl;
 import static com.mycompany.revista.dao.EtiquetaDaoImpl.toJsonET;
@@ -59,7 +60,16 @@ public class GetEtiquetasUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        System.out.println("vamos a eliminar etiqueta de usuario");
+        Etiqueta_autor et= new Etiqueta_autor(request.getParameter("etiqueta"), request.getParameter("user"));
+        String result= new EtiquetaDaoImpl().deleteETForUser(et);
+        EtiquetaConverter converter= new EtiquetaConverter(Etiqueta.class);
+        if(result.equals("yes")){
+            response.getWriter().write(converter.toJson(new Etiqueta("yes")));
+        }else{
+            response.getWriter().write(converter.toJson(new Etiqueta("no")));
+            System.out.println("no se pudo");
+        }
     }
 
     /**

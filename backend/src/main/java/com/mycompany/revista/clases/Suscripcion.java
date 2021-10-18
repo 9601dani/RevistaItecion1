@@ -16,8 +16,8 @@ import java.util.Date;
 public class Suscripcion {
     private int id_suscripcion;
     private BigDecimal valor_sus;
-    private Date fecha_inicial;
-    private Date fecha_final;
+    private String fecha_inicial;
+    private String fecha_final;
     private ME_GUSTA_SUSCRIPCION me_gusta;
     private ESTADO_SUS estado_suscripcion;
     private String nombre_usuario;
@@ -25,7 +25,7 @@ public class Suscripcion {
     
     //CONSTRUCTOR COMPLETO
 
-    public Suscripcion(int id_suscripcion, BigDecimal valor_sus, Date fecha_inicial, Date fecha_final, ME_GUSTA_SUSCRIPCION me_gusta, ESTADO_SUS estado_suscripcion, String nombre_usuario, int id_revista) {
+    public Suscripcion(int id_suscripcion, BigDecimal valor_sus, String fecha_inicial, String fecha_final, ME_GUSTA_SUSCRIPCION me_gusta, ESTADO_SUS estado_suscripcion, String nombre_usuario, int id_revista) {
         this.id_suscripcion = id_suscripcion;
         this.valor_sus = valor_sus;
         this.fecha_inicial = fecha_inicial;
@@ -38,7 +38,7 @@ public class Suscripcion {
     
     //CONSTRUCTOR PARCIAL
 
-    public Suscripcion(BigDecimal valor_sus, Date fecha_inicial, Date fecha_final, ME_GUSTA_SUSCRIPCION me_gusta, ESTADO_SUS estado_suscripcion, String nombre_usuario, int id_revista) {
+    public Suscripcion(BigDecimal valor_sus, String fecha_inicial, String fecha_final, ME_GUSTA_SUSCRIPCION me_gusta, ESTADO_SUS estado_suscripcion, String nombre_usuario, int id_revista) {
         this.valor_sus = valor_sus;
         this.fecha_inicial = fecha_inicial;
         this.fecha_final = fecha_final;
@@ -47,6 +47,11 @@ public class Suscripcion {
         this.nombre_usuario = nombre_usuario;
         this.id_revista = id_revista;
     }
+    //USO PARA GUARDAR LA RECAUDACION
+
+    public Suscripcion() {
+    }
+    
 
     public int getId_suscripcion() {
         return id_suscripcion;
@@ -64,19 +69,19 @@ public class Suscripcion {
         this.valor_sus = valor_sus;
     }
 
-    public Date getFecha_inicial() {
+    public String getFecha_inicial() {
         return fecha_inicial;
     }
 
-    public void setFecha_inicial(Date fecha_inicial) {
+    public void setFecha_inicial(String fecha_inicial) {
         this.fecha_inicial = fecha_inicial;
     }
 
-    public Date getFecha_final() {
+    public String getFecha_final() {
         return fecha_final;
     }
 
-    public void setFecha_final(Date fecha_final) {
+    public void setFecha_final(String fecha_final) {
         this.fecha_final = fecha_final;
     }
 

@@ -10,4 +10,23 @@ package com.mycompany.revista.Enum;
  */
 public enum ME_GUSTA_SUSCRIPCION {
     DIO_LIKE,NO_DIO_LIKE;
+    
+    public static String getMyLike(ME_GUSTA_SUSCRIPCION type) {
+        if (type.equals(ME_GUSTA_SUSCRIPCION.DIO_LIKE)) {
+            return "DIO_LIKE";
+        } else if (type.equals(ME_GUSTA_SUSCRIPCION.NO_DIO_LIKE)) {
+            return "NO_DIO_LIKE";
+        }
+        return null;
+    }
+
+    public static ME_GUSTA_SUSCRIPCION getMyLike(String type) {
+        if (type.equals("DIO_LIKE")) {
+            return DIO_LIKE;
+        } else if (type.equals("NO_DIO_LIKE")) {
+            return NO_DIO_LIKE;
+        }
+        return null;
+    }
+    
 }

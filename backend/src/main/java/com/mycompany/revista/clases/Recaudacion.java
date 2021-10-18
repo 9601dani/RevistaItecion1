@@ -16,27 +16,30 @@ public class Recaudacion {
     private String nombre_revista;
     private BigDecimal total_pagar;
     private BigDecimal costo_con_descuento;
-    private Date fecha_pago;
+    private String fecha_pago;
     private String nombre_usuario;
+    private String autor;
 
     //CONSTRUCTOR PARA VER INFO
 
-    public Recaudacion(int registro, String nombre_revista, BigDecimal total_pagar, BigDecimal costo_con_descuento, Date fecha_pago, String nombre_usuario) {
+    public Recaudacion(int registro, String nombre_revista, BigDecimal total_pagar, BigDecimal costo_con_descuento, String fecha_pago, String nombre_usuario, String autor) {
         this.registro = registro;
         this.nombre_revista = nombre_revista;
         this.total_pagar = total_pagar;
         this.costo_con_descuento = costo_con_descuento;
         this.fecha_pago = fecha_pago;
         this.nombre_usuario = nombre_usuario;
+        this.autor=autor;
     }
     //CONSTRUCTOR PARA CRUD
 
-    public Recaudacion(String nombre_revista, BigDecimal total_pagar, BigDecimal costo_con_descuento, Date fecha_pago, String nombre_usuario) {
+    public Recaudacion(String nombre_revista, BigDecimal total_pagar, BigDecimal costo_con_descuento, String fecha_pago, String nombre_usuario,String autor) {
         this.nombre_revista = nombre_revista;
         this.total_pagar = total_pagar;
         this.costo_con_descuento = costo_con_descuento;
         this.fecha_pago = fecha_pago;
         this.nombre_usuario = nombre_usuario;
+        this.autor=autor;
     }
 
     public int getRegistro() {
@@ -71,11 +74,11 @@ public class Recaudacion {
         this.costo_con_descuento = costo_con_descuento;
     }
 
-    public Date getFecha_pago() {
+    public String getFecha_pago() {
         return fecha_pago;
     }
 
-    public void setFecha_pago(Date fecha_pago) {
+    public void setFecha_pago(String fecha_pago) {
         this.fecha_pago = fecha_pago;
     }
 
@@ -85,6 +88,14 @@ public class Recaudacion {
 
     public void setNombre_usuario(String nombre_usuario) {
         this.nombre_usuario = nombre_usuario;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
     
     

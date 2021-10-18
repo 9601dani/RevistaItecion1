@@ -5,7 +5,8 @@
                 <thead>
                     <tr>
                         <th scope="col">NOMBRE REVISTA</th>
-                        <th scope="col">COSTO</th>
+                        <th scope="col">COSTO SUSCRIPCION</th>
+                        <th scope="col">IMG</th>
                         <th scope="col"> &nbsp; </th>
                         <th scope="col"> &nbsp; </th>
                     </tr>
@@ -14,8 +15,10 @@
                     <tr *ngFor="let rev1 of revista">
                         <th scope="row">{{ rev1.nombre_revista}}</th>
                         <td>{{ rev1.costo_suscripcion }}</td>
+                        <td><img width="230" alt=""
+                            src="{{ bytes }}" *ngIf="bytes" /></td>
                         <td>
-                            <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista)" class="btn btn-primary btn-block">
+                            <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista, rev1.costo_suscripcion, rev1.suscripciones)" class="btn btn-primary btn-block">
                                 Previsualizar Revista
                             </a>
                         </td>
@@ -50,7 +53,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">NOMBRE CATEGORIA:</th>
+                                    <th scope="col">ETIQUETAS:</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,8 +73,44 @@
                     </div>
                     <div class="col-sm">
                         <br>
-                        <button class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                        <button *ngIf="getSus(this.aceptarSus)==(1)" (click)="suscribirse()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                        <a *ngIf="getSus(this.aceptarSus)==(0)">EL USUARIO NO ADMITE SUSCRIPCIONES </a>
                     </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>
+<div *ngIf=" getMoreSus()==(1) ">
+    <form [formGroup]= "myFormSus" >
+        <h1> Te vas a suscribir a: {{this.nameRev}} </h1>
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Ingresa fecha inicial</a>
+                        <br> 
+                            <input formControlName="fechaI" type="date">
+                    </div>    
+                    <div class="col-sm">
+                        <a>Ingresa los meses a suscribirte</a>
+                        <br> 
+                            <input formControlName="tiempo" type="number" [ngModel]= "this.time" >
+                    </div>  
+                    <div class="col-sm">
+                        <br>
+                        <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                        <button *ngIf="getPagar()==(1)" (click)="suscribirseFi()" class="btn btn-primary btn-block" type="submit">Pagar y Suscribirse</button>
+                    </div>  
+                    <div *ngIf=" getPagar()==(1) ">
+                        <div class="col-sm">
+                            <a>El total a pagar es</a>
+                            <br> 
+                                <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
+                        </div> 
+                    </div> 
                 </div>
             </div>
             <br>

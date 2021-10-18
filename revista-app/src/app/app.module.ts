@@ -41,6 +41,7 @@ import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver
 import { SolicitudRevistaComponent } from './body/login/login-admin/solicitud-revista/solicitud-revista.component';
 import { PorcentajeSoftComponent } from './body/login/login-admin/porcentaje-soft/porcentaje-soft.component';
 import { BuscarRevistaComponent } from './body/perfil-home/buscar-revista/buscar-revista.component';
+import { MisSuscripcionesComponent } from './body/perfil-home/mis-suscripciones/mis-suscripciones.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -75,6 +76,7 @@ import { BuscarRevistaComponent } from './body/perfil-home/buscar-revista/buscar
     SolicitudRevistaComponent,
     PorcentajeSoftComponent,
     BuscarRevistaComponent,
+    MisSuscripcionesComponent,
     
 
    ],

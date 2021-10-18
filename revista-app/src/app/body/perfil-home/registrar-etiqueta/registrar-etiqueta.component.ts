@@ -1,3 +1,5 @@
+import { MenuUserService } from 'service/menu-user.service';
+import { MenuUserComponent } from 'src/app/menu/menu-user/menu-user.component';
 import { EtiquetaUser } from './../../../../objects/EtiquetaUser';
 import { ObtenerInfoUserService } from './../../../../../service/obtener-info-user.service';
 import { Etiqueta } from 'src/objects/Etiqueta';
@@ -21,7 +23,11 @@ formControl2!:number;
 //for user
 etiquetasU!:Array<Etiqueta>;
 etiqU!:Etiqueta;
-  constructor(private FormBuilder:FormBuilder, private ObtenerInfoUserService: ObtenerInfoUserService) { }
+//more for user
+nameEt!:String
+
+  constructor(private FormBuilder:FormBuilder, private ObtenerInfoUserService: ObtenerInfoUserService,
+    private MenuUserService:MenuUserService) { }
 
   ngOnInit(): void {
     this.getInfoEtiqueta();
@@ -44,6 +50,9 @@ etiqU!:Etiqueta;
        alert("ERROR AL GUARDAR"+ error);
      });
    }
+   CambiarPagina(op:string){
+    this.MenuUserService.Op=op;
+  }
 
   saveEtiquetaUser(){
     this.userJ= JSON.parse(<string>localStorage.getItem('userS'));
@@ -75,7 +84,7 @@ etiqU!:Etiqueta;
        }
  
      },(error:any)=>{
-       alert("ERROR AL GUARDAR"+ error);
+       alert("NO TIENES ETIQUETAS ASIGNADAS");
      });
    }
 
@@ -85,9 +94,27 @@ etiqU!:Etiqueta;
   getForm2():number{
     return this.formControl2;
   }
-  deleteMyEtiqueta(et:string){
-    console.log(et);
+  deleteMyEtiqueta(et:String){
+    this.userJ= JSON.parse(<string>localStorage.getItem('userS'));
+    this.ObtenerInfoUserService.deleteMyEtiqueta(this.userJ.nombre_usuario,et.toString()).subscribe((created:Etiqueta)=>{
+      console.log(created);
+      if(created!=null){
+        if(created.nombre_etiqueta=="yes"){
+          alert("SE ELIMINO EXITOSAMENTE")
+          this.CambiarPagina('perfil')
+          
+        }else{
+          alert("NO SE PUDO ELIMINAR")
+        }
 
+       
+      }else{
+        alert("LO SENTIMOS NO SE PUDO ELIMINAR");
+      }
+
+    },(error:any)=>{
+      alert("ERROR AL GUARDAR"+ error);
+    });
   }
 
 }
