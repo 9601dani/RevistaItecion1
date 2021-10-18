@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author daniel
  */
 public class UsuarioDaoImpl extends Conexion implements UsuarioDao{
-private final String AÑADIR_CLIENTE="INSERT INTO usuario (nombre_usuario, password, nombre,tipo_usuario) VALUES (?,?,?,?);";
+private final String AÑADIR_CLIENTE="INSERT INTO usuario (nombre_usuario, password, nombre,tipo_usuario, foto) VALUES (?,?,?,?,?);";
 private final String SELECTLOGIN="SELECT * FROM usuario WHERE nombre_usuario=?"; 
 private final String UPDATE="UPDATE usuario SET password=?, nombre=?, des_personal=?,des_hobbies=? WHERE nombre_usuario=?"; 
     public UsuarioDaoImpl(){
@@ -42,6 +42,7 @@ private final String UPDATE="UPDATE usuario SET password=?, nombre=?, des_person
             query.setString(2, t.getPassword());
             query.setString(3, t.getNombre());
             query.setString(4, getTypeUser(t.getTipo_usuario()));
+            query.setString(5, t.getFoto());
             query.executeUpdate();
             return "yes";
         }catch(SQLException e){

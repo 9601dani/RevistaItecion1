@@ -35,7 +35,7 @@ export class MenuAutorService {
   }
 
 
-  public fileUpload(fileToUpload: string): Observable<Etiqueta> {
+  public fileUpload(fileToUpload: string,pdf:string): Observable<Etiqueta> {
     const formData= new FormData();
 
     formData.append("datafile", fileToUpload, "fileToUpload.name");
@@ -52,8 +52,9 @@ export class MenuAutorService {
     .append("sus", this.revs.suscripciones)
     .append("ca", this.revs.nombre_categoria)
     .append("user", this.revs.nombre_usuario);
+    
 
-    return this.httpClient.post<Etiqueta>(this.API_URL+"/onlyFile", formData,{ params: httpParams});
+    return this.httpClient.post<Etiqueta>(this.API_URL+"/onlyFile", this.revs,{ params: httpParams});
   }
 
   public admitirRev(rev: AdmitirRevista): Observable<Etiqueta> {

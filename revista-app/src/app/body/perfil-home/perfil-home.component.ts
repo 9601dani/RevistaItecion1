@@ -15,7 +15,7 @@ export class PerfilHomeComponent implements OnInit {
   usernamefinal!:string;
   photo!:string;  
   userF!:UserComplete;
-  public previsualizacion!:any;
+  previsualizacion!:string;
 
   private selectedFile!:string;
   imgURL: any;
@@ -34,7 +34,8 @@ export class PerfilHomeComponent implements OnInit {
       localStorage.setItem("userComplete",JSON.stringify(usuario));
       console.log("---------");
       console.log(usuario.foto);
-      this.mostrarRevista(usuario.foto)
+     // this.mostrarRevista(usuario.foto)
+      this.previsualizacion=this.userF.foto
       
     })
   }

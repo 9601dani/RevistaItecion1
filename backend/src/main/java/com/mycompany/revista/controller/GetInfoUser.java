@@ -52,7 +52,7 @@ public class GetInfoUser extends HttpServlet {
         ResultSet result = new UsuarioDaoImpl().obtenerInfo(usuario);
         if(result!=null){
                 try {
-                    Usuario userN= new Usuario(result.getString("nombre_usuario"),result.getString("password"),result.getString("nombre"), result.getString("des_personal"), this.verificarNull(result.getString("des_hobbies")), this.verificarNull(result.getBlob("foto"),result.getString("nombre_usuario")),getTypeUse(result.getString("tipo_usuario")));
+                    Usuario userN= new Usuario(result.getString("nombre_usuario"),result.getString("password"),result.getString("nombre"), result.getString("des_personal"), this.verificarNull(result.getString("des_hobbies")),result.getString("foto"),getTypeUse(result.getString("tipo_usuario")));
                     response.getWriter().append(converter.toJson(userN));
                 } catch (SQLException ex) {
                     System.out.println(ex);

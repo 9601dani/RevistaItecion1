@@ -50,7 +50,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
                         listA.add(userN);
                     }
                     System.out.println("retorne la lista");
@@ -75,7 +75,7 @@ public class RevistaDaoImpl implements RevistaDao {
         try {
             PreparedStatement query = Conexion.getInstancia().prepareStatement(SAVER);
             query.setString(1, t.getNombre_revista());
-            query.setBytes(2, t.getArchivo());
+            query.setString(2, t.getArchivo());
             query.setDate(3, t.getFecha_publicacion());
             query.setString(4, t.getDescripcion());
             query.setString(5, getRev(t.getEstado_revista()));
@@ -134,7 +134,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
                         listA.add(userN);
                     }
                     return listA;
@@ -174,7 +174,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_aceptacion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_dia"), datosObtenidos.getString("fecha_mod_costo"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
                         listA.add(userN);
                     }
                     return listA;
@@ -267,7 +267,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
                         listA.add(userN);
                     }
                     return listA;
@@ -299,7 +299,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getBytes("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
                         listA.add(userN);
                     }
                     return listA;

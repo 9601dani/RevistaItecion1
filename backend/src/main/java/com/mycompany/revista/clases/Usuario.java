@@ -17,10 +17,10 @@ public class Usuario {
     private String nombre;
     private String des_personal;
     private String des_hobbies;
-    private Blob foto;
+    private String foto;
     private TIP_USUARIO tipo_usuario;
 
-    public Usuario(String nombre_usuario, String password, String nombre, String des_personal, String des_hobbies, Blob foto, TIP_USUARIO tipo_usuario) {
+    public Usuario(String nombre_usuario, String password, String nombre, String des_personal, String des_hobbies, String foto, TIP_USUARIO tipo_usuario) {
         this.nombre_usuario = nombre_usuario;
         this.password = password;
         this.nombre = nombre;
@@ -41,6 +41,15 @@ public class Usuario {
         this.nombre_usuario = nombre_usuario;
         this.password = password;
     }
+
+    public Usuario(String nombre_usuario, String password, String nombre, String foto, TIP_USUARIO tipo_usuario) {
+        this.nombre_usuario = nombre_usuario;
+        this.password = password;
+        this.nombre = nombre;
+        this.foto = foto;
+        this.tipo_usuario = tipo_usuario;
+    }
+    
     
     
     
@@ -85,11 +94,11 @@ public class Usuario {
         this.des_hobbies = des_hobbies;
     }
 
-    public Blob getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(Blob foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
     

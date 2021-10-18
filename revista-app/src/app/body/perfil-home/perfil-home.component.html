@@ -2,10 +2,13 @@
 <body>
   <form class="form-signin">
     <div class="text-center mb-4">
-      <img class="mb-4"
-        src="https://img.flaticon.com/icons/png/512/303/303653.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
-        alt="" width="275" height="200">
-      <h1 class="h3 mb-3 font-weight-normal">{{userF.nombre_usuario}} </h1>
+      <div class="text-center" >
+        <div class="container" *ngIf="previsualizacion" >
+          <img [src]="previsualizacion" style="width: 150px;height:150px" >
+          <br>
+        </div>
+        <br>
+      </div>
     </div>
     <div class="form-label-group">
       <a>Nombre de Usuario:</a>
@@ -45,11 +48,6 @@
         <div class="col">
           <div class="form-label-group">
             <button class="btn btn-lg btn-primary btn-block" (click)="CambiarPagina('registrarEtiqueta') " >Añadir Etiquetas</button>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-label-group">
-            <button class="btn btn-lg btn-primary btn-block" (click)="CambiarPagina('modPerfil')" >Actualizar Perfil</button>
           </div>
         </div>
       </div>

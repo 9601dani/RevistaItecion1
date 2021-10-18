@@ -19,6 +19,7 @@ public formUpdate!: FormGroup;
 
   ngOnInit(): void {
     console.log(this.userCom.des_personal+" aqui es");
+    this.photo=this.userCom.foto
     this.formUpdate=this.FormBuilder.group({
       inputPassword:[null,Validators.required],
       inputPersona:[null,Validators.required],

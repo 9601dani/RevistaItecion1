@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
   validarUsuario(){
     if(this.formLogin.valid){
-      this.LoginSService.createUser(new User(this.formLogin.value.inputNombreUsuario,this.formLogin.value.inputPassword,"p",UserType.USUARIO))
+      this.LoginSService.createUser(new User(this.formLogin.value.inputNombreUsuario,this.formLogin.value.inputPassword,"p"," ",UserType.USUARIO))
       .subscribe((created:User)=>{
         console.log(created);
         if(created!=null){

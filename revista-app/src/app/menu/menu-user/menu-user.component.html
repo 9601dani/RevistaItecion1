@@ -16,6 +16,11 @@
             </div>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
+                    <a  (click)="CambiarPagina('modPerfil')" class="nav-link">Modificar Perfil</a>
+                </li>
+            </div>
+            <div *ngIf=" getOptionMenu() == 'USUARIO' ">
+                <li class="nav-item active">
                     <a (click)="CambiarPagina('registrarEtiqueta')" class="nav-link">Registrar Etiquetas</a>
                 </li>
             </div>

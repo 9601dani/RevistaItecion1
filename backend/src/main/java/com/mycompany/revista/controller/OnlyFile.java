@@ -57,7 +57,7 @@ public class OnlyFile extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("RE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  CIBI UN ARCHIVO");
         //recibo atributos
-        Part filePart = request.getPart("datafile");
+       /* Part filePart = request.getPart("datafile");
         String fileName = filePart.getHeader("Content-type");
         InputStream fileStream = filePart.getInputStream();
         
@@ -75,10 +75,21 @@ public class OnlyFile extends HttpServlet {
             //  String filePath = PATH + "/" + "archivo";
             //   filePart.write(filePath);
             
-            System.out.println(fileStream+" -----> mandando el archivo");
-            
+            System.out.println(fileStream+" -----> mandando el archivo");*/
+        System.out.println("VAMOS A OBTENER LA INFO");
+        BufferedReader reader = request.getReader();
+        String body = "";
+        String line = reader.readLine();
+        while (line != null) {
+            body = body + line;
+            line = reader.readLine();
+        }
+        System.out.println("body:");
+        System.out.println(body);
+            RevistaConverter converterF= new RevistaConverter(Revista.class);
+            Revista revFinal= converterF.fromJson(body);
             Revista rev;
-            rev = new Revista(request.getParameter("nombre_rev"),this.imagenBytes , request.getParameter("fecha_pu"), request.getParameter("descripcion"),
+            rev = new Revista(request.getParameter("nombre_rev"),revFinal.getArchivo() , request.getParameter("fecha_pu"), request.getParameter("descripcion"),
                     getRev1(request.getParameter("estado")), new BigDecimal(request.getParameter("costo")), getLike(request.getParameter("me")),
                     getCom(request.getParameter("com")), getSus(request.getParameter("sus")), request.getParameter("ca"), request.getParameter("user"));
             RevistaDaoImpl registro = new RevistaDaoImpl();
@@ -92,9 +103,9 @@ public class OnlyFile extends HttpServlet {
                 System.out.println("no se guardo");
             }
 
-        } catch (Exception ex) {
+       /* } catch (Exception ex) {
             // manejo de error
-        }
+        }*/
     }
 
     /**

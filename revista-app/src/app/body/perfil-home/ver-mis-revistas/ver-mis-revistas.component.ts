@@ -44,7 +44,7 @@ export class VerMisRevistasComponent implements OnInit {
   //OTRAS VARIABLES
   revistas!: Array<RevAutor>;
   rev!: RevAutor;
-  public previsualizacion!: string;
+  previsualizacion!: string;
   public pre!: String;
   public archivos: any = []
   arch!: File;
@@ -198,7 +198,11 @@ export class VerMisRevistasComponent implements OnInit {
     });
 
   }
+  verRevista(archivo:string){
+    this.previsualizacion=archivo;
+    this.opcio = 3;
 
+  } 
   
 }
 

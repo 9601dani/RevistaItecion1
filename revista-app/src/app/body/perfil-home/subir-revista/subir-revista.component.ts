@@ -21,7 +21,7 @@ export class SubirRevistaComponent implements OnInit {
 formRevista!:FormGroup;
 categorias!:Array<Categoria>;
 cat!:Categoria;
-public previsualizacion!: String;
+ previsualizacion!: string;
 public pre!:string;
 public archivos:any=[]
 arch!:string;
@@ -63,12 +63,13 @@ user!:User;
     });
   }
   saveRevista() {
+    console.log(this.arch)
     if (this.arch != null) {
       this.user =JSON.parse(<string>localStorage.getItem('userS'));  
-      localStorage.setItem("nRev",JSON.stringify(new Revista(0,this.formRevista.value.nomRevista,this.formRevista.value.fecha_publicacion,this.formRevista.value.descripcion,
+      localStorage.setItem("nRev",JSON.stringify(new Revista(0,this.formRevista.value.nomRevista,this.previsualizacion,this.formRevista.value.fecha_publicacion,this.formRevista.value.descripcion,
         this.formRevista.value.fecha_publicacion,Estado_Rev.EN_ESPERA,0,this.formRevista.value.fecha_publicacion,this.formRevista.value.costoSuscripcion,this.formRevista.value.like,this.formRevista.value.Dcomentario,this.formRevista.value.Dsuscripcion,this.formRevista.value.Dcategoria,
         this.user.nombre_usuario)));
-      this.MenuAutorService.fileUpload(this.arch).subscribe((created:Etiqueta)=>{
+      this.MenuAutorService.fileUpload(this.arch, this.previsualizacion).subscribe((created:Etiqueta)=>{
         console.log(created);
         if(created!=null){
           localStorage.removeItem("nRev")
@@ -93,7 +94,7 @@ user!:User;
       this.ObtenerInfoUserService.changePrevisualizacion(this.previsualizacion);
       console.log(this.arch);
     })
-    this.archivos.push(archivoCapturado)
+    //this.archivos.push(archivoCapturado)
     // 
     // console.log(event.target.files);
 

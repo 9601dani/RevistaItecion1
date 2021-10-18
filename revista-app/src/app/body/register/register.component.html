@@ -6,22 +6,23 @@
         alt="" width="150" height="75">
       <h1 class="h3 mb-3 font-weight-normal">Registro De Usuario</h1>
     </div>
-    <form  [formGroup]= "myForm"  (ngSubmit)= "saveUser()">
+    <form [formGroup]="myForm" (ngSubmit)="saveUser()">
       <div class="form-label-group">
         <input formControlName="NombreU" type="text" id="inputNombreUsuario" maxlength="45" class="form-control"
-          placeholder="Nombre Usuario" required autofocus >
+          placeholder="Nombre Usuario" required autofocus>
       </div>
       <br>
       <div class="form-label-group">
-        <input formControlName="Password" type="password" id="inputPassword" maxlength="45" class="form-control" placeholder="Password" required autofocus>
+        <input formControlName="Password" type="password" id="inputPassword" maxlength="45" class="form-control"
+          placeholder="Password" required autofocus>
       </div>
       <br>
       <div class="form-label-group">
-        <input formControlName="Nombre" type="text" id="inputNombre" maxlength="150" class="form-control" placeholder="Nombre" required
-          autofocus>
-          <div class="valid-feedback">
-            Correcto!
-          </div>
+        <input formControlName="Nombre" type="text" id="inputNombre" maxlength="150" class="form-control"
+          placeholder="Nombre" required autofocus>
+        <div class="valid-feedback">
+          Correcto!
+        </div>
       </div>
       <br>
       <div>
@@ -30,9 +31,21 @@
           <option value="AUTOR">Autor/Editor</option>
         </select>
       </div>
+      <div>
+        <input (change)="capturarFile($event)" placeholder="Subir archivo" formControlName="fileRevista" type="file"
+          accept=".png,.jpg,.pdf" class="form-control" required autofocus>
+      </div>
       <br>
-      <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+      <button [disabled]="myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
     </form>
+    <div class="text-center" *ngIf="previsualizacion">
+      <h2>Mostrando previsualizacion del archivo: </h2>
+      <div class="container">
+        <img [src]="previsualizacion">
+        <br>
+      </div>
+      <br>
+    </div>
 
   </form>
 </body>

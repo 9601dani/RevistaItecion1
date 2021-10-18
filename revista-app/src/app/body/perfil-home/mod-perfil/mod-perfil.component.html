@@ -3,9 +3,10 @@
 <body>
     <form class="form-signin">
         <div class="text-center mb-4">
-            <img class="mb-4"
-                src="https://img.flaticon.com/icons/png/512/303/303653.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
-                alt="" width="275" height="200">
+            <div class="container" *ngIf="photo" >
+                <img [src]="photo" style="width: 150px;height:150px" >
+                <br>
+              </div>
             <h1 class="h3 mb-3 font-weight-normal">{{userCom.nombre_usuario}} </h1>
         </div>
         <div class="form-label-group">
