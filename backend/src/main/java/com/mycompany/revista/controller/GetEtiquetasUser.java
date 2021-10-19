@@ -38,7 +38,6 @@ public class GetEtiquetasUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Vamos a buscar las etiquetas de "+ request.getParameter("user"));
        ArrayList<Etiqueta> listA= new ArrayList<Etiqueta>();
         listA = new EtiquetaDaoImpl().getETForUser(request.getParameter("user"));
         if (listA != null) {
@@ -60,7 +59,6 @@ public class GetEtiquetasUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("vamos a eliminar etiqueta de usuario");
         Etiqueta_autor et= new Etiqueta_autor(request.getParameter("etiqueta"), request.getParameter("user"));
         String result= new EtiquetaDaoImpl().deleteETForUser(et);
         EtiquetaConverter converter= new EtiquetaConverter(Etiqueta.class);
@@ -68,7 +66,6 @@ public class GetEtiquetasUser extends HttpServlet {
             response.getWriter().write(converter.toJson(new Etiqueta("yes")));
         }else{
             response.getWriter().write(converter.toJson(new Etiqueta("no")));
-            System.out.println("no se pudo");
         }
     }
 

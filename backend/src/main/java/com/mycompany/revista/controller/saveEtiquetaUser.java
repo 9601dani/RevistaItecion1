@@ -42,16 +42,12 @@ public class saveEtiquetaUser extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         
         EAutorConverter converter = new  EAutorConverter(Etiqueta_autor.class);
         Etiqueta_autor etiqueta = converter.fromJson(body);
-        System.out.println("------------->");
         String result = new EAutorDaoImpl().registrar(etiqueta);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(etiqueta));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

@@ -39,7 +39,6 @@ public class getPorcentaje extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("ENVIANDO EL PORCENTAJE DEL SOFTWARE");
         ArrayList<Porcentaje_soft> listA = new ArrayList<Porcentaje_soft>();
         listA = new PorcentajeDaoImpl().listarTodos();
         if (listA != null) {
@@ -61,7 +60,6 @@ public class getPorcentaje extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("VAMOS A ACUTALIZAR AQUI");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -69,20 +67,13 @@ public class getPorcentaje extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         EtiquetaConverter converter1= new EtiquetaConverter(Etiqueta.class);
         PorcentajeConverter converter= new PorcentajeConverter(Porcentaje_soft.class);
         
         Porcentaje_soft porcentaje= converter.fromJson(body);
-        System.out.println(porcentaje.getFecha_ultima_modificacion());
-        System.out.println(porcentaje.getPorcentaje());
-        System.out.println(porcentaje.getNombre_usuario());
-       System.out.println(porcentaje.getId_porcentaje());
         String result= new PorcentajeDaoImpl().actualizar(porcentaje);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter1.toJson(new Etiqueta(result)));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

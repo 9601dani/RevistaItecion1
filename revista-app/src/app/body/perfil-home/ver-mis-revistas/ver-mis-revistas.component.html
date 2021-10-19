@@ -1,45 +1,48 @@
+<br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID REVISTA</th>
-                        <th scope="col">NOMBRE REVISTA</th>
-                        <th scope="col">ESTADO REVISTA</th>
-                        <th scope="col"> &nbsp; </th>
-                        <th scope="col"> &nbsp; </th>
-                        <th scope="col"> &nbsp; </th>
-                    </tr>
-                    
-                </thead>
-                <tbody>
-                    <tr *ngFor="let rev of revistas">
-                        <th scope="row">{{ rev.id_revista}}</th>
-                        <td>{{ rev.nombre_revista }}</td>
-                        <td> {{rev.estado_revista}} </td>
-                        <td> 
-                            <a (click)="verRevista(rev.archivo)"
-                            class="btn btn-primary btn-block">
-                            Ver Revista
-                        </a>
-                            
-                        </td>
-                        <td>
-                            <a (click)="modRev(rev.id_revista,rev.nombre_revista,rev.descripcion,rev.costo_suscripcion,rev.me_gusta,rev.comentario,rev.suscripciones)"
-                                class="btn btn-primary btn-block">
-                                Modificar Revista
-                            </a>
-                        </td>
-                        <td>
-                            <a (click)="asignarEtiqueta(rev.id_revista,rev.nombre_revista)"
-                                class="btn btn-primary btn-block">
-                                Asignar Etiquetas
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-style">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID REVISTA</th>
+                            <th scope="col">NOMBRE REVISTA</th>
+                            <th scope="col">ESTADO REVISTA</th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rev of revistas">
+                            <th scope="row">{{ rev.id_revista}}</th>
+                            <td>{{ rev.nombre_revista }}</td>
+                            <td> {{rev.estado_revista}} </td>
+                            <td>
+                                <a (click)="verRevista(rev.archivo)" class="btn btn-primary btn-block">
+                                    Ver Revista
+                                </a>
+
+                            </td>
+                            <td>
+                                <a (click)="modRev(rev.id_revista,rev.nombre_revista,rev.descripcion,rev.costo_suscripcion,rev.me_gusta,rev.comentario,rev.suscripciones)"
+                                    class="btn btn-primary btn-block">
+                                    Modificar Revista
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="asignarEtiqueta(rev.id_revista,rev.nombre_revista)"
+                                    class="btn btn-primary btn-block">
+                                    Asignar Etiquetas
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
@@ -141,11 +144,11 @@
 </div>
 <div *ngIf=" getMod()==(3) ">
     <div class="text-center" *ngIf="previsualizacion">
-    <h2>Mostrando previsualizacion del archivo: </h2>
-    <div class="container">
-        <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+        <h2>Mostrando previsualizacion del archivo: </h2>
+        <div class="container">
+            <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+            <br>
+        </div>
         <br>
     </div>
-    <br>
-</div>
 </div>

@@ -1,5 +1,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/RevistaDaoImpl.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/ComentarioConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/UsuarioDao.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/ComentarioDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/registroController.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/FinalFileConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/getEtiquetas.java
@@ -7,6 +9,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/UsConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/UpdateAdmin.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Usuario.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveComentario.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ValidacionUsuario.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/EtiquetaDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/AceptarRev.java
@@ -27,6 +30,8 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/COMENTARIO_E.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/EAutorDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Etiqueta.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/ComentarioMostrar.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ChangeLikeSus.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/UsuarioDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/SuscripcionConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/RevistaInfoForUser.java
@@ -60,11 +65,14 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/Respuesta.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Suscripcion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/RecaudacionConverter.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/ComentarioDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/OnlyFile.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetRevistasForName.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Anuncio.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/RevistaForUserConverter.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetRevistaSus.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/FinalFile2Converter.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetComentarios.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/AdminConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ESTADO_ANUN.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/SuscripcionDao.java
@@ -83,3 +91,4 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveRecaudacion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ME_GUSTA_SUSCRIPCION.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/FinalFile2.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetInfoSus.java

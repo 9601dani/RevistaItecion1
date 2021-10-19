@@ -43,15 +43,12 @@ public class UpdateUser extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         UsConverter converter = new UsConverter(Usuario.class) {
         };
         Usuario usuario = converter.fromJson(body);
         String result = new UsuarioDaoImpl().actualizar(usuario);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(usuario));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

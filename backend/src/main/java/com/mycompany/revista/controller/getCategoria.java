@@ -35,8 +35,6 @@ public class getCategoria extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-         System.out.println("VAMOS A REGRESAR LA LISTA DE CATEGORIA");
 
          BufferedReader reader = request.getReader();
         String body = "";
@@ -45,8 +43,6 @@ public class getCategoria extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         ArrayList<Categoria> listA= new ArrayList<Categoria>();
         listA = new EtiquetaDaoImpl().listarTodosE();
         if (listA != null) {

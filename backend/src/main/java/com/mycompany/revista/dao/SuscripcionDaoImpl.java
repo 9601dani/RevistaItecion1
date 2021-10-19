@@ -20,9 +20,12 @@ import java.util.ArrayList;
  */
 public class SuscripcionDaoImpl implements SuscripcionDao{
 private final String SELECTEXISTENCIA = "SELECT * FROM suscripcion WHERE id_revista=? AND nombre_usuario=?";
+private final String DARLIKE = "UPDATE suscripcion SET me_gusta= 'DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
+private final String QUITARLIKE = "UPDATE suscripcion SET me_gusta= 'NO_DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
 private final String INTO = "INSERT INTO suscripcion(valor_sus,fecha_inicial,fecha_final,me_gusta,estado_suscripcion,nombre_usuario,id_revista) VALUES (?,?,?,?,?,?,?)";
 private final String INTORECAUDACION = "INSERT INTO recaudacion(nombre_revista, total_pagar,costo_con_descuento,fecha_pago,nombre_usuario,autor) VALUES (?,?,?,?,?,?)";
-    public SuscripcionDaoImpl() {
+private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA'";
+public SuscripcionDaoImpl() {
     new Conexion();
     }
 
@@ -103,6 +106,57 @@ private final String INTORECAUDACION = "INSERT INTO recaudacion(nombre_revista, 
             return "no";
         }    
     
+    }
+
+    @Override
+    public Suscripcion getInfo(String name,int id) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTSUS);
+            query.setString(1, name);
+            query.setInt(2, id);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null && datosObtenidos.next()) {
+                return new Suscripcion(datosObtenidos.getInt("id_suscripcion"),datosObtenidos.getBigDecimal("valor_sus"), datosObtenidos.getString("fecha_inicial"),datosObtenidos.getString("fecha_final"),getMyLike(datosObtenidos.getString("s.me_gusta")),getMySus(datosObtenidos.getString("estado_suscripcion")),datosObtenidos.getString("nombre_usuario"),datosObtenidos.getInt("id_revista"));
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    
+    }
+
+    @Override
+    public String darLike(int id, String name) {
+         try{
+            PreparedStatement query= Conexion.getInstancia().prepareStatement(DARLIKE);
+            query.setInt(1,id);
+            query.setString(2,name);
+            query.executeUpdate();
+            return "yes";
+        }catch(SQLException e){
+            System.out.println(e);
+            return "no";
+        }    
+    
+    }
+
+    @Override
+    public String quitarLike(int id,String name) {
+        
+        try{
+            PreparedStatement query= Conexion.getInstancia().prepareStatement(QUITARLIKE);
+            query.setInt(1,id);
+            query.setString(2,name);
+            query.executeUpdate();
+            return "yes";
+        }catch(SQLException e){
+            System.out.println(e);
+            return "no";
+        }    
     }
     
 }

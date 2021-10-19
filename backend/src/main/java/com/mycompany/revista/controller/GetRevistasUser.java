@@ -44,11 +44,9 @@ public class GetRevistasUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("VOY A MANDAR REVITSAS PARA EL USUARIO");
          ArrayList<Revista> listA= new ArrayList<Revista>();
         listA = new RevistaDaoImpl().listarTodos();
         if (listA != null) {
-            System.out.println("mande el json "+listA.size());
              response.getWriter().write(toJsonRev(listA));
         } else {
             System.out.println("no hay info");
@@ -67,8 +65,6 @@ public class GetRevistasUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            System.out.println("VAMOS A MANDAR LA INFO");
-            System.out.println(request.getParameter("id"));
             
             ResultSet datosRev= new RevistaDaoImpl().BuscarUnaRevista(Integer.parseInt(request.getParameter("id")));
             ArrayList<Etiqueta> et= new EtiquetaDaoImpl().getETForRev(Integer.parseInt(request.getParameter("id")));
@@ -78,19 +74,7 @@ public class GetRevistasUser extends HttpServlet {
             RevistaForUserConverter converter= new RevistaForUserConverter(RevistaInfoForUser.class);  
             response.getWriter().append(converter.toJson(nrev));
             }
-            
-            
-            
-            /*
-            if (listA != null) {
-            System.out.println("mande el json "+listA.size());
-            response.getWriter().write(toJsonRev(listA));
-            } else {
-            System.out.println("no hay info");
-            }*/
         } catch (SQLException ex) {
-            
-            System.out.println("error en GetRevistasUser :/");
             System.out.println(ex);
         }
     }

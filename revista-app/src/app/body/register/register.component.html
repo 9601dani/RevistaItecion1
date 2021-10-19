@@ -8,16 +8,20 @@
     </div>
     <form [formGroup]="myForm" (ngSubmit)="saveUser()">
       <div class="form-label-group">
+        <a>Ingresa tu nombre nombre de usuario:</a>
         <input formControlName="NombreU" type="text" id="inputNombreUsuario" maxlength="45" class="form-control"
           placeholder="Nombre Usuario" required autofocus>
       </div>
       <br>
       <div class="form-label-group">
+        <a>Ingresa tu contraseña:</a>
         <input formControlName="Password" type="password" id="inputPassword" maxlength="45" class="form-control"
           placeholder="Password" required autofocus>
       </div>
       <br>
+
       <div class="form-label-group">
+        <a>Ingresa tu nombre completo:</a>
         <input formControlName="Nombre" type="text" id="inputNombre" maxlength="150" class="form-control"
           placeholder="Nombre" required autofocus>
         <div class="valid-feedback">
@@ -26,22 +30,28 @@
       </div>
       <br>
       <div>
+        <a>Selecciona tu tipo de usuario: </a>
         <select formControlName="Type" class="form-select" aria-label="Default select example">
           <option value="USUARIO">Usuario</option>
           <option value="AUTOR">Autor/Editor</option>
         </select>
       </div>
+      <br>
       <div>
+        <a>Ingresa tu foto de perfil:</a>
         <input (change)="capturarFile($event)" placeholder="Subir archivo" formControlName="fileRevista" type="file"
-          accept=".png,.jpg,.pdf" class="form-control" required autofocus>
+          accept=".png,.jpg" class="form-control" required autofocus>
       </div>
       <br>
       <button [disabled]="myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
     </form>
     <div class="text-center" *ngIf="previsualizacion">
-      <h2>Mostrando previsualizacion del archivo: </h2>
+      <h2>Mostrando previsualizacion de tu foto de perfil: </h2>
       <div class="container">
-        <img [src]="previsualizacion">
+        <div class="tabla-style">
+          <img [src]="previsualizacion">
+        </div>
+
         <br>
       </div>
       <br>

@@ -13,12 +13,12 @@ import java.util.Date;
 public class Comentario {
     private int id_comentario;
     private String descripcion;
-    private Date fecha_comentario;
+    private String fecha_comentario;
     private int id_revista;
     private int id_suscripcion;
     //CONSTRUCTOR COMPLETO
 
-    public Comentario(int id_comentario, String descripcion, Date fecha_comentario, int id_revista, int id_suscripcion) {
+    public Comentario(int id_comentario, String descripcion, String fecha_comentario, int id_revista, int id_suscripcion) {
         this.id_comentario = id_comentario;
         this.descripcion = descripcion;
         this.fecha_comentario = fecha_comentario;
@@ -27,7 +27,7 @@ public class Comentario {
     }
     //CONSTRUCTO MEDIO
 
-    public Comentario(String descripcion, Date fecha_comentario, int id_revista, int id_suscripcion) {
+    public Comentario(String descripcion, String fecha_comentario, int id_revista, int id_suscripcion) {
         this.descripcion = descripcion;
         this.fecha_comentario = fecha_comentario;
         this.id_revista = id_revista;
@@ -50,11 +50,11 @@ public class Comentario {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha_comentario() {
+    public String getFecha_comentario() {
         return fecha_comentario;
     }
 
-    public void setFecha_comentario(Date fecha_comentario) {
+    public void setFecha_comentario(String fecha_comentario) {
         this.fecha_comentario = fecha_comentario;
     }
 

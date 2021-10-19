@@ -34,7 +34,6 @@ public class UpdateAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("aqui es para cancelar usuario");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -42,15 +41,12 @@ public class UpdateAdmin extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         AdminConverter converter = new AdminConverter(Administrador.class) {
         };
         Administrador admin = converter.fromJson(body);
         String result = new AdminDaoImpl().desactivar(admin);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(admin));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

@@ -108,6 +108,26 @@
         <servlet-name>SaveRecaudacion</servlet-name>
         <servlet-class>com.mycompany.revista.controller.SaveRecaudacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetRevistaSus</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetRevistaSus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetInfoSus</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetInfoSus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeLikeSus</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ChangeLikeSus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveComentario</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveComentario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetComentarios</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetComentarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -215,6 +235,26 @@
     <servlet-mapping>
         <servlet-name>SaveRecaudacion</servlet-name>
         <url-pattern>/SaveRecaudacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRevistaSus</servlet-name>
+        <url-pattern>/GetRevistaSus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetInfoSus</servlet-name>
+        <url-pattern>/GetInfoSus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeLikeSus</servlet-name>
+        <url-pattern>/ChangeLikeSus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveComentario</servlet-name>
+        <url-pattern>/SaveComentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetComentarios</servlet-name>
+        <url-pattern>/GetComentarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

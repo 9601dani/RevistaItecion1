@@ -133,6 +133,8 @@ porcentaje!:number
         this.nom_autor=this.revi.nombre_usuario
         this.etiquetas=this.revi.etiquetas;
         this.nameRev=nombre;
+        console.log(this.revi.cantidad_like)
+      
       } else {
         alert("NO SE PUEDE VER LA PRE VISUALIZACION");
       }
@@ -158,7 +160,7 @@ porcentaje!:number
     console.log("me voy a pagar a finalmente"+this.id_revista)
     console.log("con un costo de "+this.total)
     console.log("yo " + this.userName.nombre_usuario)
-    this.MenuUserService.saveSuscripcion(new Suscripcion(this.total,this.fecha_in,formatDate(this.fecha_final,'yyyy-MM-dd','en-US'),Me_Gusta_Suscripcion.NO_DIO_LIKE,Estado_Sus.ACTIVA,this.userName.nombre_usuario,this.id_revista)).subscribe((created: Respuesta) => {
+    this.MenuUserService.saveSuscripcion(new Suscripcion(0,this.total,this.fecha_in,formatDate(this.fecha_final,'yyyy-MM-dd','en-US'),Me_Gusta_Suscripcion.NO_DIO_LIKE,Estado_Sus.ACTIVA,this.userName.nombre_usuario,this.id_revista)).subscribe((created: Respuesta) => {
       console.log(created);
       if (created != null) {
         this.respuesta=created

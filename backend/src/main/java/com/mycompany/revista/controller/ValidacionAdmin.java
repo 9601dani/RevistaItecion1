@@ -37,10 +37,8 @@ public class ValidacionAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         System.out.println("METODO PARA VALIDAR ADMIN ");
         BufferedReader reader = request.getReader();
         String body = "";
-        System.out.println(" pase por aqui");
         String line = reader.readLine();
         while (line != null) {
             body = body + line;
@@ -53,7 +51,6 @@ public class ValidacionAdmin extends HttpServlet {
                 try {
                     Administrador userA = new Administrador(result.getString("nombre_usuario"),result.getString("password"),result.getString("nombre"),ESTADO_ADM.getAdmin(result.getString("estado")));
                     if(userA.getEstado()==ESTADO_ADM.ACTIVO){
-                        System.out.println("yes");
                         response.getWriter().append(converter.toJson(userA));
                     }    
                 } catch (SQLException ex) {

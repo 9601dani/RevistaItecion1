@@ -42,15 +42,12 @@ public class ActuRev extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         RevistaConverter converter = new RevistaConverter(Revista.class);
         Revista rev= converter.fromJson(body);
         EtiquetaConverter converter1= new EtiquetaConverter(Etiqueta.class);
         String result= new RevistaDaoImpl().actualizar(rev);
          if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter1.toJson(new Etiqueta("yes")));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

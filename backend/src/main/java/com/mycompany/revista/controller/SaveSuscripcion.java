@@ -52,7 +52,6 @@ public class SaveSuscripcion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("vamos a guardar la suscripcion");
          BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -60,23 +59,17 @@ public class SaveSuscripcion extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         SuscripcionConverter converter= new SuscripcionConverter(Suscripcion.class);
         Suscripcion suscrip= converter.fromJson(body);
         String resultado= new SuscripcionDaoImpl().consultar(suscrip);
         if(resultado.equals("no")){
-            System.out.println("1");
             String result= new SuscripcionDaoImpl().registrar(suscrip);
             if(result.equals("yes")){
-                System.out.println("2");
                 response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("se_guardo")));
-                System.out.println("3");
             }else{
                 response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no_se_guardo")));
             }
         }else{
-            System.out.println(resultado+"----->");
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no_se_guardo_ya")));
         }
         

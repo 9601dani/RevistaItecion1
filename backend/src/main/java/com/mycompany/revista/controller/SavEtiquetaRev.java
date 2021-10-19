@@ -37,7 +37,6 @@ public class SavEtiquetaRev extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       System.out.println("VAMOS A GUARDAR ETIQUETAS DE REVISTA");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -45,15 +44,12 @@ public class SavEtiquetaRev extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         EtiquetaRevConverter converter = new EtiquetaRevConverter(Etiqueta_revista.class);
          EtiquetaConverter converter1 = new EtiquetaConverter(Etiqueta.class);
         Etiqueta_revista revista=converter.fromJson(body);
         String result= new EtiquetaDaoImpl().saveEtiquetaRev(revista);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter1.toJson(new Etiqueta("yes")));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
         }

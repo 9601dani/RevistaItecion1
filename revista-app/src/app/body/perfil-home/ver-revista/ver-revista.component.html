@@ -1,22 +1,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
+            <div class="table-style" >
+                <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">NOMBRE REVISTA</th>
                         <th scope="col">COSTO SUSCRIPCION</th>
-                        <th scope="col">IMG</th>
-                        <th scope="col"> &nbsp; </th>
                         <th scope="col"> &nbsp; </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let rev1 of revista">
                         <th scope="row">{{ rev1.nombre_revista}}</th>
-                        <td>{{ rev1.costo_suscripcion }}</td>
-                        <td><img width="230" alt=""
-                            src="{{ bytes }}" *ngIf="bytes" /></td>
+                        <td>Q.{{ rev1.costo_suscripcion }}</td>
                         <td>
                             <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista, rev1.costo_suscripcion, rev1.suscripciones)" class="btn btn-primary btn-block">
                                 Previsualizar Revista
@@ -25,13 +22,15 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
+            
         </div>
     </div>
 </div>
 <br>
 <div *ngIf=" getMod()==(1) ">
     <form>
-        <h1> Informacion de Revista: {{this.nameRev}} </h1>
+        <h3> Informacion de Revista: {{this.nameRev}} </h3>
         <br>
         <div>
             <div class="container">
@@ -108,7 +107,7 @@
                         <div class="col-sm">
                             <a>El total a pagar es</a>
                             <br> 
-                                <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
+                            Q. <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
                         </div> 
                     </div> 
                 </div>

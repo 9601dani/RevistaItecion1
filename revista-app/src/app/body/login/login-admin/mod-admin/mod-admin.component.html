@@ -2,40 +2,43 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">NOMBRE DE USUARIO</th>
-                        <th scope="col">NOMBRE</th>
-                        <th scope="col">CONTRASEÑA</th>
-                        <th scope="col">ESTADO</th>
-                        <th scope="col"> &nbsp; </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let admin of listAdmins">
-                        <th scope="row">{{ admin.nombre_usuario}}</th>
-                        <td>{{ admin.nombre }}</td>
-                        <td>
-                            <a></a>
-                            <hr>
-                        </td>
-                        <td>{{ admin.estado }}</td>
-                        <td>
-                            <a (click)="editarUser(admin.nombre_usuario,admin.nombre,admin.password,admin.estado)"
-                                class="btn btn-primary btn-block">
-                                Editar
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-style">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">NOMBRE DE USUARIO</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">CONTRASEÑA</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col"> &nbsp; </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let admin of listAdmins">
+                            <th scope="row">{{ admin.nombre_usuario}}</th>
+                            <td>{{ admin.nombre }}</td>
+                            <td>
+                                <a></a>
+                                <hr>
+                            </td>
+                            <td>{{ admin.estado }}</td>
+                            <td>
+                                <a (click)="editarUser(admin.nombre_usuario,admin.nombre,admin.password,admin.estado)"
+                                    class="btn btn-primary btn-block">
+                                    Editar
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
 <br>
 <div *ngIf=" getOpcion()==(1) ">
-    <form [formGroup]= "myForm" >
+    <form [formGroup]="myForm">
         <h1> Editar Usuario: </h1>
         <br>
         <div>

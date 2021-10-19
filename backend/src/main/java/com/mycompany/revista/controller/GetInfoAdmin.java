@@ -57,7 +57,6 @@ public class GetInfoAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("OBTENIENDO LA INFO DE LOS USUARIOS");
         ArrayList<Administrador> listA= new ArrayList<Administrador>();
         AdminConverter converter = new AdminConverter(Administrador.class);
         ResultSet result = new AdminDaoImpl().getAll();
@@ -66,14 +65,12 @@ public class GetInfoAdmin extends HttpServlet {
                 while(result.next()){
                     Administrador userN = new Administrador(result.getString("nombre_usuario"), result.getString("password"), result.getString("nombre"), getAdmin(result.getString("estado")));
                     listA.add(userN);
-                    System.out.println(listA);
                 }
                 response.getWriter().write(this.toJson(listA));
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
         } else {
-            System.out.println("no hay info");
         }
     }
 
@@ -84,7 +81,6 @@ public class GetInfoAdmin extends HttpServlet {
             string += gson.toJson(data, Administrador.class) +",";
         }
         string = string.substring(0, string.length() - 1) + "]";
-        System.out.println("------->\n"+string);
         return string;
     }
 

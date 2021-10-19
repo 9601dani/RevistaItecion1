@@ -27,7 +27,6 @@ public class SaveRevista extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("VAMOS A GUARDAR UNA REVISTA");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -35,17 +34,11 @@ public class SaveRevista extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         RevistaConverter converter = new RevistaConverter(Revista.class);
-        System.out.println("error1");
         Revista rev = converter.fromJson(body);
-        System.out.println("aqui jejeje");
        String result = new RevistaDaoImpl().registrar(rev);
-      System.out.println(result+" --------->");
        if (result.equalsIgnoreCase("yes")) {
            response.getWriter().append(converter.toJson(rev));
-            System.out.println("se guardo");
         } else {
             System.out.println("no se guardo");
        }

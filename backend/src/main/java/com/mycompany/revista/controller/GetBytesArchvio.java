@@ -51,7 +51,6 @@ public class GetBytesArchvio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               System.out.println("jeje");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -59,13 +58,8 @@ public class GetBytesArchvio extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         FinalFileConverter converter= new FinalFileConverter(FinalFile.class);
-        System.out.println("problema1");
         FinalFile et= converter.fromJson(body);
-        System.out.println("problema2");
-        System.out.println(et.getArchivo());
         FinalFile2Converter converter2= new FinalFile2Converter(FinalFile2.class);
         byte[] byt=et.getArchivo();
       /*  for(int i=0; i<byt.length;i++){
@@ -73,7 +67,6 @@ public class GetBytesArchvio extends HttpServlet {
             
         }*/
         String j= new String(byt);
-        System.out.println("*** "+j);
         response.getWriter().write(converter2.toJson(new FinalFile2(j)));
         
     }

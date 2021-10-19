@@ -41,16 +41,12 @@ public class registroController extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         UsConverter converter = new UsConverter(Usuario.class) {
         };
         Usuario usuario = converter.fromJson(body);
-        System.out.println(usuario.getFoto());
         String result = new UsuarioDaoImpl().registrar(usuario);
         if (result.equalsIgnoreCase("yes")) {
             response.getWriter().append(converter.toJson(usuario));
-            System.out.println("se registro");
         } else {
             System.out.println("no se registro");
         }

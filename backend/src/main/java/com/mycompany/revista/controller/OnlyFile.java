@@ -76,7 +76,6 @@ public class OnlyFile extends HttpServlet {
             //   filePart.write(filePath);
             
             System.out.println(fileStream+" -----> mandando el archivo");*/
-        System.out.println("VAMOS A OBTENER LA INFO");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -84,8 +83,6 @@ public class OnlyFile extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
             RevistaConverter converterF= new RevistaConverter(Revista.class);
             Revista revFinal= converterF.fromJson(body);
             Revista rev;
@@ -98,7 +95,6 @@ public class OnlyFile extends HttpServlet {
 
             if (m.equalsIgnoreCase("yes")) {
                 response.getWriter().append(converter.toJson(new Etiqueta("yes")));
-                System.out.println("se guardo");
             } else {
                 System.out.println("no se guardo");
             }

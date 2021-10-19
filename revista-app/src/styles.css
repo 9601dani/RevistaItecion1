@@ -5,3 +5,8 @@
     position: sticky;
     left: 450px;
   }
+
+.table-style{
+  overflow:scroll;
+  height: 500px;
+}  

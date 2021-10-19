@@ -35,8 +35,6 @@ public class GetRevistasForName extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       System.out.println(" aqui ando en el post");
-        System.out.println("Vamos a buscar las revistas de "+ request.getParameter("categoria"));
        ArrayList<Revista> listA= new ArrayList<Revista>();
         listA = new RevistaDaoImpl().listarAlgunosForCategoria(request.getParameter("categoria"));
         
@@ -58,8 +56,7 @@ public class GetRevistasForName extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            System.out.println(" aqui ando en el post");
-        System.out.println("Vamos a buscar las revistas de "+ request.getParameter("name"));
+
        ArrayList<Revista> listA= new ArrayList<Revista>();
         listA = new RevistaDaoImpl().listarAlgunosForName(request.getParameter("name"));
         

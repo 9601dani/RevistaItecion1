@@ -38,14 +38,12 @@ public class AceptarRev extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("el admin esta aceptando una revista, es "+ request.getParameter("id"));
         Revista rev= new Revista(Integer.parseInt(request.getParameter("id")), request.getParameter("fecha_acep"),getRev1(request.getParameter("estadoRev")),new BigDecimal(request.getParameter("costo")), request.getParameter("fecha_mod"));
         RevistaDaoImpl revG= new RevistaDaoImpl();
          EtiquetaConverter converter = new EtiquetaConverter(Etiqueta.class);
         String respuesta= revG.AceptarRevista(rev);
          if (respuesta.equalsIgnoreCase("yes")) {
                 response.getWriter().append(converter.toJson(new Etiqueta("yes")));
-                System.out.println("se guardo");
             } else {
                 System.out.println("no se guardo");
             }

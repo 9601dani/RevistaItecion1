@@ -1,1 +1,134 @@
-<p>mis-suscripciones works!</p>
+
+<br> <br> <br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-style">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">NOMBRE REVISTA</th>
+                            <th scope="col">AUTOR</th>
+                            <th scope="col">ME GUSTA</th>
+                            <th scope="col">FECHA PUBLICACION</th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rev1 of revista">
+                            <th scope="row">{{ rev1.nombre_revista}}</th>
+                            <td>{{ rev1.nombre_usuario }}</td>
+                            <td> {{rev1.me_gusta}} </td>
+                            <td> {{this.formatearFecha(rev1.fecha_publicacion) }} </td>
+                            <td>
+                                <a (click)="verPdf(rev1.archivo, rev1.me_gusta, rev1.id_revista, rev1.comentario)"
+                                    class="btn btn-primary btn-block">
+                                    Mas Detalles
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="verComentarios(rev1.id_revista)" class="btn btn-primary btn-block">
+                                    Ver Comentarios
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div class="text-center" *ngIf="previsualizacion">
+        <br><br>
+        <div *ngIf="getMg()==(0)">
+            <a (click)="darMeGusta()" *ngIf="getLike()==(0)" class="btn btn-primary btn-block">
+                Dar Me Gusta
+            </a>
+            <a (click)="quitarMeGusta()" *ngIf="getLike()==(1)" class="btn btn-primary btn-block">
+                Quitar Me Gusta
+            </a>
+        </div>
+        <div *ngIf="getMg()==(1)">
+            <a>
+                *** ESTA REVISTA NO ACEPTA LIKES ***
+            </a>
+        </div>
+        <br>
+        <div>
+            <a (click)="comentar()" *ngIf="getComen()==(0)" class="btn btn-primary btn-block">
+                Comentar
+            </a>
+
+            <div *ngIf="getComentFinal()==(1)">
+                <form [formGroup]="formComentario">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <a>Ingresa tu Comentario: </a>
+                                <br>
+                                <textarea formControlName="comentario" style="width: 250px; height: 275px;"
+                                    maxlength="400"> </textarea>
+                            </div>
+                            <div class="col-sm">
+                                <a>Ingresa la Fecha del comentario:</a>
+                                <input formControlName="fecha_comentario" type="date">
+                            </div>
+                            <div class="col-sm">
+                                <button (click)="saveComentario()" [disabled]="formComentario.invalid"
+                                    class="btn btn-lg btn-primary btn-block" type="submit">Publicar Comentario</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </form>
+
+            </div>
+            <a *ngIf="getComen()==(1)">
+                *** ESTA REVISTA NO ACEPTA COMENTARIOS ***
+            </a>
+        </div>
+        <br>
+        <h3>Mostrando previsualizacion del archivo: </h3>
+        <div class="container">
+            <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+            <br>
+        </div>
+        <br>
+    </div>
+
+    <div class="container" *ngIf="getMostrarComents()==(1)">
+        <div class="row">
+            <div class="col-md-12">
+                <br><br>
+                <h3>Presentamos los comentarios: </h3>
+                <br>
+                <div class="table-style">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID COMENTARIO</th>
+                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">FECHA DEL COMENTARIO</th>
+                                <th scope="col">AUTOR DE LA REVISTA</th>
+                                <th scope="col"> USUARIO QUE COMENTO </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let comentariosRev2 of  comentariosRev">
+                                <th scope="row">{{ comentariosRev2.id_comentario}}</th>
+                                <td>{{ comentariosRev2.descripcion }}</td>
+                                <td> {{this.formarearFecha(comentariosRev2.fecha_comentario)}} </td>
+                                <td> {{comentariosRev2.nombre_autor}} </td>
+                                <td> {{comentariosRev2.nombre_usuario}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>

@@ -79,11 +79,11 @@ export class VerMisRevistasComponent implements OnInit {
         this.revistas = created;
 
       } else {
-        alert("ERROR AQUI");
+        alert("NO TIENES REVISTAS AUN");
       }
 
     }, (error: any) => {
-      alert("ERROR AL GUARDAR" + error);
+      alert("NO TIENES REVISTAS AUN");
     });;
 
   }

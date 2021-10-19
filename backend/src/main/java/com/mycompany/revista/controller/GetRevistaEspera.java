@@ -35,8 +35,6 @@ public class GetRevistaEspera extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(" aqui ando en el get");
-        System.out.println("Vamos a buscar las revistas de " + request.getParameter("user"));
         ArrayList<Revista> listA = new ArrayList<Revista>();
         listA = new RevistaDaoImpl().listarEnEspera();
 

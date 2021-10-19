@@ -52,7 +52,6 @@ public class SaveRecaudacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("vamos a guardar la recaudacion");
          BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -60,8 +59,6 @@ public class SaveRecaudacion extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         RecaudacionConverter converter= new RecaudacionConverter(Recaudacion.class);
         RespuestaConverter converter1= new RespuestaConverter(Respuesta.class);
         Recaudacion reca= converter.fromJson(body);

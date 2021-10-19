@@ -38,7 +38,6 @@ public class NewAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("VAMOS A CREAR UN NUEVO USUARIO");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -46,8 +45,6 @@ public class NewAdmin extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         AdminConverter converter = new AdminConverter(Administrador.class) {
         };
         Administrador admin = converter.fromJson(body);

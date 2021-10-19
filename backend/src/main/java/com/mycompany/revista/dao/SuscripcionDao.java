@@ -14,5 +14,8 @@ import com.mycompany.revista.clases.Suscripcion;
 public interface SuscripcionDao extends CRUD<Suscripcion> {
     String consultar(Suscripcion t);
     String guardarRecaudacion(Recaudacion t);
+    Suscripcion getInfo(String name, int id);
+    String darLike(int id,String n);
+    String quitarLike(int id, String n);
     
 }

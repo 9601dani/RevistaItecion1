@@ -36,7 +36,6 @@ public class GetInfoUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("VAMOS A OBTENER LA INFO");
         BufferedReader reader = request.getReader();
         String body = "";
         String line = reader.readLine();
@@ -44,8 +43,6 @@ public class GetInfoUser extends HttpServlet {
             body = body + line;
             line = reader.readLine();
         }
-        System.out.println("body:");
-        System.out.println(body);
         UsConverter converter = new UsConverter(Usuario.class) {
         };
         Usuario usuario = converter.fromJson(body);
@@ -58,7 +55,6 @@ public class GetInfoUser extends HttpServlet {
                     System.out.println(ex);
                 }
         }else {
-                System.out.println("no hay info");
         }
     }
     
@@ -70,31 +66,7 @@ public class GetInfoUser extends HttpServlet {
         
     }
     
-     private Blob verificarNull(Blob dato, String user){
-         if(dato==null){
-            try {
-                new Conexion();
-                FileInputStream is = new FileInputStream("/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/img/imagen.png");
-                PreparedStatement st = Conexion.getInstancia().prepareStatement("UPDATE usuario SET foto=? WHERE nombre_usuario=?");
-                st.setBlob(1, is);
-                st.setString(2, user);
-                st.execute();
-                is.close();
-                st.close();
-                System.out.println("se guardo algo aqui");
-                
-            } catch (FileNotFoundException ex) {
-                System.out.println(ex);
-            } catch (SQLException ex) {
-                System.out.println(ex);
-        }    catch (IOException ex) {
-                 System.out.println(ex);
-             }
-    }else{
-             return dato;
-         }
-          return dato;
-}
+    
         
 
     /**

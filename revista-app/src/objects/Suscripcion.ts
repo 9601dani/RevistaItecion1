@@ -2,15 +2,17 @@ import { Me_Gusta_Suscripcion } from './ENUMS/Me_Gusta_Suscripcion';
 import { Estado_Sus } from './ENUMS/Estado_Sus';
 
 export class Suscripcion{
-    private valor_sus!:number;
-    private fecha_inicial !:string;
-    private fecha_final!:string;
-    private me_gusta!:Me_Gusta_Suscripcion;
-    private estado_suscripcion!:Estado_Sus;
-    private nombre_usuario!:string;
-    private id_revista!: number;
+    id_suscripcion!:number
+    valor_sus!:number;
+    fecha_inicial !:string;
+    fecha_final!:string;
+    me_gusta!:Me_Gusta_Suscripcion;
+    estado_suscripcion!:Estado_Sus;
+    nombre_usuario!:string;
+     id_revista!: number;
 
-    constructor(valor_sus:number, fecha_inicial:string,fecha_final:string,me_gusta:Me_Gusta_Suscripcion,estado_suscripcion:Estado_Sus, nombre_usuario:string, id_revista:number){
+    constructor(id_suscripcion:number,valor_sus:number, fecha_inicial:string,fecha_final:string,me_gusta:Me_Gusta_Suscripcion,estado_suscripcion:Estado_Sus, nombre_usuario:string, id_revista:number){
+        this.id_suscripcion=id_suscripcion
         this.valor_sus=valor_sus
         this.fecha_inicial=fecha_inicial
         this.fecha_final=fecha_final

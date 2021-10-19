@@ -13,18 +13,19 @@
 </div>
 
 <div *ngIf=" getForm()==(1) ">
-    <form [formGroup]= "myForm">
+    <form [formGroup]="myForm">
         <br>
         <div>
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
                         <a>Ingresa el nombre: </a>
-                        <input type="text" formControlName="name">                        
+                        <input type="text" formControlName="name">
                     </div>
                     <div class="col-sm">
                         <br>
-                        <button [disabled]="this.myForm.invalid" (click)="serchForName()" class="btn btn-primary btn-block" type="submit">Buscar</button>
+                        <button [disabled]="this.myForm.invalid" (click)="serchForName()"
+                            class="btn btn-primary btn-block" type="submit">Buscar</button>
                     </div>
                 </div>
             </div>
@@ -33,7 +34,7 @@
     </form>
 </div>
 <div *ngIf=" getForm()==(2) ">
-    <form [formGroup]= "myForm2">
+    <form [formGroup]="myForm2">
         <br>
         <div>
             <div class="container">
@@ -41,13 +42,15 @@
                     <div class="col-sm">
                         <a>Escoga una Categoria </a>
                         <select formControlName="categoria" class="form-select" aria-label="Default select example">
-                            <option  *ngFor="let cat of categorias" value=" {{cat.nombre_categoria}} "> {{cat.nombre_categoria}}
+                            <option *ngFor="let cat of categorias" value=" {{cat.nombre_categoria}} ">
+                                {{cat.nombre_categoria}}
                             </option>
-                        </select>                      
+                        </select>
                     </div>
                     <div class="col-sm">
                         <br>
-                        <button (click)="serchForCategoria()" class="btn btn-primary btn-block" type="submit">Buscar</button>
+                        <button (click)="serchForCategoria()" class="btn btn-primary btn-block"
+                            type="submit">Buscar</button>
                     </div>
                 </div>
             </div>
@@ -58,27 +61,31 @@
 <div *ngIf=" getForm2()==(1) " class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">NOMBRE REVISTA</th>
-                        <th scope="col">COSTO</th>
-                        <th scope="col"> &nbsp; </th>
-                        <th scope="col"> &nbsp; </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let rev1 of revista">
-                        <th scope="row">{{ rev1.nombre_revista}}</th>
-                        <td>{{ rev1.costo_suscripcion }}</td>
-                        <td>
-                            <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista, rev1.costo_suscripcion, rev1.suscripciones)" class="btn btn-primary btn-block">
-                                Previsualizar Revista
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-style">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">NOMBRE REVISTA</th>
+                            <th scope="col">COSTO</th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rev1 of revista">
+                            <th scope="row">{{ rev1.nombre_revista}}</th>
+                            <td>{{ rev1.costo_suscripcion }}</td>
+                            <td>
+                                <a (click)="this.verPre(rev1.id_revista, rev1.nombre_revista, rev1.costo_suscripcion, rev1.suscripciones)"
+                                    class="btn btn-primary btn-block">
+                                    Previsualizar Revista
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
@@ -118,15 +125,16 @@
                     </div>
                     <div class="col-sm">
                         <a>Creador de Revista: </a>
-                        <input type="text" readonly [value]="this.revi.nombre_usuario" >
+                        <input type="text" readonly [value]="this.revi.nombre_usuario">
                     </div>
                     <div class="col-sm">
                         <a>Cantidad de Me gusta: </a>
-                        <input type="text" readonly [value]="this.revi.cantidad_like" >
+                        <input type="text" readonly [value]="this.revi.cantidad_like">
                     </div>
                     <div class="col-sm">
                         <br>
-                        <button *ngIf="getSus(this.aceptarSus)==(1)" (click)="suscribirse()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                        <button *ngIf="getSus(this.aceptarSus)==(1)" (click)="suscribirse()"
+                            class="btn btn-primary btn-block" type="submit">Suscribirse</button>
                         <a *ngIf="getSus(this.aceptarSus)==(0)">EL USUARIO NO ADMITE SUSCRIPCIONES </a>
                     </div>
                 </div>
@@ -136,7 +144,7 @@
     </form>
 </div>
 <div *ngIf=" getMoreSus()==(1) ">
-    <form [formGroup]= "myFormSus" >
+    <form [formGroup]="myFormSus">
         <h1> Te vas a suscribir a: {{this.nameRev}} </h1>
         <br>
         <div>
@@ -144,26 +152,28 @@
                 <div class="row" style="background-color:khaki">
                     <div class="col-sm">
                         <a>Ingresa fecha inicial</a>
-                        <br> 
-                            <input formControlName="fechaI" type="date">
-                    </div>    
+                        <br>
+                        <input formControlName="fechaI" type="date">
+                    </div>
                     <div class="col-sm">
                         <a>Ingresa los meses a suscribirte</a>
-                        <br> 
-                            <input formControlName="tiempo" type="number" [ngModel]= "this.time" >
-                    </div>  
+                        <br>
+                        <input formControlName="tiempo" type="number" [ngModel]="this.time">
+                    </div>
                     <div class="col-sm">
                         <br>
-                        <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
-                        <button *ngIf="getPagar()==(1)" (click)="suscribirseFi()" class="btn btn-primary btn-block" type="submit">Pagar y Suscribirse</button>
-                    </div>  
+                        <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()" class="btn btn-primary btn-block"
+                            type="submit">Suscribirse</button>
+                        <button *ngIf="getPagar()==(1)" (click)="suscribirseFi()" class="btn btn-primary btn-block"
+                            type="submit">Pagar y Suscribirse</button>
+                    </div>
                     <div *ngIf=" getPagar()==(1) ">
                         <div class="col-sm">
                             <a>El total a pagar es</a>
-                            <br> 
-                                <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
-                        </div> 
-                    </div> 
+                            <br>
+                            <input formControlName="total" type="number" readonly [ngModel]="this.total">
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>
