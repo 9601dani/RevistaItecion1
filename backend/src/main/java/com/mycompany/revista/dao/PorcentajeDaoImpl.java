@@ -76,7 +76,7 @@ private final String UPDATE = "UPDATE porcentaje_soft SET porcentaje=?,fecha_ult
     }
 
     @Override
-    public void eliminar(Porcentaje_soft t) {
+    public String eliminar(Porcentaje_soft t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  

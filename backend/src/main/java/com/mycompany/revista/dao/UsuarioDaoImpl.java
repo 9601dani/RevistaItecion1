@@ -70,7 +70,7 @@ private final String UPDATE="UPDATE usuario SET password=?, nombre=?, des_person
     }
 
     @Override
-    public void eliminar(Usuario t) {
+    public String eliminar(Usuario t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

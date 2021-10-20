@@ -84,7 +84,7 @@ public class EAutorDaoImpl implements EAutorDao {
     }
 
     @Override
-    public void eliminar(Etiqueta_autor t) {
+    public String eliminar(Etiqueta_autor t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

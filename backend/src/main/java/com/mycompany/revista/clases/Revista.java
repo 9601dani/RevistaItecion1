@@ -119,6 +119,22 @@ public class Revista {
         this.comentario = comentario;
         this.suscripciones = suscripciones;
     }
+
+    public Revista(int id_revista, String nombre_revista, String archivo, String fecha_publicacion, ESTADO_REV estado_revista,String descripcion, BigDecimal costo_suscripcion, ME_GUSTA_E me_gusta, COMENTARIO_E comentario, SUSCRIP_E suscripciones, String nombre_categoria, String nombre_usuario) {
+        this.id_revista = id_revista;
+        this.nombre_revista = nombre_revista;
+        this.archivo = archivo;
+        this.fecha_publicacion = fecha_publicacion;
+        this.estado_revista=estado_revista;
+        this.descripcion = descripcion;
+        this.costo_suscripcion = costo_suscripcion;
+        this.me_gusta = me_gusta;
+        this.comentario = comentario;
+        this.suscripciones = suscripciones;
+        this.nombre_categoria = nombre_categoria;
+        this.nombre_usuario = nombre_usuario;
+    }
+    
     
     
     

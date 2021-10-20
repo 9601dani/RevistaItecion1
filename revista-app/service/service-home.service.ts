@@ -7,6 +7,11 @@ import { Injectable } from '@angular/core';
 export class ServiceHomeService {
    opcion:number=0;
   serviceUrl: any;
+  span:number=0;
   constructor() { }
+
+  getSpan():number{
+    return this.span
+  }
 
 }

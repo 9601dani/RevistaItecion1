@@ -1,3 +1,4 @@
+import { ServiceHomeService } from 'service/service-home.service';
 import { Etiqueta } from 'src/objects/Etiqueta';
 import { Estado_Rev } from './../../../../objects/ENUMS/Estado_Rev';
 import { MenuAutorService } from './../../../../../service/menu-autor.service';
@@ -30,11 +31,13 @@ messageUpload: String = '';
 user!:User;
 
   constructor(private FormBuilder:FormBuilder,private ObtenerInfoUserService: ObtenerInfoUserService,
-    private sanitizer: DomSanitizer, private MenuAutorService:MenuAutorService, private service: MenuUserService) { 
+    private sanitizer: DomSanitizer, private MenuAutorService:MenuAutorService, private service: MenuUserService,
+    private ServiceHomeService:ServiceHomeService) { 
    
   }
 
   ngOnInit(): void {
+    this.ServiceHomeService.span=0;
     this.getCategoria();
     this.formRevista=this.FormBuilder.group({
       nomRevista:[null,Validators.required],
@@ -59,7 +62,7 @@ user!:User;
       }
 
     },(error:any)=>{
-      alert("ERROR AL GUARDAR"+ error);
+      alert("NO HAY CATEGORIAS");
     });
   }
   saveRevista() {

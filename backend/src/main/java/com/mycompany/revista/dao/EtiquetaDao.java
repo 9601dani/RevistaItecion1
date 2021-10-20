@@ -4,6 +4,7 @@
  */
 package com.mycompany.revista.dao;
 
+import com.mycompany.revista.clases.Categoria;
 import com.mycompany.revista.clases.Etiqueta;
 import com.mycompany.revista.clases.Etiqueta_autor;
 import com.mycompany.revista.clases.Etiqueta_revista;
@@ -18,4 +19,5 @@ public interface EtiquetaDao extends CRUD<Etiqueta>{
         ArrayList<Etiqueta> getETForRev(int id);
         ArrayList<Etiqueta> getETForUser(String user_name );
         String deleteETForUser(Etiqueta_autor t);
+        String saveCategoria(Categoria c);
 }

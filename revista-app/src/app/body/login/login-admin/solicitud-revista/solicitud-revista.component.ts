@@ -1,3 +1,4 @@
+
 import { MenuAdminService } from 'service/menu-admin.service';
 import { Etiqueta } from 'src/objects/Etiqueta';
 import { MenuAutorService } from './../../../../../../service/menu-autor.service';
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Estado_Rev } from 'src/objects/ENUMS/Estado_Rev';
 import { AdmitirRevista } from 'src/objects/AdmitirRevista';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-solicitud-revista',
@@ -44,7 +46,7 @@ export class SolicitudRevistaComponent implements OnInit {
       }
 
     },(error:any)=>{
-      alert("ERROR AL GUARDAR"+ error);
+      alert("NO HAY REVISTAS PARA ADMITIR");
     });;
     
   }
@@ -79,6 +81,15 @@ export class SolicitudRevistaComponent implements OnInit {
       alert("ERROR AL GUARDAR"+ error);
     });
 
+  }
+  public formarearFecha(fecha:string):string{
+    let da=  formatDate(fecha,'dd-MM-yyyy','en-US')
+    return da
+  }
+  public formatearFecha(fecha:Date):string{
+    let fechaI= fecha.toString()
+    let da=  formatDate(fechaI,'dd-MM-yyyy','en-US')
+    return da
   }
 
 }

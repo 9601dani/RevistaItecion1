@@ -1,3 +1,4 @@
+import { ServiceHomeService } from 'service/service-home.service';
 import { ObtenerInfoUserService } from './../../../../service/obtener-info-user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,19 +22,17 @@ export class PerfilHomeComponent implements OnInit {
   imgURL: any;
 
   constructor(private route: ActivatedRoute,private  ObtenerInfoUserService:ObtenerInfoUserService,
-    private sanitizer: DomSanitizer, private MenuUserService: MenuUserService) { }
+    private sanitizer: DomSanitizer, private MenuUserService: MenuUserService,
+    private ServiceHomeService:ServiceHomeService) { }
   
     ngOnInit() {
+      this.ServiceHomeService.span=0;
     let username= this.route.snapshot.paramMap.get("variable");
-    console.log("imprimire")
-    console.log(username);
     this.ObtenerInfoUserService.createUser(new UserComplete(String(username),'  ',' ',' ',' ',this.photo,UserType.AUTOR))
     .subscribe((usuario:UserComplete)=>{
       this.userF= usuario;
       localStorage.removeItem("userComplete");
       localStorage.setItem("userComplete",JSON.stringify(usuario));
-      console.log("---------");
-      console.log(usuario.foto);
      // this.mostrarRevista(usuario.foto)
       this.previsualizacion=this.userF.foto
       
@@ -73,7 +72,6 @@ export class PerfilHomeComponent implements OnInit {
     reader.onload = (event2) => {
       this.imgURL = reader.result;
       this.imgURL= this.sanitizer.bypassSecurityTrustUrl(this.imgURL);
-      console.log(this.imgURL)
     };
   
  

@@ -56,7 +56,7 @@ public class ComentarioDaoImpl implements ComentarioDao {
     }
 
     @Override
-    public void eliminar(Comentario t) {
+    public String eliminar(Comentario t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

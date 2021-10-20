@@ -21,10 +21,11 @@ import java.util.ArrayList;
 public class SuscripcionDaoImpl implements SuscripcionDao{
 private final String SELECTEXISTENCIA = "SELECT * FROM suscripcion WHERE id_revista=? AND nombre_usuario=?";
 private final String DARLIKE = "UPDATE suscripcion SET me_gusta= 'DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
+private final String CANCELARSUS = "UPDATE suscripcion SET estado_suscripcion= 'DESACTIVA' WHERE fecha_final<CURDATE() AND estado_suscripcion='ACTIVA'";
 private final String QUITARLIKE = "UPDATE suscripcion SET me_gusta= 'NO_DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
 private final String INTO = "INSERT INTO suscripcion(valor_sus,fecha_inicial,fecha_final,me_gusta,estado_suscripcion,nombre_usuario,id_revista) VALUES (?,?,?,?,?,?,?)";
 private final String INTORECAUDACION = "INSERT INTO recaudacion(nombre_revista, total_pagar,costo_con_descuento,fecha_pago,nombre_usuario,autor) VALUES (?,?,?,?,?,?)";
-private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA'";
+private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA' AND s.estado_suscripcion='ACTIVA'";
 public SuscripcionDaoImpl() {
     new Conexion();
     }
@@ -85,7 +86,7 @@ public SuscripcionDaoImpl() {
     }
 
     @Override
-    public void eliminar(Suscripcion t) {
+    public String eliminar(Suscripcion t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -112,7 +113,10 @@ public SuscripcionDaoImpl() {
     public Suscripcion getInfo(String name,int id) {
         ResultSet datosObtenidos = null;
         PreparedStatement query = null;
+        PreparedStatement query2 = null;
         try {
+            query2=Conexion.getInstancia().prepareStatement(CANCELARSUS);
+            query2.executeUpdate();
             query = Conexion.getInstancia().prepareStatement(SELECTSUS);
             query.setString(1, name);
             query.setInt(2, id);

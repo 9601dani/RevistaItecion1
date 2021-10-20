@@ -1,3 +1,4 @@
+import { ServiceHomeService } from 'service/service-home.service';
 import { UserComplete } from 'src/objects/UserComplete';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-complete.component.css']
 })
 export class HomeCompleteComponent implements OnInit {
-
-  constructor() { }
+verSpan!:number;
+  constructor(private ServiceHomeService:ServiceHomeService) { }
 
   ngOnInit(): void {
     localStorage.removeItem("userComplete");
     localStorage.removeItem("userS");
+  }
+
+  getSpan():number{
+    this.verSpan=this.ServiceHomeService.getSpan()
+    return this.verSpan
   }
 
 }

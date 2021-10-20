@@ -65,7 +65,7 @@ private final String DESACTIVATE ="UPDATE administrador SET estado=? WHERE nombr
     }
 
     @Override
-    public void eliminar(Administrador t) {
+    public String eliminar(Administrador t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

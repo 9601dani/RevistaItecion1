@@ -1,3 +1,5 @@
+import { ServiceHomeService } from 'service/service-home.service';
+import { ObtenerInfoUserService } from './../../../../../service/obtener-info-user.service';
 import { ComentarioMostrar } from 'src/objects/ComentarioMostrar';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Comentario_E } from './../../../../objects/ENUMS/Comentario_E';
@@ -11,6 +13,8 @@ import { RevistaForAdmin } from 'src/objects/RevistaForAdmin';
 import { User } from 'src/objects/User';
 import { Comentario } from 'src/objects/Comentario';
 import { formatDate } from '@angular/common';
+import { UserComplete } from 'src/objects/UserComplete';
+import { UserType } from 'src/objects/UserType';
 
 
 @Component({
@@ -20,7 +24,8 @@ import { formatDate } from '@angular/common';
 })
 export class MisSuscripcionesComponent implements OnInit {
 
-  constructor(private MenuUserService:MenuUserService, private FormBuilder:FormBuilder) { }
+  constructor(private MenuUserService:MenuUserService, private FormBuilder:FormBuilder, 
+    private ObtenerInfoUserService:ObtenerInfoUserService, private ServiceHomeService:ServiceHomeService) { }
   revista!: Array<RevistaForAdmin>;
   rev1!: RevistaForAdmin;
   respuesta!:Respuesta
@@ -45,7 +50,11 @@ export class MisSuscripcionesComponent implements OnInit {
   comentariosRev!:Array<ComentarioMostrar>
   comentariosRev2!:ComentarioMostrar
   fechaComentario!:string;
+  autor!:UserComplete
+  photo!:string; 
+  mostrarAutor:number=0;
   ngOnInit(): void {
+    this.ServiceHomeService.span=1;
     this.getRevistas();
     this.formComentario=this.FormBuilder.group({
       comentario:[null,Validators.required],
@@ -89,6 +98,9 @@ export class MisSuscripcionesComponent implements OnInit {
   getMostrarComents():number{
     return this.mostrarComents;
   }
+  getMostrarAutor():number{
+    return this.mostrarAutor;
+  }
 
   verPdf(archivo:string, me_gusta:Me_Gusta_E, id_revista:number, come:Comentario_E){
     console.log(archivo);
@@ -115,10 +127,13 @@ export class MisSuscripcionesComponent implements OnInit {
         }else{
           this.ya_dio_like=0;
         }
-
+        this.mostrarAutor=0;
 
       } else {
-        alert("NO ESTAS SUSCRITO A NINGUNA REVISTA");
+        this.previsualizacion=""
+        this.mostrarComents=0;
+        alert("TU SUSCRIPCION YA VENCIO ");
+        
       }
 
     }, (error: any) => {
@@ -207,6 +222,7 @@ export class MisSuscripcionesComponent implements OnInit {
       if (created != null) {
         this.comentariosRev = created;
         this.mostrarComents=1;
+        this.mostrarAutor=0;
         this.previsualizacion="";
       } else {
         alert("NO HAY COMENTARIOS PARA ESTA REVISTA")
@@ -229,6 +245,21 @@ export class MisSuscripcionesComponent implements OnInit {
     let fechaI= fecha.toString()
     let da=  formatDate(fechaI,'dd-MM-yyyy','en-US')
     return da
+  }
+
+  verPerfilAutor(name:string){
+    console.log("mandare la info del autor "+name)
+    this.ObtenerInfoUserService.createUser(new UserComplete(String(name),'  ',' ',' ',' ',this.photo,UserType.AUTOR))
+    .subscribe((usuario:UserComplete)=>{
+      this.autor= usuario; 
+      console.log(this.autor)
+      this.mostrarAutor=1;
+      this.comentFinal=0;
+      this.coment=0;
+      this.mostrarComents=0;
+      this.previsualizacion=""
+    })
+
   }
 }
 

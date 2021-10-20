@@ -16,6 +16,6 @@ public interface CRUD<T> {
     ArrayList<T> listarTodos();
     String registrar(T t);
     String actualizar(T t);
-    void eliminar(T t);
+    String eliminar(T t);
     
 }

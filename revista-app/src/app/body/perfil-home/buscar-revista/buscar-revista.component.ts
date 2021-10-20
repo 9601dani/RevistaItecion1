@@ -1,3 +1,4 @@
+import { ServiceHomeService } from 'service/service-home.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MenuUserService } from './../../../../../service/menu-user.service';
 import { Categoria } from './../../../../objects/Categoria';
@@ -27,7 +28,8 @@ export class BuscarRevistaComponent implements OnInit {
   videoUrl: any;
 
   constructor(private FormBuilder:FormBuilder, private ObtenerInfoUserService:ObtenerInfoUserService,
-    private MenuUserService:MenuUserService, private sanitizer:DomSanitizer) { }
+    private MenuUserService:MenuUserService, private sanitizer:DomSanitizer,
+    private ServiceHomeService:ServiceHomeService) { }
 //control de form
 formControl!:number;
 formControl2!:number;
@@ -73,6 +75,7 @@ objPorcentaje!:Porcentaje[]
 porcentaje!:number
 nom_autor!:string
   ngOnInit(): void {
+    this.ServiceHomeService.span=0;
     this.getPorcentaje();
     this.myForm = this.FormBuilder.group({
       name: [null, Validators.required],

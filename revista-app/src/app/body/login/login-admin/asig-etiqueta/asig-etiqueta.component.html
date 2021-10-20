@@ -1,20 +1,77 @@
 <body>
-    <form class="form-signin">
-      <div class="text-center mb-4">
-          <br><br>
-        <img class="mb-4"
-          src="https://previews.123rf.com/images/lineartestpilot/lineartestpilot1502/lineartestpilot150202097/36102146-de-dibujos-animados-retro-del-estilo-del-c%C3%B3mic-libro-de-hechizos-de-magia.jpg"
-          alt="" width="200" height="125">
-        <h1 class="h3 mb-3 font-weight-normal">Registro de Etiquetas</h1>
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <br><br>
+      <img class="mb-4"
+        src="https://previews.123rf.com/images/lineartestpilot/lineartestpilot1502/lineartestpilot150202097/36102146-de-dibujos-animados-retro-del-estilo-del-c%C3%B3mic-libro-de-hechizos-de-magia.jpg"
+        alt="" width="200" height="125">
+      <h1 class="h3 mb-3 font-weight-normal">Registro de Etiquetas</h1>
+    </div>
+    <form [formGroup]="formEtiqueta" (ngSubmit)="saveEtiqueta()">
+      <div class="form-label-group">
+        <a>Escribe el Nombre de la Etiqueta:</a>
+        <input formControlName="nameEtiqueta" type="text" maxlength="45" class="form-control"
+          placeholder="Nombre Etiqueta" required autofocus>
       </div>
-      <form [formGroup]= "formEtiqueta" (ngSubmit)= "saveEtiqueta()" > 
-        <div class="form-label-group">
-            <a>Escribe el Nombre de la Etiqueta:</a>
-          <input formControlName = "nameEtiqueta" type="text" maxlength="45" class="form-control"
-            placeholder="Nombre Etiqueta" required autofocus >
-        </div>
-        <br>
-        <button [disabled]= "formEtiqueta.invalid" class="btn btn-primary btn-block" type="submit"> Guardar</button>
-      </form>
+      <br>
+      <button [disabled]="formEtiqueta.invalid" class="btn btn-primary btn-block" type="submit"> Guardar</button>
     </form>
-  </body>
+  </form>
+</body>
+<br><br>
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+        <div class="table-style">
+          <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th scope="col">NOMBRE DE ETIQUETA</th>
+                          <th scope="col"> &nbsp; </th>
+                          <th scope="col"> &nbsp; </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let eti of etiquetas">
+                          <th scope="row">{{ eti.nombre_etiqueta}}</th>
+                          <td>
+                              <a (click)="deleteEtiqueta(eti.nombre_etiqueta)"
+                                  class="btn btn-primary btn-block">
+                                  Eliminar
+                              </a>
+                          </td>
+                          <td>
+                            <a (click)="updateEtiqueta(eti.nombre_etiqueta)"
+                                class="btn btn-primary btn-block">
+                               Editar
+                            </a>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+        </div>
+              
+      </div>
+  </div>
+</div>
+
+<div *ngIf=" getMostrar()==(1) ">
+      <h1> Editar Etiqueta: </h1>
+      <br>
+      <div>
+          <div class="container">
+              <div class="row" style="background-color:khaki">
+                  <div class="col-sm">
+                      <a>Modifique el nombre de la etiqueta: </a>
+                      <input  type="text" [(ngModel)]="this.nameetiqueta">
+                  </div>
+                  <div class="col-sm">
+                      <button class="btn btn-primary btn-block" type="submit"
+                      (click)=" updateEtiquetaFinal() " >Actualizar</button>
+                  </div>
+              </div>
+          </div>
+          <br>
+      </div>
+  <br>
+</div>

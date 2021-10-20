@@ -23,6 +23,9 @@ import java.util.ArrayList;
 public class EtiquetaDaoImpl implements EtiquetaDao {
 
     private final String SAVE = "INSERT INTO etiqueta VALUES (?)";
+    private final String DELETE = "DELETE FROM  etiqueta WHERE nombre_etiqueta=?";
+     private final String UPDATE = "UPDATE etiqueta SET nombre_etiqueta=? WHERE nombre_etiqueta=?";
+    private final String SAVECATEGORIA = "INSERT INTO categoria VALUES (?)";
     private final String SELECTALL = "SELECT * FROM etiqueta";
     private final String SELECTETFORUSER = "SELECT * FROM etiqueta_autor WHERE nombre_usuario=?";
     private final String SELECTALLC = "SELECT * FROM categoria";
@@ -103,14 +106,32 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
         }
     }
 
-    @Override
-    public String actualizar(Etiqueta t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String actualizar(Etiqueta t, String et_pas) {
+       try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(UPDATE);
+            query.setString(1, t.getNombre_etiqueta());
+            query.setString(2, et_pas);
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
+    
     }
 
     @Override
-    public void eliminar(Etiqueta t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String eliminar(Etiqueta t) {
+       
+     try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(DELETE);
+            query.setString(1, t.getNombre_etiqueta());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
     }
 
     public static String toJsonET(ArrayList<Etiqueta> object) {
@@ -222,6 +243,25 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
             System.out.println(e);
             return "no";
         }
+    }
+
+    @Override
+    public String saveCategoria(Categoria c) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(SAVECATEGORIA);
+            query.setString(1, c.getNombre_categoria());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
+    
+    }
+
+    @Override
+    public String actualizar(Etiqueta t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

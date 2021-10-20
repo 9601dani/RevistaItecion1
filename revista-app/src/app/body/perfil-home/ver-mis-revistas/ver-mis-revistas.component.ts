@@ -26,7 +26,8 @@ import { Etiqueta } from 'src/objects/Etiqueta';
 export class VerMisRevistasComponent implements OnInit {
 
   constructor(private MenuAutorService: MenuAutorService, private ObtenerInfoUserService: ObtenerInfoUserService,
-    private sanitizer: DomSanitizer, private FormBuilder: FormBuilder, private MenuUserService: MenuUserService) { }
+    private sanitizer: DomSanitizer, private FormBuilder: FormBuilder, private MenuUserService: MenuUserService,
+    private ServiceHomeService:ServiceHomeService) { }
   //FORMULARIO
   opcio!: number;
   myForm!: FormGroup;
@@ -53,8 +54,8 @@ export class VerMisRevistasComponent implements OnInit {
   //variables extra
   etiquetas!:Array<Etiqueta>;
   ngOnInit(): void {
+    this.ServiceHomeService.span=1;
     this.getRevistas();
-  
     this.myForm = this.FormBuilder.group({
       id: [null, Validators.required],
       nombre: [null, Validators.required],
@@ -203,6 +204,10 @@ export class VerMisRevistasComponent implements OnInit {
     this.opcio = 3;
 
   } 
+
+  deleteRevista(){
+    
+  }
   
 }
 

@@ -1,7 +1,9 @@
 com/mycompany/revista/dao/EAutorDaoImpl.class
 com/mycompany/revista/clases/Tipo_anuncio.class
 com/mycompany/revista/conexion/Conexion.class
+com/mycompany/revista/controller/ModiEtiquetas.class
 com/mycompany/revista/controller/NewAdmin.class
+com/mycompany/revista/controller/ModiEtiquetas$1.class
 com/mycompany/revista/clases/Usuario.class
 com/mycompany/revista/converter/RespuestaConverter.class
 com/mycompany/revista/dao/EtiquetaDao.class
@@ -19,6 +21,7 @@ com/mycompany/revista/controller/GetRevistasUser.class
 com/mycompany/revista/clases/Etiqueta_autor.class
 com/mycompany/revista/converter/ComentarioConverter.class
 com/mycompany/revista/Enum/COMENTARIO_E.class
+com/mycompany/revista/converter/CategoriaConverter.class
 com/mycompany/revista/controller/ChangeLikeSus.class
 com/mycompany/revista/dao/EtiquetaDaoImpl.class
 com/mycompany/revista/dao/PorcentajeDaoImpl.class
@@ -97,6 +100,7 @@ com/mycompany/revista/converter/EtiquetaConverter.class
 com/mycompany/revista/modelsE/FinalFile2.class
 com/mycompany/revista/modelsE/Respuesta.class
 com/mycompany/revista/controller/ValidacionUsuario$1.class
+com/mycompany/revista/controller/SaveCategoria.class
 com/mycompany/revista/dao/SuscripcionDaoImpl.class
 com/mycompany/revista/controller/getCategoria.class
 com/mycompany/revista/clases/Etiqueta.class

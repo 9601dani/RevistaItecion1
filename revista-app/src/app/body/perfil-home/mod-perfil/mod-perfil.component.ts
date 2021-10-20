@@ -15,11 +15,11 @@ userCom:UserComplete = JSON.parse(<string>localStorage.getItem('userComplete'));
 photo!:string;
 public formUpdate!: FormGroup;
   constructor( private service: MenuUserService,private FormBuilder:FormBuilder,
-    private ObtenerInfoUserService:ObtenerInfoUserService) { }
+    private ObtenerInfoUserService:ObtenerInfoUserService,
+    private ServiceHomeService:ServiceHomeService) { }
 
   ngOnInit(): void {
-    console.log(this.userCom.des_personal+" aqui es");
-    this.photo=this.userCom.foto
+    this.ServiceHomeService.span=0;
     this.formUpdate=this.FormBuilder.group({
       inputPassword:[null,Validators.required],
       inputPersona:[null,Validators.required],

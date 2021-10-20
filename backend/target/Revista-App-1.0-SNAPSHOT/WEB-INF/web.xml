@@ -128,6 +128,14 @@
         <servlet-name>GetComentarios</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetComentarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveCategoria</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModiEtiquetas</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ModiEtiquetas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -255,6 +263,14 @@
     <servlet-mapping>
         <servlet-name>GetComentarios</servlet-name>
         <url-pattern>/GetComentarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveCategoria</servlet-name>
+        <url-pattern>/SaveCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModiEtiquetas</servlet-name>
+        <url-pattern>/ModiEtiquetas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

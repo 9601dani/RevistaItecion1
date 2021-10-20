@@ -18,6 +18,7 @@ import { Suscripcion } from 'src/objects/Suscripcion';
 import { Estado_Sus } from 'src/objects/ENUMS/Estado_Sus';
 import { Recaudacion } from 'src/objects/Recaudacion';
 import { Porcentaje } from 'src/objects/Porcentaje';
+import { ServiceHomeService } from 'service/service-home.service';
 
 @Component({
   selector: 'app-ver-revista',
@@ -30,7 +31,7 @@ export class VerRevistaComponent implements OnInit {
 
   constructor(private MenuUserService:MenuUserService, private FormBuilder:FormBuilder,
     private sanitizer:DomSanitizer, private obtener:ObtenerInfoUserService,
-    private ObtenerInfoUserService:ObtenerInfoUserService) { }
+    private ObtenerInfoUserService:ObtenerInfoUserService, private ServiceHomeService:ServiceHomeService) { }
 //Revistas para usuario
 revis!: Array<RevUser>;
 revi!: RevUser;
@@ -72,6 +73,7 @@ respuesta!:Respuesta
 objPorcentaje!:Porcentaje[]
 porcentaje!:number
   ngOnInit(): void {
+    this.ServiceHomeService.span=0;
     this.getRevistas();
     this.getPorcentaje();
     this.myFormSus=this.FormBuilder.group({
@@ -106,11 +108,11 @@ porcentaje!:number
         });;*/
 
       } else {
-        alert("ERROR AQUI");
+        alert("ACTUALMENTE NO HAY REVISTAS");
       }
 
     }, (error: any) => {
-      alert("ERROR AL GUARDAR" + error);
+      alert("ACTUALMENTE NO HAY REVISTAS");
     });;
 
   }

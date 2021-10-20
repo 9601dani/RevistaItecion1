@@ -27,7 +27,7 @@
                <app-mis-suscripciones></app-mis-suscripciones>
              </div>
         </div>
-        <div class="col">
+        <div *ngIf="getSpan()==(0)" class="col">
             <app-spam></app-spam>
         </div>
     </div>

@@ -1,3 +1,4 @@
+import { Respuesta } from './../src/objects/Respuesta';
 import { Rev } from './../src/objects/Rev';
 import { Porcentaje } from './../src/objects/Porcentaje';
 import { EtiquetaRev } from './../src/objects/EtiquetaRev';
@@ -41,6 +42,9 @@ export class ObtenerInfoUserService {
   public saveEtiqueta(user:Etiqueta): Observable<Etiqueta> {
     return this.httpClient.post<Etiqueta>(this.API_URL+"/saveEtiqueta",user);
   }
+  public saveCategoria(user:Categoria): Observable<Categoria> {
+    return this.httpClient.post<Categoria>(this.API_URL+"/saveCategoria",user);
+  }
 
   public saveEtiquetaRev(et:EtiquetaRev): Observable<Etiqueta> {
     return this.httpClient.post<Etiqueta>(this.API_URL+"/etiquetaRev",et);
@@ -80,6 +84,16 @@ export class ObtenerInfoUserService {
     .append("user", user)
     .append("etiqueta", etiqueta);
     return this.httpClient.post<Etiqueta>(this.API_URL+"/getEtiquetasUser",etiqueta,{ params: httpParams});
+  }
+  public deleteEtiqueta(etiqueta:string): Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("etiqueta", etiqueta);
+    return this.httpClient.get<Respuesta>(this.API_URL+"/eliminarEtiqueta",{ params: httpParams});
+  }
+  public updateEtiqueta(et:Etiqueta,at:string)  :Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("etiqueta", at);
+    return this.httpClient.post<Respuesta>(this.API_URL+"/eliminarEtiqueta",et,{ params: httpParams});
   }
 
   public getBytesFIle(cadena:Rev): Observable<Rev2>{

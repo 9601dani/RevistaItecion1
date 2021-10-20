@@ -10,6 +10,7 @@
                             <th scope="col">NOMBRE REVISTA</th>
                             <th scope="col">ESTADO REVISTA</th>
                             <th scope="col">USUARIO SOLICITANTE</th>
+                            <th scope="col">FECHA DE SOLICITUD</th>
                             <th scope="col"> &nbsp; </th>
                         </tr>
                     </thead>
@@ -19,6 +20,7 @@
                             <td>{{ rev.nombre_revista }}</td>
                             <td> {{rev.estado_revista}} </td>
                             <td>{{ rev.nombre_usuario }}</td>
+                            <td>{{ formatearFecha(rev.fecha_publicacion) }}</td>
                             <td>
                                 <a (click)="admitirRev(rev.fecha_aceptacion, rev.costo_dia, rev.fecha_mod_costo,rev.id_revista)"
                                     class="btn btn-primary btn-block">

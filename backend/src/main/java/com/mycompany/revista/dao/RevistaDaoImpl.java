@@ -120,7 +120,7 @@ public class RevistaDaoImpl implements RevistaDao {
     }
 
     @Override
-    public void eliminar(Revista t) {
+    public String eliminar(Revista t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -162,6 +162,7 @@ public class RevistaDaoImpl implements RevistaDao {
             string += gson.toJson(data, Revista.class) + ",";
         }
         string = string.substring(0, string.length() - 1) + "]";
+        System.out.println(string);
         return string;
     }
 
@@ -334,7 +335,7 @@ public class RevistaDaoImpl implements RevistaDao {
             if (datosObtenidos != null) {
                 try {
                     while (datosObtenidos.next()) {
-                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"), datosObtenidos.getString("descripcion"), getRev1(datosObtenidos.getString("estado_revista")), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"));
+                        Revista userN = new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"),  getRev1(datosObtenidos.getString("estado_revista")),datosObtenidos.getString("descripcion"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario"));
                         listA.add(userN);
                     }
                     return listA;

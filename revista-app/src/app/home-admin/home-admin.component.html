@@ -5,6 +5,9 @@
             <div *ngIf="getOpcionA()== 'asignarEtiqueta' ">
                <app-asig-etiqueta></app-asig-etiqueta>
             </div>
+            <div *ngIf="getOpcionA()=='asignarCategoria'">
+               <app-asig-categoria></app-asig-categoria>
+              </div>
             <div *ngIf="getOpcionA()== '' ">
                 <app-home-login></app-home-login>
              </div>
@@ -20,9 +23,14 @@
             <div *ngIf="getOpcionA()=='modPorcentaje'">
                <app-porcentaje-soft></app-porcentaje-soft>
              </div>
+             <div *ngIf="getOpcionA()=='registrarAnuncio'">
+                <app-registrar-anuncio></app-registrar-anuncio>
+              </div>
         </div>
-        <div class="col">
-            <app-spam></app-spam>
-        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row align-items-center">
+        <app-end-page></app-end-page>
     </div>
 </div>

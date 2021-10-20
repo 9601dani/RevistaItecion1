@@ -1,3 +1,4 @@
+import { ServiceHomeService } from 'service/service-home.service';
 import { MenuUserService } from 'service/menu-user.service';
 import { MenuUserComponent } from 'src/app/menu/menu-user/menu-user.component';
 import { EtiquetaUser } from './../../../../objects/EtiquetaUser';
@@ -27,9 +28,10 @@ etiqU!:Etiqueta;
 nameEt!:String
 
   constructor(private FormBuilder:FormBuilder, private ObtenerInfoUserService: ObtenerInfoUserService,
-    private MenuUserService:MenuUserService) { }
+    private MenuUserService:MenuUserService, private ServiceHomeService:ServiceHomeService) { }
 
   ngOnInit(): void {
+    this.ServiceHomeService.span=0;
     this.getInfoEtiqueta();
     this.myFormAsig=this.FormBuilder.group({
       etiquetaN:[null,Validators.required],
@@ -43,11 +45,11 @@ nameEt!:String
        if(created!=null){
         this.etiquetas=created;
        }else{
-         alert("ERROR AQUI");
+        alert("NO HAY ETIQUETAS PARA ASIGNAR");
        }
  
      },(error:any)=>{
-       alert("ERROR AL GUARDAR"+ error);
+      alert("NO HAY ETIQUETAS PARA ASIGNAR");
      });
    }
    CambiarPagina(op:string){
