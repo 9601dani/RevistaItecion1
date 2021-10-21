@@ -16,20 +16,23 @@ import java.util.Date;
 public class Anuncio {
     private int id_anuncio;
     private String des_anuncio;
-    private Blob contenido;
+    private String texto;
+    private String contenido;
     private int apariciones;
     private BigDecimal total_pago;
     private ESTADO_ANUN estado_anuncio;
     private String url;
-    private Date fecha_inicio;
-    private Date fecha_final;
-    private int id_anunciante;
+    private String fecha_inicio;
+    private String fecha_final;
+    private String nombre_usuario;
     private String nombre_tipo;
 
     //CONSTRUCTOR COMPLETO
-    public Anuncio(int id_anuncio, String des_anuncio, Blob contenido, int apariciones, BigDecimal total_pago, ESTADO_ANUN estado_anuncio, String url, Date fecha_inicio, Date fecha_final, int id_anunciante, String nombre_tipo) {
+
+    public Anuncio(int id_anuncio, String des_anuncio, String texto,String contenido, int apariciones, BigDecimal total_pago, ESTADO_ANUN estado_anuncio, String url, String fecha_inicio, String fecha_final, String nombre_usuario, String nombre_tipo) {
         this.id_anuncio = id_anuncio;
         this.des_anuncio = des_anuncio;
+        this.texto=texto;
         this.contenido = contenido;
         this.apariciones = apariciones;
         this.total_pago = total_pago;
@@ -37,11 +40,9 @@ public class Anuncio {
         this.url = url;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;
-        this.id_anunciante = id_anunciante;
+        this.nombre_usuario = nombre_usuario;
         this.nombre_tipo = nombre_tipo;
     }
-    
-    //CONSTRUCTOR SEMI
 
     public int getId_anuncio() {
         return id_anuncio;
@@ -59,11 +60,11 @@ public class Anuncio {
         this.des_anuncio = des_anuncio;
     }
 
-    public Blob getContenido() {
+    public String getContenido() {
         return contenido;
     }
 
-    public void setContenido(Blob contenido) {
+    public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
@@ -99,28 +100,28 @@ public class Anuncio {
         this.url = url;
     }
 
-    public Date getFecha_inicio() {
+    public String getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
+    public void setFecha_inicio(String fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public Date getFecha_final() {
+    public String getFecha_final() {
         return fecha_final;
     }
 
-    public void setFecha_final(Date fecha_final) {
+    public void setFecha_final(String fecha_final) {
         this.fecha_final = fecha_final;
     }
 
-    public int getId_anunciante() {
-        return id_anunciante;
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
 
-    public void setId_anunciante(int id_anunciante) {
-        this.id_anunciante = id_anunciante;
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
 
     public String getNombre_tipo() {
@@ -130,7 +131,14 @@ public class Anuncio {
     public void setNombre_tipo(String nombre_tipo) {
         this.nombre_tipo = nombre_tipo;
     }
-    
-    
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+       
     
 }

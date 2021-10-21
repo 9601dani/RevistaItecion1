@@ -10,6 +10,7 @@ com/mycompany/revista/dao/EtiquetaDao.class
 com/mycompany/revista/dao/RevistaDao.class
 com/mycompany/revista/controller/ValidacionUsuario.class
 com/mycompany/revista/Enum/ESTADO_ANUN.class
+com/mycompany/revista/controller/SaveAnuncio.class
 com/mycompany/revista/controller/registroController$1.class
 com/mycompany/revista/controller/UpdateAdmin$1.class
 com/mycompany/revista/controller/GetBytesArchvio.class
@@ -18,6 +19,7 @@ com/mycompany/revista/converter/AdminConverter.class
 com/mycompany/revista/clases/Porcentaje_soft.class
 com/mycompany/revista/controller/AceptarRev.class
 com/mycompany/revista/controller/GetRevistasUser.class
+com/mycompany/revista/dao/AnuncioDao.class
 com/mycompany/revista/clases/Etiqueta_autor.class
 com/mycompany/revista/converter/ComentarioConverter.class
 com/mycompany/revista/Enum/COMENTARIO_E.class
@@ -101,6 +103,8 @@ com/mycompany/revista/modelsE/FinalFile2.class
 com/mycompany/revista/modelsE/Respuesta.class
 com/mycompany/revista/controller/ValidacionUsuario$1.class
 com/mycompany/revista/controller/SaveCategoria.class
+com/mycompany/revista/dao/AnuncioDaoImpl.class
 com/mycompany/revista/dao/SuscripcionDaoImpl.class
 com/mycompany/revista/controller/getCategoria.class
+com/mycompany/revista/converter/AnuncioConverter.class
 com/mycompany/revista/clases/Etiqueta.class

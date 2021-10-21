@@ -45,6 +45,7 @@ import { MisSuscripcionesComponent } from './body/perfil-home/mis-suscripciones/
 import { AsigCategoriaComponent } from './body/login/login-admin/asig-categoria/asig-categoria.component';
 import { RegistrarAnuncioComponent } from './body/login/login-admin/registrar-anuncio/registrar-anuncio.component';
 import { RenovarSuscripcionComponent } from './body/perfil-home/renovar-suscripcion/renovar-suscripcion.component';
+import { YouTubePlayerModule } from "@angular/youtube-player";
 @NgModule({
   declarations: [	
     AppComponent,
@@ -93,7 +94,8 @@ import { RenovarSuscripcionComponent } from './body/perfil-home/renovar-suscripc
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    YouTubePlayerModule
     
   ],
   providers: [ServiceHomeService, NewUsuarioService,LoginSService, ObtenerInfoUserService],

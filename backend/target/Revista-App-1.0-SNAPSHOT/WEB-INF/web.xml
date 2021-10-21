@@ -136,6 +136,10 @@
         <servlet-name>ModiEtiquetas</servlet-name>
         <servlet-class>com.mycompany.revista.controller.ModiEtiquetas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveAnuncio</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.SaveAnuncio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -271,6 +275,10 @@
     <servlet-mapping>
         <servlet-name>ModiEtiquetas</servlet-name>
         <url-pattern>/ModiEtiquetas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveAnuncio</servlet-name>
+        <url-pattern>/SaveAnuncio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

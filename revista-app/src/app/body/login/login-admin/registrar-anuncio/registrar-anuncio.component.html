@@ -1,1 +1,195 @@
-<p>registrar-anuncio works!</p>
+<h3>Bienvenido al Registro de anuncio:</h3>
+<form [formGroup]="formOptions" (change)="llenarAnuncio()">
+    <br>
+    <a>Selecciona el tipo de anuncio que deseas:</a>
+    <select aria-placeholder="selecciona...." formControlName="anuncioType" class="form-select"
+        aria-label="Default select example">
+        <option value="TEXTO">TEXTO</option>
+        <option value="TEXTO_Y_IMAGEN">TEXTO E IMAGEN</option>
+        <option value="TEXTO_Y_VIDEO">TEXTO E VIDEO</option>
+    </select>
+</form>
+<br><br>
+
+<div *ngIf="getType()==(1)">
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** El Anuncio sera de tipo texto ***</h3>
+    </div>
+
+    <br>
+    <form [formGroup]="formForText">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa la descripcion del anucio: </a>
+                    <br>
+                    <textarea style="height: 175px; width: 200px;" maxlength="100"
+                        formControlName="des_anuncio"> </textarea>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa el texto que se mostrara: </a>
+                    <br>
+                    <textarea style="height: 250px; width: 350px;" maxlength="1000"
+                        formControlName="contenido"> </textarea>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa url de tu pagina/red social: </a>
+                    <br>
+                    <input style="width: 150px;" maxlength="250" type="text" formControlName="url">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa la fecha de inicio: </a>
+                    <br>
+                    <input type="date" formControlName="fecha_inicio">
+                </div>
+                <div class="col-sm">
+                    <a> Ingrese los dias a pagar: </a>
+                    <br>
+                    <input type="number" formControlName="dias">
+                </div>
+                <br><br>
+                <button [disabled]="formForText.invalid" class="btn btn-lg btn-primary btn-block"
+                    (click)="saveAnuncioWithText()">GUARDAR ANUNCIO</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="getType()==(2)">
+    <a>El Anuncio sera de tipo texto con una imagen</a>
+
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** El Anuncio sera de tipo texto con imagen ***</h3>
+    </div>
+
+    <br>
+    <form [formGroup]="formForTextAndImg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa la descripcion del anucio: </a>
+                    <br>
+                    <textarea style="height: 175px; width: 200px;" maxlength="100"
+                        formControlName="des_anuncio"> </textarea>
+                    <br>
+                    <div class="col-sm">
+                        <a> Ingresa la fecha de inicio: </a>
+                        <br>
+                        <input type="date" formControlName="fecha_inicio">
+                    </div>
+                    <br>
+                    <div class="col-sm">
+                        <a> Ingrese los dias a pagar: </a>
+                        <br>
+                        <input type="number" formControlName="dias">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa el texto que se mostrara: </a>
+                    <br>
+                    <textarea style="height: 250px; width: 350px;" maxlength="1000"
+                        formControlName="contenido"> </textarea>
+                    <br>
+                    <div class="col-sm">
+                        <a> Ingresa la imagen a visualizar </a>
+                        <br>
+                        <input (change)="capturarFile($event)" type="file" accept=".png,.jpg" formControlName="imagen">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa url de tu pagina/red social: </a>
+                    <br>
+                    <input style="width: 150px;" maxlength="250" type="text" formControlName="url">
+                    <br>
+                    <div class="col-sm">
+                        <br><br>
+                        <div class="text-center" *ngIf="previsualizacion">
+                            <h2>Mostrando previsualizacion de imagen a mostrar </h2>
+                            <div class="container">
+                                <div class="tabla-style">
+                                    <img [src]="previsualizacion" style="width: 200px;height: 250px; ">
+                                </div>
+
+                                <br>
+                            </div>
+
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <button [disabled]="formForTextAndImg.invalid" class="btn btn-lg btn-primary btn-block"
+                    (click)="saveAnuncioWithImg()">GUARDAR ANUNCIO</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="getType()==(3)">
+    <a>El Anuncio sera de tipo texto con video</a>
+
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** El Anuncio sera de tipo texto con imagen ***</h3>
+    </div>
+
+    <br>
+    <form [formGroup]="formForTextAndVideo">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa la descripcion del anucio: </a>
+                    <br>
+                    <textarea style="height: 175px; width: 200px;" maxlength="100"
+                        formControlName="des_anuncio"> </textarea>
+                    <br>
+                    <div class="col-sm">
+                        <a> Ingresa la fecha de inicio: </a>
+                        <br>
+                        <input type="date" formControlName="fecha_inicio">
+                    </div>
+                    <div class="col-sm">
+                        <a> Ingrese los dias a pagar: </a>
+                        <br>
+                        <input type="number" formControlName="dias">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa el texto que se mostrara: </a>
+                    <br>
+                    <textarea style="height: 250px; width: 350px;" maxlength="1000"
+                        formControlName="contenido"> </textarea>
+                    <br>
+                    <div class="col-sm">
+                        <a> Ingresa link de video </a>
+                        <br>
+                        <input type="text" formControlName="video">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa url de tu pagina/red social: </a>
+                    <br>
+                    <input style="width: 150px;" maxlength="250" type="text" formControlName="url">
+                    <br>
+                    <br>
+
+                </div>
+                <br><br>
+                <button [disabled]="formForTextAndVideo.invalid" class="btn btn-lg btn-primary btn-block"
+                    (click)="saveAnuncioWithVideo()">GUARDAR ANUNCIO</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-sm">
+    <div class="text-center" *ngIf="videoPrueba">
+        <h2>Mostrando previsualizacion de video </h2>
+        <div class="container">
+            <iframe width="560" height="315" [src]="getLink()" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <br>
+    </div>
+</div>
