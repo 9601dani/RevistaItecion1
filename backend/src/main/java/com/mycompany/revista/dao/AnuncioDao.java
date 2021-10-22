@@ -13,5 +13,7 @@ import java.math.BigDecimal;
  */
 public interface AnuncioDao extends CRUD<Anuncio>{
     BigDecimal precioAnuncio(String tipo);
+    Anuncio onlyOne();
+    void changeApariciones(int id_anuncio, int apariciones);
     
 }

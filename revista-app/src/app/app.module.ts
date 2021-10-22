@@ -46,6 +46,7 @@ import { AsigCategoriaComponent } from './body/login/login-admin/asig-categoria/
 import { RegistrarAnuncioComponent } from './body/login/login-admin/registrar-anuncio/registrar-anuncio.component';
 import { RenovarSuscripcionComponent } from './body/perfil-home/renovar-suscripcion/renovar-suscripcion.component';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-anuncios/solicitud-anuncios.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -84,6 +85,7 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     AsigCategoriaComponent,
     RegistrarAnuncioComponent,
     RenovarSuscripcionComponent,
+    SolicitudAnunciosComponent,
     
 
    ],

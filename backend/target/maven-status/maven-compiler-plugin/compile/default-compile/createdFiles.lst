@@ -12,6 +12,7 @@ com/mycompany/revista/controller/ValidacionUsuario.class
 com/mycompany/revista/Enum/ESTADO_ANUN.class
 com/mycompany/revista/controller/SaveAnuncio.class
 com/mycompany/revista/controller/registroController$1.class
+com/mycompany/revista/controller/GetAnuncio.class
 com/mycompany/revista/controller/UpdateAdmin$1.class
 com/mycompany/revista/controller/GetBytesArchvio.class
 com/mycompany/revista/controller/SavEtiquetaRev.class

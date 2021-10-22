@@ -140,6 +140,10 @@
         <servlet-name>SaveAnuncio</servlet-name>
         <servlet-class>com.mycompany.revista.controller.SaveAnuncio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAnuncio</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetAnuncio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>SaveAnuncio</servlet-name>
         <url-pattern>/SaveAnuncio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAnuncio</servlet-name>
+        <url-pattern>/GetAnuncio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

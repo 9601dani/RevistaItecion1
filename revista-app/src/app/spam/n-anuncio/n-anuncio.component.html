@@ -1,10 +1,44 @@
 <br><br>
 <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Coca Cola</h5>
-      <p class="card-text">
-        <img src="https://soy.marketing/wp-content/uploads/2016/03/vintage.png" >
-      </p>
-      <a href="https://www.google.com" class="btn btn-primary">Quiero saber mas</a>
+  <div class="card-body">
+    <div *ngIf="getTipo()==1"
+      style="background-image: url(https://image.freepik.com/vector-gratis/fondo-luz-puntual_1284-4685.jpg);">
+      <h1 class="text-center" style="font-style: oblique;">Anuncio</h1>
+      <br><br><br>
+      <div class="text-center">
+        <h2> {{this.texto}} </h2>
+      </div>
+      <br>
+      <div class="text-center">
+        <a [href]="this.url" class="btn btn-lg btn-primary btn-block"> Conoce mas!</a>
+      </div>
+
     </div>
+    <div *ngIf="getTipo()==2"
+      style="background-image: url(https://i.pinimg.com/736x/14/b2/4b/14b24be18178987b01ec93a04dd2e842.jpg);">
+      <h1 class="text-center">Anuncio</h1>
+      <img [src]="this.contenido" class="rounded mx-auto d-block" style="width: 150px; height: 175px;" alt="">
+      <br>
+      <h2> {{this.texto}} </h2>
+      <br>
+      <a [href]="this.url" class="btn btn-lg btn-primary btn-block"> Conoce mas!</a>
+    </div>
+    <div *ngIf="getTipo()==3"
+      style="background-image: url(https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Minimalist-Crumpled-Paper-Simple-Background-Image.jpg);">
+      <h1 class="text-center">Anuncio</h1>
+      <br>
+      <h2> {{this.texto}} </h2>
+      <br>
+      <div class="col-sm">
+        <h2>Mostrando video </h2>
+        <div class="container">
+          <iframe width="560" height="315" [src]="getLink()" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <br>
+      </div>
+      <a [href]="this.url" class="btn btn-lg btn-primary btn-block"> Conoce mas!</a>
+    </div>
+  </div>
 </div>

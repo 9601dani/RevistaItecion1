@@ -82,7 +82,7 @@ admin:Admin=JSON.parse(<string>localStorage.getItem("Admin"))
     console.log(this.formForTextAndImg.value.url)
     this.urlPrueba=this.formForTextAndImg.value.url
 
-    this.MenuAdminService.saveAnuncioText(new Anuncio(0,this.formForTextAndImg.value.des_anuncio,this.formForTextAndImg.value.contenido,this.formForTextAndImg.value.imagen,
+    this.MenuAdminService.saveAnuncioText(new Anuncio(0,this.formForTextAndImg.value.des_anuncio,this.formForTextAndImg.value.contenido,this.previsualizacion,
       0,3,Estado_Anun.EN_ESPERA,this.formForTextAndImg.value.url,this.formForTextAndImg.value.fecha_inicio,this.devFechaFinal(this.formForTextAndImg.value.fecha_inicio),this.admin.nombre_usuario,this.formOptions.value.anuncioType),this.formForTextAndImg.value.dias).subscribe((created:Respuesta)=>{
         console.log(created);
         if(created!=null){
