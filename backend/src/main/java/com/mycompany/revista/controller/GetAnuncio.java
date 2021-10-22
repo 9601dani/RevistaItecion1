@@ -7,8 +7,10 @@ package com.mycompany.revista.controller;
 import com.mycompany.revista.clases.Anuncio;
 import com.mycompany.revista.converter.AnuncioConverter;
 import com.mycompany.revista.dao.AnuncioDaoImpl;
+import static com.mycompany.revista.dao.AnuncioDaoImpl.toJsonAnun;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +62,14 @@ public class GetAnuncio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        ArrayList<Anuncio> listA= new ArrayList<Anuncio>();
+        listA= new AnuncioDaoImpl().listarTodos();
+        if(listA.size()>=0){
+            response.getWriter().append(toJsonAnun(listA));
+        }else{
+            System.out.println("no hay anuncios");
+        }
+        
     }
 
     /**

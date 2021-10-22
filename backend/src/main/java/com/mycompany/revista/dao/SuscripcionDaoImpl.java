@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,6 +30,14 @@ private final String INTORECAUDACION = "INSERT INTO recaudacion(nombre_revista, 
 private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA' AND s.estado_suscripcion='ACTIVA'";
 public SuscripcionDaoImpl() {
     new Conexion();
+            PreparedStatement  query2;
+    try {
+        query2 = Conexion.getInstancia().prepareStatement(CANCELARSUS);
+        query2.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(SuscripcionDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            
     }
 
 
@@ -113,10 +123,7 @@ public SuscripcionDaoImpl() {
     public Suscripcion getInfo(String name,int id) {
         ResultSet datosObtenidos = null;
         PreparedStatement query = null;
-        PreparedStatement query2 = null;
         try {
-            query2=Conexion.getInstancia().prepareStatement(CANCELARSUS);
-            query2.executeUpdate();
             query = Conexion.getInstancia().prepareStatement(SELECTSUS);
             query.setString(1, name);
             query.setInt(2, id);

@@ -44,6 +44,11 @@ public class Anuncio {
         this.nombre_tipo = nombre_tipo;
     }
 
+    public Anuncio(String contenido) {
+        this.contenido = contenido;
+    }
+    
+
     public int getId_anuncio() {
         return id_anuncio;
     }

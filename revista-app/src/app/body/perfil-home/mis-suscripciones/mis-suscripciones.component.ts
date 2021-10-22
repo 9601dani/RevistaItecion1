@@ -15,6 +15,7 @@ import { Comentario } from 'src/objects/Comentario';
 import { formatDate } from '@angular/common';
 import { UserComplete } from 'src/objects/UserComplete';
 import { UserType } from 'src/objects/UserType';
+import { Anuncio } from 'src/objects/Anuncio';
 
 
 @Component({
@@ -261,5 +262,6 @@ export class MisSuscripcionesComponent implements OnInit {
     })
 
   }
+
 }
 

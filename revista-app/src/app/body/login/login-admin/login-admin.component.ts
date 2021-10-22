@@ -32,7 +32,7 @@ formAdmin!:FormGroup;
           localStorage.setItem("Admin",JSON.stringify(created));
           alert("INICIO DE SESION CORRECTO");
           this.MenuAdminService.Opcion='';
-          this.route.navigate(['user-admin/',created.nombre_usuario]);
+          this.route.navigate(['SUPPORT/',created.nombre_usuario]);
         }else{
           alert("NO SE INICIO SESION REVISA LOS DATOS INGRESADOS\nO DIRIGITE A ADMINISTRACION PUEDE QUE TU\nUSUARIO NO ESTE ACTIVO");
           

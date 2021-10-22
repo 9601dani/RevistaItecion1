@@ -1,1 +1,166 @@
-<p>solicitud-anuncios works!</p>
+<br> <br> <br>
+<div class="container">
+    <h3 class="text-center">TE PRESENTAMOS LOS ANUNCIOS </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-style">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">DESCRIPCION </th>
+                            <th scope="col">NO. APARICIONES</th>
+                            <th scope="col">TOTAL PAGO</th>
+                            <th scope="col">ENCARGADO DEL REGISTRO</th>
+                            <th scope="col">TIPO DE ANUNCIO</th>
+                            <th scope="col">FECHA DE REGISTRO</th>
+                            <th scope="col">FECHA DE FINALIZACION </th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let anuncio of anuncios">
+                            <th scope="row">{{ anuncio.des_anuncio}}</th>
+                            <td> {{anuncio.apariciones}}</td>
+                            <td> Q.{{anuncio.total_pago}} </td>
+                            <td> {{anuncio.nombre_usuario }} </td>
+                            <td> {{anuncio.nombre_tipo }} </td>
+                            <td> {{formarearFecha(anuncio.fecha_inicio) }} </td>
+                            <td> {{formarearFecha(anuncio.fecha_final) }} </td>
+                            <td>
+                                <a (click)="updateAnuncio(anuncio.id_anuncio,anuncio.des_anuncio,anuncio.texto,anuncio.url)"
+                                    class="btn btn-primary btn-block">
+                                    Editar Anuncio
+                                </a>
+                            </td>
+                            <td>
+                                <a *ngIf="anuncio.nombre_tipo==('TEXTO_Y_IMAGEN')"
+                                    (click)="updateContenido(anuncio.id_anuncio,anuncio.contenido)"
+                                    class="btn btn-primary btn-block">
+                                    Editar Imagen
+                                </a>
+                                <a *ngIf="anuncio.nombre_tipo==('TEXTO_Y_VIDEO')"
+                                    (click)="updateVideo(anuncio.id_anuncio,anuncio.contenido)"
+                                    class="btn btn-primary btn-block">
+                                    Editar Video
+                                </a>
+                                <a *ngIf="anuncio.nombre_tipo==('TEXTO')">
+                                    Sin Cambios
+                                </a>
+                            </td>
+                            <td>
+                                <a *ngIf="getEstado(anuncio.estado_anuncio)==('ACEPTADO')"
+                                    (click)="desactivarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    Desactivar Anuncio
+                                </a>
+                                <a *ngIf="getEstado(anuncio.estado_anuncio)==('EN_ESPERA')"
+                                    (click)="activarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    Activar Anuncio
+                                </a>
+                                <a *ngIf="getEstado(anuncio.estado_anuncio)==('MOROSO')"
+                                    (click)="renovar(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    Renovar Anuncio
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="getAccionn()==('update')">
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** Modificacion de Anuncio ***</h3>
+    </div>
+
+    <br>
+    <form [formGroup]="formUpdate">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa la descripcion del anuncio: </a>
+                    <br>
+                    <textarea style="height: 175px; width: 200px;" maxlength="100" formControlName="des_anuncio"
+                        [ngModel]="this.des_anuncio"> </textarea>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa el texto que se mostrara: </a>
+                    <br>
+                    <textarea style="height: 250px; width: 350px;" maxlength="1000" formControlName="texto"
+                        [ngModel]="this.texto"> </textarea>
+                </div>
+                <div class="col-sm">
+                    <a>Ingresa url de tu pagina/red social: </a>
+                    <br>
+                    <input style="width: 150px;" maxlength="250" type="text" formControlName="url" [ngModel]="this.url">
+                </div>
+                <div class="col-sm">
+                    <a (click)="updateFinal()" class="btn btn-primary btn-block">
+                        Guardar Cambios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="getAccionn()==('updateIMG')">
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** Modificacion de Anuncio ***</h3>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <a> Ingresa la nueva imagen a visualizar </a>
+                <br>
+                <input (change)="capturarFile($event)" type="file" accept=".png,.jpg">
+            </div>
+            <div class="col-sm">
+                <a (click)="updateImgFinal()" class="btn btn-primary btn-block">
+                    Guardar Cambios
+                </a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <br><br>
+            <div class="text-center" *ngIf="previsualizacion">
+                <h2>Mostrando previsualizacion de imagen a mostrar </h2>
+                <div class="container">
+                    <div class="tabla-style">
+                        <img [src]="previsualizacion" style="width: 200px;height: 250px; ">
+                    </div>
+
+                    <br>
+                </div>
+
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="getAccionn()==('updateVideo')">
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** Modificacion de Anuncio ***</h3>
+    </div>
+    <form [formGroup]="formUpdateVideo">
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a> Ingresa el nuevo link </a>
+                    <br>
+                    <input formControlName="link" style="width:375px;" type="text">
+                </div>
+                <div class="col-sm">
+                    <a (click)="updateVideoFinal()" class="btn btn-primary btn-block">
+                        Guardar Cambios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

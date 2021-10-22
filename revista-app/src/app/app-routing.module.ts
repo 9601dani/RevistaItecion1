@@ -1,3 +1,4 @@
+import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-anuncios/solicitud-anuncios.component';
 import { HomeCompleteComponent } from './home-complete/home-complete.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,11 +11,11 @@ const routes: Routes = [
     component:HomeCompleteComponent
   },
   {
-    path:'user-home/:variable',
+    path:'HOME/:variable',
     component:HomeUserComponent
   },  
   {
-    path:'user-admin/:variable',
+    path:'SUPPORT/:variable',
     component:HomeAdminComponent
   }
   

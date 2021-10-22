@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         if(created!=null){
           localStorage.setItem("userS",JSON.stringify(created));
           alert("INICIO DE SESION CORRECTO");
-          this.route.navigate(['user-home/',created.nombre_usuario]);
+          this.route.navigate(['HOME/',created.nombre_usuario]);
         }else{
           alert("NO SE INICIO SESION REVISA LOS DATOS INGRESADOS");
           

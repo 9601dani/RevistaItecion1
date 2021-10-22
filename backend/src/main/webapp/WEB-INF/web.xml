@@ -144,6 +144,18 @@
         <servlet-name>GetAnuncio</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetAnuncio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeEstado</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ChangeEstado</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAnuncio</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateAnuncio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateVideo</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateVideo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -287,6 +299,18 @@
     <servlet-mapping>
         <servlet-name>GetAnuncio</servlet-name>
         <url-pattern>/GetAnuncio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeEstado</servlet-name>
+        <url-pattern>/ChangeEstado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAnuncio</servlet-name>
+        <url-pattern>/UpdateAnuncio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateVideo</servlet-name>
+        <url-pattern>/UpdateVideo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

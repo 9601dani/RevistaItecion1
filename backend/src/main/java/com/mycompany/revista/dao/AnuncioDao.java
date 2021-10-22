@@ -15,5 +15,10 @@ public interface AnuncioDao extends CRUD<Anuncio>{
     BigDecimal precioAnuncio(String tipo);
     Anuncio onlyOne();
     void changeApariciones(int id_anuncio, int apariciones);
+    String activarAn(String id);
+    String desactivarAn(String id);
+    String UpdateAnuncio(String id,String descripcion, String texto, String url);
+    String updateImg(String contenido, String id);
+    String updateVideo(String link, String id);
     
 }
