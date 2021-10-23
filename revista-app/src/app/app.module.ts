@@ -47,6 +47,7 @@ import { RegistrarAnuncioComponent } from './body/login/login-admin/registrar-an
 import { RenovarSuscripcionComponent } from './body/perfil-home/renovar-suscripcion/renovar-suscripcion.component';
 import { YouTubePlayerModule } from "@angular/youtube-player";
 import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-anuncios/solicitud-anuncios.component';
+import { ModCostAnunComponent } from './body/login/login-admin/mod-cost-anun/mod-cost-anun.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -86,6 +87,7 @@ import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-a
     RegistrarAnuncioComponent,
     RenovarSuscripcionComponent,
     SolicitudAnunciosComponent,
+    ModCostAnunComponent,
     
 
    ],

@@ -26,6 +26,8 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
     private final String DELETE = "DELETE FROM  etiqueta WHERE nombre_etiqueta=?";
      private final String UPDATE = "UPDATE etiqueta SET nombre_etiqueta=? WHERE nombre_etiqueta=?";
     private final String SAVECATEGORIA = "INSERT INTO categoria VALUES (?)";
+    private final String DELETECATEGORIA = "DELETE FROM categoria WHERE nombre_categoria=?";
+    private final String UPDATECATEGORIA = "UPDATE categoria SET nombre_categoria=? WHERE nombre_categoria=?";
     private final String SELECTALL = "SELECT * FROM etiqueta";
     private final String SELECTETFORUSER = "SELECT * FROM etiqueta_autor WHERE nombre_usuario=?";
     private final String SELECTALLC = "SELECT * FROM categoria";
@@ -262,6 +264,34 @@ public class EtiquetaDaoImpl implements EtiquetaDao {
     @Override
     public String actualizar(Etiqueta t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String deleteCategoria(Categoria c) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(DELETECATEGORIA);
+            query.setString(1, c.getNombre_categoria());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
+    }
+
+    @Override
+    public String updateCategoria(String anterior, String nuevo) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(UPDATECATEGORIA);
+            query.setString(1, nuevo);
+            query.setString(2, anterior);
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "no";
+        }
+    
     }
 
 }

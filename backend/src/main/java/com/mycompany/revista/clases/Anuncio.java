@@ -44,6 +44,25 @@ public class Anuncio {
         this.nombre_tipo = nombre_tipo;
     }
 
+
+    public Anuncio(int id_anuncio, String fecha_final, String nombre_tipo) {
+        this.id_anuncio = id_anuncio;
+        this.fecha_final = fecha_final;
+        this.nombre_tipo = nombre_tipo;
+    }
+
+    public Anuncio(int id_anuncio, BigDecimal total_pago, String fecha_final) {
+        this.id_anuncio = id_anuncio;
+        this.total_pago = total_pago;
+        this.fecha_final = fecha_final;
+    }
+    
+    
+    
+    
+    
+    
+
     public Anuncio(String contenido) {
         this.contenido = contenido;
     }

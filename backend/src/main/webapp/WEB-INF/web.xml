@@ -156,6 +156,22 @@
         <servlet-name>UpdateVideo</servlet-name>
         <servlet-class>com.mycompany.revista.controller.UpdateVideo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateSuscripcion</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateSuscripcion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateEstadoAnuncio</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.UpdateEstadoAnuncio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCategoria</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.DeleteCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTiposAnun</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetTiposAnun</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -311,6 +327,22 @@
     <servlet-mapping>
         <servlet-name>UpdateVideo</servlet-name>
         <url-pattern>/UpdateVideo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSuscripcion</servlet-name>
+        <url-pattern>/UpdateSuscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEstadoAnuncio</servlet-name>
+        <url-pattern>/UpdateEstadoAnuncio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCategoria</servlet-name>
+        <url-pattern>/DeleteCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTiposAnun</servlet-name>
+        <url-pattern>/GetTiposAnun</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -26,11 +26,25 @@
                     <thead>
                         <tr>
                             <th scope="col">NOMBRE DE CATEGORIA</th>
+                            <th scope="col"> &nbsp; </th>
+                            <th scope="col"> &nbsp; </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let ca of categoria">
                             <th scope="row">{{ ca.nombre_categoria}}</th>
+                            <td>
+                              <a (click)="deleteCategoria(ca.nombre_categoria.toString())"
+                                  class="btn btn-primary btn-block">
+                                  Eliminar
+                              </a>
+                          </td>
+                          <td>
+                            <a (click)="updateCategoria(ca.nombre_categoria.toString())"
+                                class="btn btn-primary btn-block">
+                               Editar
+                            </a>
+                        </td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,3 +53,23 @@
         </div>
     </div>
   </div>
+  <div *ngIf=" getMostrar()==(1) ">
+    <h1> Editar Categoria: </h1>
+    <br>
+    <div>
+        <div class="container">
+            <div class="row" style="background-color:khaki">
+                <div class="col-sm">
+                    <a>Modifique el nombre de la categoria: </a>
+                    <input  type="text" [(ngModel)]="this.nuevaCategoria">
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-primary btn-block" type="submit"
+                    (click)=" updateCategoriaFinal() " >Actualizar</button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+<br>
+</div>

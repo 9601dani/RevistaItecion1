@@ -37,29 +37,32 @@
                             <td>
                                 <a *ngIf="anuncio.nombre_tipo==('TEXTO_Y_IMAGEN')"
                                     (click)="updateContenido(anuncio.id_anuncio,anuncio.contenido)"
-                                    class="btn btn-primary btn-block">
+                                    class="btn btn-primary btn-block" style="background-color: lightseagreen;">
                                     Editar Imagen
                                 </a>
                                 <a *ngIf="anuncio.nombre_tipo==('TEXTO_Y_VIDEO')"
                                     (click)="updateVideo(anuncio.id_anuncio,anuncio.contenido)"
-                                    class="btn btn-primary btn-block">
+                                    class="btn btn-primary btn-block" style="background-color: lightseagreen;">
                                     Editar Video
                                 </a>
                                 <a *ngIf="anuncio.nombre_tipo==('TEXTO')">
-                                    Sin Cambios
+                                    Sin Cambios Por Ser Texto
                                 </a>
                             </td>
                             <td>
                                 <a *ngIf="getEstado(anuncio.estado_anuncio)==('ACEPTADO')"
-                                    (click)="desactivarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    (click)="desactivarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block"
+                                    style="background-color:cornflowerblue">
                                     Desactivar Anuncio
                                 </a>
                                 <a *ngIf="getEstado(anuncio.estado_anuncio)==('EN_ESPERA')"
-                                    (click)="activarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    (click)="activarAnuncio(anuncio.id_anuncio)" class="btn btn-primary btn-block"
+                                    style="background-color: green; ">
                                     Activar Anuncio
                                 </a>
                                 <a *ngIf="getEstado(anuncio.estado_anuncio)==('MOROSO')"
-                                    (click)="renovar(anuncio.id_anuncio)" class="btn btn-primary btn-block">
+                                    (click)="renovar(anuncio.id_anuncio, anuncio.fecha_final, anuncio.nombre_tipo, anuncio.fecha_inicio)"
+                                    class="btn btn-primary btn-block" style="background-color: brown;">
                                     Renovar Anuncio
                                 </a>
                             </td>
@@ -162,5 +165,34 @@
             </div>
         </div>
     </form>
-
+</div>
+<div *ngIf="getAccionn()==('renovar')">
+    <div class="text-center">
+        <h3 style="color:mediumblue">*** Renovacion de Anuncio ***</h3>
+    </div>
+    <form [formGroup]="formForRenovar">
+        <br>
+        <div>
+            <div class="container">
+                <div class="row" style="background-color:khaki">
+                    <div class="col-sm">
+                        <a>Ingresa fecha inicial</a>
+                        <br>
+                        <input formControlName="fechaI" type="date">
+                    </div>
+                    <div class="col-sm">
+                        <a>Ingresa los meses a suscribirte</a>
+                        <br>
+                        <input formControlName="tiempo" type="number" [ngModel]="this.time">
+                    </div>
+                    <div class="col-sm">
+                        <br>
+                        <button (click)="renovarSus()" class="btn btn-primary btn-block"
+                            type="submit">Pagar y Renovar</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
 </div>

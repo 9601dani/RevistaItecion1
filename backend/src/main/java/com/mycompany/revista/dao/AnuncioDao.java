@@ -20,5 +20,7 @@ public interface AnuncioDao extends CRUD<Anuncio>{
     String UpdateAnuncio(String id,String descripcion, String texto, String url);
     String updateImg(String contenido, String id);
     String updateVideo(String link, String id);
+    String renovarAnun(Anuncio t);
+    BigDecimal costoAnterior(String id);
     
 }

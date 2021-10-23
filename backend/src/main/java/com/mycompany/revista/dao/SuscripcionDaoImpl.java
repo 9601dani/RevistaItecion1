@@ -27,7 +27,8 @@ private final String CANCELARSUS = "UPDATE suscripcion SET estado_suscripcion= '
 private final String QUITARLIKE = "UPDATE suscripcion SET me_gusta= 'NO_DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
 private final String INTO = "INSERT INTO suscripcion(valor_sus,fecha_inicial,fecha_final,me_gusta,estado_suscripcion,nombre_usuario,id_revista) VALUES (?,?,?,?,?,?,?)";
 private final String INTORECAUDACION = "INSERT INTO recaudacion(nombre_revista, total_pagar,costo_con_descuento,fecha_pago,nombre_usuario,autor) VALUES (?,?,?,?,?,?)";
-private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA' AND s.estado_suscripcion='ACTIVA'";
+private final String RENOVARSUS = "UPDATE suscripcion SET valor_sus=?,fecha_final=?, estado_suscripcion='ACTIVA' WHERE id_suscripcion=?";
+private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE s.nombre_usuario=? AND s.id_revista=? AND r.id_revista=s.id_revista AND r.estado_revista='ACEPTADA'";
 public SuscripcionDaoImpl() {
     new Conexion();
             PreparedStatement  query2;
@@ -92,7 +93,18 @@ public SuscripcionDaoImpl() {
 
     @Override
     public String actualizar(Suscripcion t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try{
+            PreparedStatement query= Conexion.getInstancia().prepareStatement(RENOVARSUS);
+            query.setBigDecimal(1,t.getValor_sus());
+            query.setString(2, t.getFecha_final());
+            query.setInt(3, t.getId_suscripcion());
+            query.executeUpdate();
+            return "yes";
+        }catch(SQLException e){
+            System.out.println(e);
+            return "no";
+        }    
+    
     }
 
     @Override

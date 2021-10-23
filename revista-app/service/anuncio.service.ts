@@ -1,4 +1,4 @@
-import { FileImg } from './../src/objects/File';
+import { FileImg } from '../src/objects/FileImg';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -47,5 +47,13 @@ export class AnuncioService {
     .append("id", id)
     .append("link",link)
     return this.httpClient.get<Respuesta>(this.API_URL+"/upVideo",{ params: httpParams});
+  }
+  public renovarAnuncio(id_anunci: number, fecha_final:string, tipo:string, dias:number): Observable<Respuesta> {
+    let httpParams = new HttpParams()
+    .append("id", id_anunci)
+    .append("fecha_final",fecha_final)
+    .append("tipo",tipo)
+    .append("dias",dias)
+    return this.httpClient.post<Respuesta>(this.API_URL+"/renovarAnuncio","jeje",{ params: httpParams});
   }
 }

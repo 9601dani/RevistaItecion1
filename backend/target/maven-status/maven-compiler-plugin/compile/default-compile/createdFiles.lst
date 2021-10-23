@@ -9,6 +9,7 @@ com/mycompany/revista/converter/RespuestaConverter.class
 com/mycompany/revista/dao/EtiquetaDao.class
 com/mycompany/revista/dao/RevistaDao.class
 com/mycompany/revista/controller/UpdateAnuncio.class
+com/mycompany/revista/controller/GetTiposAnun.class
 com/mycompany/revista/controller/ValidacionUsuario.class
 com/mycompany/revista/Enum/ESTADO_ANUN.class
 com/mycompany/revista/controller/SaveAnuncio.class
@@ -26,6 +27,7 @@ com/mycompany/revista/controller/ChangeEstado.class
 com/mycompany/revista/clases/Etiqueta_autor.class
 com/mycompany/revista/converter/ComentarioConverter.class
 com/mycompany/revista/Enum/COMENTARIO_E.class
+com/mycompany/revista/controller/UpdateEstadoAnuncio.class
 com/mycompany/revista/converter/CategoriaConverter.class
 com/mycompany/revista/controller/ChangeLikeSus.class
 com/mycompany/revista/dao/EtiquetaDaoImpl.class
@@ -46,12 +48,14 @@ com/mycompany/revista/controller/SaveRevista.class
 com/mycompany/revista/clases/Recaudacion.class
 com/mycompany/revista/Enum/SUSCRIP_E.class
 com/mycompany/revista/dao/SuscripcionDao.class
+com/mycompany/revista/controller/DeleteCategoria.class
 com/mycompany/revista/controller/UpdateA$1.class
 com/mycompany/revista/controller/UpdateUser$1.class
 com/mycompany/revista/converter/RevistaForUserConverter.class
 com/mycompany/revista/dao/UsuarioDaoImpl.class
 com/mycompany/revista/converter/PorcentajeConverter.class
 com/mycompany/revista/converter/EtiquetaRevConverter.class
+com/mycompany/revista/controller/UpdateSuscripcion.class
 com/mycompany/revista/controller/GetInfoSus.class
 com/mycompany/revista/modelsE/RevistaInfoForUser.class
 com/mycompany/revista/converter/FinalFile2Converter.class

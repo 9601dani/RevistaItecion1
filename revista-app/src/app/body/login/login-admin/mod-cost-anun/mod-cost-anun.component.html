@@ -1,0 +1,59 @@
+<br><br> <h3 class="text-center" >INFORMACION DE TIPOS DE ANUNCIOS:</h3> <br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">TIPO DE ANUNCIO</th>
+                        <th scope="col">COSTO POR DIA</th>
+                        <th scope="col"> &nbsp; </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tipoAnuncio of tiposAnuncios">
+                        <th scope="row">{{ tipoAnuncio.nombre_tipo}}</th>
+                        <td>{{ tipoAnuncio.costo_dia }}</td>
+                        <td>
+                            <a (click)="update( tipoAnuncio.nombre_tipo,tipoAnuncio.costo_dia)"
+                                class="btn btn-primary btn-block" style="background-color:cornflowerblue">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf=" getOpcion()==(1) ">
+        <h1> Editar Costo: </h1>
+        <br>
+        <div>
+            <div class="container" style="background-color:darkgray">
+                <div class="row">
+                    <div class="col-sm">
+                        <a>TIPO DE ANUNCIO: </a>
+                    </div>
+                    <div class="col-sm">
+                        <a>COSTO DE ANUNCIO </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <input  readonly type="text" [(ngModel)]="this.tipo">
+                    </div>
+                    <div class="col-sm">
+                        <input  type="number" [(ngModel)]="this.costo">
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm">
+                    <button class="btn btn-primary btn-block" type="submit"
+                        (click)="updateFinal()">Actualizar</button>
+                </div>
+                <br>
+            </div>
+            <br>
+        </div>
+</div>

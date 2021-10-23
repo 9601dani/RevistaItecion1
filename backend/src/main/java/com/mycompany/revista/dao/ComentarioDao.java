@@ -5,7 +5,9 @@
 package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Comentario;
+import com.mycompany.revista.clases.Tipo_anuncio;
 import com.mycompany.revista.modelsE.ComentarioMostrar;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -14,4 +16,6 @@ import java.util.ArrayList;
  */
 public interface ComentarioDao extends CRUD<Comentario>{
     ArrayList<ComentarioMostrar> listarAlgunosForId(int id_revista);
+    ArrayList<Tipo_anuncio> listTiposAnun();
+    String updateCosto(String tipo, BigDecimal costo);
 }

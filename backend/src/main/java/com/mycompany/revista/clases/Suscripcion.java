@@ -47,6 +47,7 @@ public class Suscripcion {
         this.nombre_usuario = nombre_usuario;
         this.id_revista = id_revista;
     }
+    
     //USO PARA GUARDAR LA RECAUDACION
 
     public Suscripcion() {

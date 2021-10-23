@@ -8,8 +8,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.revista.clases.Comentario;
 import com.mycompany.revista.clases.Revista;
+import com.mycompany.revista.clases.Tipo_anuncio;
 import com.mycompany.revista.conexion.Conexion;
 import com.mycompany.revista.modelsE.ComentarioMostrar;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +25,8 @@ public class ComentarioDaoImpl implements ComentarioDao {
 
     private final String SAVEC = "INSERT INTO comentario(descripcion, fecha_comentario, id_revista, id_suscripcion) VALUES (?,?,?,?)";
     private final String SELECTCOMFORID = "SELECT c.id_comentario, c.descripcion, c.fecha_comentario, s.nombre_usuario,r.nombre_usuario FROM comentario as c INNER JOIN revista as r INNER JOIN suscripcion as s WHERE c.id_revista=? AND c.id_revista=r.id_revista AND c.id_suscripcion=s.id_suscripcion";
+    private final String SELECTTIPO = "SELECT * FROM tipo_anuncio";
+    private final String UPDATETIPO = "UPDATE tipo_anuncio SET costo_dia=? WHERE nombre_tipo=? ";
 
     public ComentarioDaoImpl() {
         new Conexion();
@@ -97,5 +101,58 @@ public class ComentarioDaoImpl implements ComentarioDao {
         }
         string = string.substring(0, string.length() - 1) + "]";
         return string;
+    }
+
+    @Override
+    public ArrayList<Tipo_anuncio> listTiposAnun() {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Tipo_anuncio> listA = new ArrayList<Tipo_anuncio>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTTIPO);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        Tipo_anuncio tip = new Tipo_anuncio(datosObtenidos.getString("nombre_tipo"), datosObtenidos.getBigDecimal("costo_dia"));
+                        listA.add(tip);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+
+    }
+
+    public static String toJsonTip(ArrayList<Tipo_anuncio> object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String string = "[";
+        for (Tipo_anuncio data : object) {
+            string += gson.toJson(data, Tipo_anuncio.class) + ",";
+        }
+        string = string.substring(0, string.length() - 1) + "]";
+        return string;
+    }
+
+    @Override
+    public String updateCosto(String tipo, BigDecimal costo) {
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(UPDATETIPO);
+            query.setBigDecimal(1, costo);
+            query.setString(2, tipo);
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return "no";
+        }
     }
 }

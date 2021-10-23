@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  */
 public class AnuncioDaoImpl implements AnuncioDao{
     private final String INSERT="INSERT INTO anuncio(des_anuncio,texto,contenido,apariciones,total_pago,estado_anuncio,url,fecha_inicio,fecha_final,nombre_usuario,nombre_tipo) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+    private final String RENOVAR="UPDATE anuncio SET total_pago=?,estado_anuncio='ACEPTADO',fecha_final=? WHERE id_anuncio=?";
     private final String SELECTPRICE="SELECT (costo_dia) FROM tipo_anuncio WHERE nombre_tipo=?";
     private final String SELECTALL="SELECT * FROM anuncio";
     private final String ACTIVAR="UPDATE anuncio SET estado_anuncio='ACEPTADO' WHERE id_anuncio=?";
@@ -33,6 +34,7 @@ public class AnuncioDaoImpl implements AnuncioDao{
     private final String UPDATEAPARICION="UPDATE anuncio SET apariciones=? WHERE id_anuncio=?";
     private final String UPDATE="UPDATE anuncio SET des_anuncio=?, texto=?, url=? WHERE id_anuncio=?";
      private final String UPDATEIMG="UPDATE anuncio SET contenido=? WHERE id_anuncio=?";
+      private final String GETANTERIOR="SELECT * FROM anuncio WHERE id_anuncio=?";
     public AnuncioDaoImpl() {
     new Conexion();
     PreparedStatement query2;
@@ -250,6 +252,44 @@ public class AnuncioDaoImpl implements AnuncioDao{
             System.out.println(ex);
         }
         return null;   
+    
+    }
+
+    @Override
+    public String renovarAnun(Anuncio t) {
+        try {
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(RENOVAR);
+            query.setBigDecimal(1, t.getTotal_pago());
+            query.setString(2,t.getFecha_final());
+            query.setInt(3, t.getId_anuncio());
+            query.executeUpdate();
+            return "yes";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return"no";
+        }
+        
+    }
+
+    @Override
+    public BigDecimal costoAnterior(String id) {
+         ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(GETANTERIOR);
+            query.setString(1, id);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null && datosObtenidos.next()) {
+               return  datosObtenidos.getBigDecimal("total_pago");
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        
+        return null;
     
     }
     

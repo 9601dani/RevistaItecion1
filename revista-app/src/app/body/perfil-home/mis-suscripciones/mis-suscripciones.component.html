@@ -24,7 +24,7 @@
                             <td> {{this.formatearFecha(rev1.fecha_publicacion) }} </td>
                             <td> Q.{{rev1.costo_suscripcion }} </td>
                             <td>
-                                <a (click)="verPdf(rev1.archivo, rev1.me_gusta, rev1.id_revista, rev1.comentario)"
+                                <a (click)="verPdf(rev1.archivo, rev1.me_gusta, rev1.id_revista, rev1.comentario, rev1.costo_suscripcion, rev1.nombre_revista, rev1.nombre_usuario)"
                                     class="btn btn-primary btn-block">
                                     Mas Detalles
                                 </a>
@@ -49,154 +49,203 @@
 </div>
 <div>
     <div class="text-center" *ngIf="previsualizacion">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <a>Estado Suscripcion: </a>
-                    <br>
-                    <input readonly maxlength="400" [value]="this.suscripcion.estado_suscripcion" >
-                </div>
-                <div class="col-sm">
-                    <a>Fecha de Vencimiento:</a>
-                    <input readonly maxlength="400" [value]="formarearFecha(this.suscripcion.fecha_final)" >
-                </div>
-                <div class="col-sm">
-                    <a>Total del pago realizado: </a>
-                    <input readonly maxlength="400" [value]=" 'Q'+this.suscripcion.valor_sus" >
-                </div>
-            </div>
-        </div>
-
-        <br><br>
-        <div *ngIf="getMg()==(0)">
-            <a (click)="darMeGusta()" *ngIf="getLike()==(0)" class="btn btn-primary btn-block">
-                Dar Me Gusta
-            </a>
-            <a (click)="quitarMeGusta()" *ngIf="getLike()==(1)" class="btn btn-primary btn-block">
-                Quitar Me Gusta
-            </a>
-        </div>
-        <div *ngIf="getMg()==(1)">
-            <a>
-                *** ESTA REVISTA NO ACEPTA LIKES ***
-            </a>
-        </div>
-        <br>
-        <div>
-            <a (click)="comentar()" *ngIf="getComen()==(0)" class="btn btn-primary btn-block">
-                Comentar
-            </a>
-
-            <div *ngIf="getComentFinal()==(1)">
-                <form [formGroup]="formComentario">
-                    <br>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm">
-                                <a>Ingresa tu Comentario: </a>
-                                <br>
-                                <textarea formControlName="comentario" style="width: 250px; height: 275px;"
-                                    maxlength="400"> </textarea>
-                            </div>
-                            <div class="col-sm">
-                                <a>Ingresa la Fecha del comentario:</a>
-                                <input formControlName="fecha_comentario" type="date">
-                            </div>
-                            <div class="col-sm">
-                                <button (click)="saveComentario()" [disabled]="formComentario.invalid"
-                                    class="btn btn-lg btn-primary btn-block" type="submit">Publicar Comentario</button>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </form>
-
-            </div>
-            <a *ngIf="getComen()==(1)">
-                *** ESTA REVISTA NO ACEPTA COMENTARIOS ***
-            </a>
-        </div>
-        <br>
-        <h3>Mostrando el archivo: </h3>
-        <div class="container">
-            <pdf-viewer [src]="previsualizacion"></pdf-viewer>
-            <br>
-        </div>
-        <br>
-    </div>
-
-    <div class="container" *ngIf="getMostrarComents()==(1)">
-        <div class="row">
-            <div class="col-md-12">
-                <br><br>
-                <h3>Presentamos los comentarios: </h3>
-                <br>
-                <div class="table-style">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID COMENTARIO</th>
-                                <th scope="col">DESCRIPCION</th>
-                                <th scope="col">FECHA DEL COMENTARIO</th>
-                                <th scope="col">AUTOR DE LA REVISTA</th>
-                                <th scope="col"> USUARIO QUE COMENTO </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let comentariosRev2 of  comentariosRev">
-                                <th scope="row">{{ comentariosRev2.id_comentario}}</th>
-                                <td>{{ comentariosRev2.descripcion }}</td>
-                                <td> {{this.formarearFecha(comentariosRev2.fecha_comentario)}} </td>
-                                <td> {{comentariosRev2.nombre_autor}} </td>
-                                <td> {{comentariosRev2.nombre_usuario}} </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div *ngIf="getMostrarAutor()==(1)" >
-        <br><br><br>
-        <form class="form-signin">
-            <div class="text-center mb-4">
-                <div class="text-center">
-                    <div class="container" *ngIf="this.autor.foto">
-                        <a>Foto de Perfil:</a>
-                        <br>
-                        <img [src]="this.autor.foto" style="width: 150px;height:150px">
-                        <br>
-                    </div>
-                </div>
-            </div>
-            <div class="form-label-group">
-                <a>Nombre de Usuario:</a>
-                <b></b>
-                <input class="form-control" value=" {{this.autor.nombre_usuario}} " readonly>
-            </div>
+        <div *ngIf="getEsadoSus(this.suscripcion.estado_suscripcion)==('ACTIVA')">
             <div class="container">
-                <div class="row align-items-start">
-                    <div class="col">
-                        <a>Descripcion Personal:</a>
-                        <div class="form-label-group">
-                            <textarea name="textarea" disabled rows="5" cols="25"> {{this.autor.des_personal}} </textarea>
-                        </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <a>Estado Suscripcion: </a>
+                        <br>
+                        <input readonly maxlength="400" [value]="this.suscripcion.estado_suscripcion">
                     </div>
-                    <div class="col">
-                        <a>Descripcion Hobbies:</a>
-                        <div class="form-label-group">
-                            <textarea name="textarea" disabled rows="5" cols="25"> {{this.autor.des_hobbies}} </textarea>
-                        </div>
+                    <div class="col-sm">
+                        <a>Fecha de Vencimiento:</a>
+                        <input readonly maxlength="400" [value]="formarearFecha(this.suscripcion.fecha_final)">
+                    </div>
+                    <div class="col-sm">
+                        <a>Total del pago realizado: </a>
+                        <input readonly maxlength="400" [value]=" 'Q'+this.suscripcion.valor_sus">
                     </div>
                 </div>
             </div>
-            <br>
-            <a>Nombre Personal:</a>
-            <div class="form-label-group">
-                <input class="form-control" value=" {{this.autor.nombre}} " readonly>
+
+            <br><br>
+            <div *ngIf="getMg()==(0)">
+                <a (click)="darMeGusta()" *ngIf="getLike()==(0)" class="btn btn-primary btn-block">
+                    Dar Me Gusta
+                </a>
+                <a (click)="quitarMeGusta()" *ngIf="getLike()==(1)" class="btn btn-primary btn-block">
+                    Quitar Me Gusta
+                </a>
+            </div>
+            <div *ngIf="getMg()==(1)">
+                <a>
+                    *** ESTA REVISTA NO ACEPTA LIKES ***
+                </a>
             </div>
             <br>
-        </form>
+            <div>
+                <a (click)="comentar()" *ngIf="getComen()==(0)" class="btn btn-primary btn-block">
+                    Comentar
+                </a>
 
+                <div *ngIf="getComentFinal()==(1)">
+                    <form [formGroup]="formComentario">
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <a>Ingresa tu Comentario: </a>
+                                    <br>
+                                    <textarea formControlName="comentario" style="width: 250px; height: 275px;"
+                                        maxlength="400"> </textarea>
+                                </div>
+                                <div class="col-sm">
+                                    <a>Ingresa la Fecha del comentario:</a>
+                                    <input formControlName="fecha_comentario" type="date">
+                                </div>
+                                <div class="col-sm">
+                                    <button (click)="saveComentario()" [disabled]="formComentario.invalid"
+                                        class="btn btn-lg btn-primary btn-block" type="submit">Publicar
+                                        Comentario</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </form>
+
+                </div>
+                <a *ngIf="getComen()==(1)">
+                    *** ESTA REVISTA NO ACEPTA COMENTARIOS ***
+                </a>
+            </div>
+            <br>
+            <h3>Mostrando el archivo: </h3>
+            <div class="container">
+                <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+                <br>
+            </div>
+            <br>
+        </div>
+        <div *ngIf="getEsadoSus(this.suscripcion.estado_suscripcion)==('DESACTIVA')">
+            <br><br>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <a>Ups parece que tu suscripcion ah vencido</a>
+                        <br>
+                        <form [formGroup]= "myFormSus" >
+                            <h3> vas a renovar a: {{this.nom_revista}} </h3>
+                            <br>
+                            <div>
+                                <div class="container">
+                                    <div class="row" style="background-color:khaki">
+                                        <div class="col-sm">
+                                            <a>Ingresa fecha inicial</a>
+                                            <br> 
+                                                <input formControlName="fechaI" type="date">
+                                        </div>    
+                                        <div class="col-sm">
+                                            <a>Ingresa los meses a suscribirte</a>
+                                            <br> 
+                                                <input formControlName="tiempo" type="number" [ngModel]= "this.time" >
+                                        </div>  
+                                        <div class="col-sm">
+                                            <br>
+                                            <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                                            <button *ngIf="getPagar()==(1)" (click)="renovarSus()" class="btn btn-primary btn-block" type="submit">Pagar y Renovar</button>
+                                        </div>  
+                                        <div *ngIf=" getPagar()==(1) ">
+                                            <div class="col-sm">
+                                                <a>El total a pagar es</a>
+                                                <br> 
+                                                Q. <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="getMostrarComents()==(1)">
+            <div class="row">
+                <div class="col-md-12">
+                    <br><br>
+                    <h3>Presentamos los comentarios: </h3>
+                    <br>
+                    <div class="table-style">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">COMENTARIO</th>
+                                    <th scope="col">FECHA DEL COMENTARIO</th>
+                                    <th scope="col">AUTOR DE LA REVISTA</th>
+                                    <th scope="col"> USUARIO QUE COMENTO </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let comentariosRev2 of  comentariosRev">
+                                    <th scope="row">{{ comentariosRev2.descripcion }}</th>
+                                    <td> {{this.formarearFecha(comentariosRev2.fecha_comentario)}} </td>
+                                    <td> {{comentariosRev2.nombre_autor}} </td>
+                                    <td> {{comentariosRev2.nombre_usuario}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngIf="getMostrarAutor()==(1)">
+            <br><br><br>
+            <form class="form-signin">
+                <div class="text-center mb-4">
+                    <div class="text-center">
+                        <div class="container" *ngIf="this.autor.foto">
+                            <a>Foto de Perfil:</a>
+                            <br>
+                            <img [src]="this.autor.foto" style="width: 150px;height:150px">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-label-group">
+                    <a>Nombre de Usuario:</a>
+                    <b></b>
+                    <input class="form-control" value=" {{this.autor.nombre_usuario}} " readonly>
+                </div>
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <a>Descripcion Personal:</a>
+                            <div class="form-label-group">
+                                <textarea name="textarea" disabled rows="5"
+                                    cols="25"> {{this.autor.des_personal}} </textarea>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <a>Descripcion Hobbies:</a>
+                            <div class="form-label-group">
+                                <textarea name="textarea" disabled rows="5"
+                                    cols="25"> {{this.autor.des_hobbies}} </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <a>Nombre Personal:</a>
+                <div class="form-label-group">
+                    <input class="form-control" value=" {{this.autor.nombre}} " readonly>
+                </div>
+                <br>
+            </form>
+
+        </div>
     </div>
+</div>    

@@ -1,4 +1,4 @@
-import { FileImg } from './../../../../../objects/File';
+import { FileImg } from '../../../../../objects/FileImg';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MenuAdminService } from './../../../../../../service/menu-admin.service';
@@ -38,6 +38,13 @@ export class SolicitudAnunciosComponent implements OnInit {
   formUpdate!: FormGroup
   formUpdateImg!: FormGroup
   formUpdateVideo!: FormGroup
+  formForRenovar!:FormGroup
+  //renovacion
+  time!:number
+total:number=0
+pagar!: number
+fecha_in!: string;
+tipoFinal!:string
 
   constructor(private AnuncioService: AnuncioService, private route: Router,
     private MenuAdminService: MenuAdminService, private FormBuilder: FormBuilder,
@@ -52,6 +59,10 @@ export class SolicitudAnunciosComponent implements OnInit {
     })
     this.formUpdateVideo = this.FormBuilder.group({
       link: [null, Validators.required]
+    })
+    this.formForRenovar = this.FormBuilder.group({
+      fechaI: [null, Validators.required],
+      tiempo: [null, Validators.required]
     })
   }
 
@@ -184,7 +195,27 @@ export class SolicitudAnunciosComponent implements OnInit {
     })
 
   }
-  renovar(id_anunci: number) {
+  renovar(id_anunci: number, fecha_final:string, tipo:string, fecha_inicio:string) {
+    this.id_anuncio=id_anunci;
+    this.tipoFinal= tipo
+    this.accion = 'renovar'
+
+  }
+  renovarSus(){
+    this.AnuncioService.renovarAnuncio(this.id_anuncio,this.devFechaFinal(this.formForRenovar.value.fechaI),this.tipoFinal,this.formForRenovar.value.tiempo)
+    .subscribe((created:Respuesta)=>{
+      console.log(created);
+      if (created != null) {
+          alert("SE RENOVO EL ANUNCIO COSTO TOTAL Q."+created.respuesta)
+          this.MenuAdminService.Opcion = '';
+
+      } else {
+        alert(" NO SE PUDO RENOVAR EL ANUNCIO")
+      }
+    }, (error: any) => {
+      alert(" NO SE PUDO RENOVAR EL ANUNCIO")
+
+    })
 
   }
   getEstado(estado: Estado_Anun): string {
@@ -235,4 +266,16 @@ export class SolicitudAnunciosComponent implements OnInit {
       return null;
     }
   });
+
+  devFechaFinal(fechainicial:string):string{
+    let da=  new Date(formatDate(fechainicial,'yyyy-MM-dd','en-US'))
+    let fi= new Date(da.getUTCFullYear(),(da.getUTCMonth()),da.getUTCDate()+this.formForRenovar.value.tiempo)
+    console.log("--------> "+formatDate(fi,'yyyy-MM-dd','en-US'))
+      return formatDate(fi,'yyyy-MM-dd','en-US')
+    }
+
+    getPagar(): number {
+
+      return this.pagar;
+    }
 }

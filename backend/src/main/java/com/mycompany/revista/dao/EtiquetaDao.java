@@ -20,4 +20,6 @@ public interface EtiquetaDao extends CRUD<Etiqueta>{
         ArrayList<Etiqueta> getETForUser(String user_name );
         String deleteETForUser(Etiqueta_autor t);
         String saveCategoria(Categoria c);
+        String deleteCategoria(Categoria c);
+        String updateCategoria(String categoriaAnterior, String categoriaNueva);
 }

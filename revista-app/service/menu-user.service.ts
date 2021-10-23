@@ -51,7 +51,13 @@ export class MenuUserService {
   public saveSuscripcion(sus:Suscripcion): Observable<Respuesta> {
     return this.httpClient.post<Respuesta>(this.API_URL+"/saveSuscripcion",sus);
   }
+  public updateSuscripcion(sus:Suscripcion): Observable<Respuesta> {
+    console.log(sus)
+    return this.httpClient.post<Respuesta>(this.API_URL+"/updateSuscripcionFinal",sus);
+  }
   public saveRecaudacion(recaudacion:Recaudacion): Observable<Respuesta> {
+    console.log(recaudacion)
+    //quitar x
     return this.httpClient.post<Respuesta>(this.API_URL+"/saveRecaudacion",recaudacion);
   }
   public infoSus(user:string, id_revista:number): Observable<Suscripcion> {
