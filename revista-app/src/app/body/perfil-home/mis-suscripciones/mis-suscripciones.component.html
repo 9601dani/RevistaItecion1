@@ -30,7 +30,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a (click)="verComentarios(rev1.id_revista)" class="btn btn-primary btn-block">
+                                <a (click)="verComentarios(rev1.id_revista, rev1.nombre_revista)" class="btn btn-primary btn-block">
                                     Ver Comentarios
                                 </a>
                             </td>
@@ -47,8 +47,9 @@
         </div>
     </div>
 </div>
+
 <div>
-    <div class="text-center" *ngIf="previsualizacion">
+    <div class="text-center" *ngIf="getOpcion()==(1)">
         <div *ngIf="getEsadoSus(this.suscripcion.estado_suscripcion)==('ACTIVA')">
             <div class="container">
                 <div class="row">
@@ -120,12 +121,13 @@
             </div>
             <br>
             <h3>Mostrando el archivo: </h3>
-            <div class="container">
+            <div class="container" *ngIf="this.previsualizacion">
                 <pdf-viewer [src]="previsualizacion"></pdf-viewer>
                 <br>
             </div>
             <br>
         </div>
+
         <div *ngIf="getEsadoSus(this.suscripcion.estado_suscripcion)==('DESACTIVA')">
             <br><br>
             <div class="container">
@@ -133,7 +135,7 @@
                     <div class="col">
                         <a>Ups parece que tu suscripcion ah vencido</a>
                         <br>
-                        <form [formGroup]= "myFormSus" >
+                        <form [formGroup]="myFormSus">
                             <h3> vas a renovar a: {{this.nom_revista}} </h3>
                             <br>
                             <div>
@@ -141,26 +143,29 @@
                                     <div class="row" style="background-color:khaki">
                                         <div class="col-sm">
                                             <a>Ingresa fecha inicial</a>
-                                            <br> 
-                                                <input formControlName="fechaI" type="date">
-                                        </div>    
+                                            <br>
+                                            <input formControlName="fechaI" type="date">
+                                        </div>
                                         <div class="col-sm">
                                             <a>Ingresa los meses a suscribirte</a>
-                                            <br> 
-                                                <input formControlName="tiempo" type="number" [ngModel]= "this.time" >
-                                        </div>  
+                                            <br>
+                                            <input formControlName="tiempo" type="number" [ngModel]="this.time">
+                                        </div>
                                         <div class="col-sm">
                                             <br>
-                                            <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()" class="btn btn-primary btn-block" type="submit">Suscribirse</button>
-                                            <button *ngIf="getPagar()==(1)" (click)="renovarSus()" class="btn btn-primary btn-block" type="submit">Pagar y Renovar</button>
-                                        </div>  
+                                            <button *ngIf="getPagar()!=(1)" (click)="getCostoTotal()"
+                                                class="btn btn-primary btn-block" type="submit">Suscribirse</button>
+                                            <button *ngIf="getPagar()==(1)" (click)="renovarSus()"
+                                                class="btn btn-primary btn-block" type="submit">Pagar y Renovar</button>
+                                        </div>
                                         <div *ngIf=" getPagar()==(1) ">
                                             <div class="col-sm">
                                                 <a>El total a pagar es</a>
-                                                <br> 
-                                                Q. <input formControlName="total" type="number" readonly [ngModel]= "this.total" >
-                                            </div> 
-                                        </div> 
+                                                <br>
+                                                Q. <input formControlName="total" type="number" readonly
+                                                    [ngModel]="this.total">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
@@ -172,80 +177,80 @@
                 </div>
             </div>
         </div>
-        <div class="container" *ngIf="getMostrarComents()==(1)">
-            <div class="row">
-                <div class="col-md-12">
-                    <br><br>
-                    <h3>Presentamos los comentarios: </h3>
-                    <br>
-                    <div class="table-style">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">COMENTARIO</th>
-                                    <th scope="col">FECHA DEL COMENTARIO</th>
-                                    <th scope="col">AUTOR DE LA REVISTA</th>
-                                    <th scope="col"> USUARIO QUE COMENTO </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let comentariosRev2 of  comentariosRev">
-                                    <th scope="row">{{ comentariosRev2.descripcion }}</th>
-                                    <td> {{this.formarearFecha(comentariosRev2.fecha_comentario)}} </td>
-                                    <td> {{comentariosRev2.nombre_autor}} </td>
-                                    <td> {{comentariosRev2.nombre_usuario}} </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+    </div>
+    <div class="container" *ngIf="getMostrarComents()==(1)">
+        <div class="row">
+            <div class="col-md-12">
+                <br><br>
+                <h3>Presentamos los comentarios: {{this.nom_revista}} </h3>
+                <br>
+                <div class="table-style">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">COMENTARIO</th>
+                                <th scope="col">FECHA DEL COMENTARIO</th>
+                                <th scope="col">AUTOR DE LA REVISTA</th>
+                                <th scope="col"> USUARIO QUE COMENTO </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let comentariosRev2 of  comentariosRev">
+                                <th scope="row">{{ comentariosRev2.descripcion }}</th>
+                                <td> {{this.formarearFecha(comentariosRev2.fecha_comentario)}} </td>
+                                <td> {{comentariosRev2.nombre_autor}} </td>
+                                <td> {{comentariosRev2.nombre_usuario}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </div>
-        <div *ngIf="getMostrarAutor()==(1)">
-            <br><br><br>
-            <form class="form-signin">
-                <div class="text-center mb-4">
-                    <div class="text-center">
-                        <div class="container" *ngIf="this.autor.foto">
-                            <a>Foto de Perfil:</a>
-                            <br>
-                            <img [src]="this.autor.foto" style="width: 150px;height:150px">
-                            <br>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-label-group">
-                    <a>Nombre de Usuario:</a>
-                    <b></b>
-                    <input class="form-control" value=" {{this.autor.nombre_usuario}} " readonly>
-                </div>
-                <div class="container">
-                    <div class="row align-items-start">
-                        <div class="col">
-                            <a>Descripcion Personal:</a>
-                            <div class="form-label-group">
-                                <textarea name="textarea" disabled rows="5"
-                                    cols="25"> {{this.autor.des_personal}} </textarea>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <a>Descripcion Hobbies:</a>
-                            <div class="form-label-group">
-                                <textarea name="textarea" disabled rows="5"
-                                    cols="25"> {{this.autor.des_hobbies}} </textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <a>Nombre Personal:</a>
-                <div class="form-label-group">
-                    <input class="form-control" value=" {{this.autor.nombre}} " readonly>
-                </div>
-                <br>
-            </form>
-
-        </div>
     </div>
-</div>    
+    <div *ngIf="getMostrarAutor()==(1)">
+        <br><br><br>
+        <form class="form-signin">
+            <div class="text-center mb-4">
+                <div class="text-center">
+                    <div class="container" *ngIf="this.autor.foto">
+                        <a>Foto de Perfil:</a>
+                        <br>
+                        <img [src]="this.autor.foto" style="width: 150px;height:150px">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="form-label-group">
+                <a>Nombre de Usuario:</a>
+                <b></b>
+                <input class="form-control" value=" {{this.autor.nombre_usuario}} " readonly>
+            </div>
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col">
+                        <a>Descripcion Personal:</a>
+                        <div class="form-label-group">
+                            <textarea name="textarea" disabled rows="5"
+                                cols="25"> {{this.autor.des_personal}} </textarea>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a>Descripcion Hobbies:</a>
+                        <div class="form-label-group">
+                            <textarea name="textarea" disabled rows="5"
+                                cols="25"> {{this.autor.des_hobbies}} </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <a>Nombre Personal:</a>
+            <div class="form-label-group">
+                <input class="form-control" value=" {{this.autor.nombre}} " readonly>
+            </div>
+            <br>
+        </form>
+
+    </div>
+</div>

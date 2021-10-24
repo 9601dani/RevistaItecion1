@@ -9,6 +9,7 @@ import { formatDate } from '@angular/common';
 import { User } from 'src/objects/User';
 import { RevistaForAdmin } from 'src/objects/RevistaForAdmin';
 import { AdmitirRevista } from 'src/objects/AdmitirRevista';
+import { Respuesta } from 'src/objects/Respuesta';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,16 @@ export class MenuAutorService {
     .append("fecha_mod", date1)
     .append("estadoRev", rev.estado_revista)
     return this.httpClient.get<Etiqueta>(this.API_URL+"/aceptarRev",{ params: httpParams});
+  }
+
+  //REPORTES DE AUTOR
+  public getComenReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/oneReport", {params:httpParams} );
   }
 
 }

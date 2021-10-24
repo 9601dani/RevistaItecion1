@@ -1,0 +1,23 @@
+<form [formGroup]="myForm" (ngSubmit)="pedirReporte()">
+    <div class="form-label-group">
+      <a>Ingresa tu nombre nombre de usuario:</a>
+      <input formControlName="fechaI" type="date" maxlength="45" class="form-control"
+        placeholder="Nombre Usuario" required autofocus>
+    </div>
+    <br>
+    <div class="form-label-group">
+      <a>Ingresa tu contraseña:</a>
+      <input formControlName="fechaF" type="date" class="form-control" required autofocus>
+    </div>
+    <br>
+    <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR</button>
+  </form>
+  <br><br><br>
+  <div *ngIf= " this.archivoPdf">
+    <h3>Mostrando el archivo: </h3>
+    <div class="container">
+      <pdf-viewer [src]="this.archivoPdf"></pdf-viewer>
+      <br>
+    </div>
+  </div> 
+

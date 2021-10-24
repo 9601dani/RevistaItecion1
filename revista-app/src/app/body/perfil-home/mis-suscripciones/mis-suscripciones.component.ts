@@ -94,7 +94,6 @@ export class MisSuscripcionesComponent implements OnInit {
       console.log(created);
       if (created != null) {
         this.revista = created;
-
       } else {
         alert("NO ESTAS SUSCRITO A NINGUNA REVISTA");
       }
@@ -176,15 +175,16 @@ export class MisSuscripcionesComponent implements OnInit {
         //this.previsualizacion=""
         // this.mostrarComents=0;
         // alert("TU SUSCRIPCION YA VENCIO ");
-
+        
+        
       }
 
     }, (error: any) => {
       alert("NO ESTAS SUSCRITO A NINGUNA REVISTA");
     })
-    this.opcio = 3;
     this.mostrarComents = 0;
-
+    this.opcio=1;
+    
   }
 
 
@@ -258,15 +258,17 @@ export class MisSuscripcionesComponent implements OnInit {
 
   }
 
-  verComentarios(id_revista: number) {
+  verComentarios(id_revista: number, nom_revista:string) {
+    this.mostrarAutor=0;
+    this.opcio=2;
     console.log("voy a mostrar los comentarios de " + id_revista)
     this.MenuUserService.getComentarios(id_revista).subscribe((created: ComentarioMostrar[]) => {
       console.log(created);
       if (created != null) {
         this.comentariosRev = created;
         this.mostrarComents = 1;
-        this.mostrarAutor = 0;
-        this.previsualizacion = "";
+        this.nom_revista=nom_revista
+
       } else {
         alert("NO HAY COMENTARIOS PARA ESTA REVISTA")
         this.mostrarComents = 0;
@@ -296,6 +298,7 @@ export class MisSuscripcionesComponent implements OnInit {
       .subscribe((usuario: UserComplete) => {
         this.autor = usuario;
         console.log(this.autor)
+        this.opcio=3
         this.mostrarAutor = 1;
         this.comentFinal = 0;
         this.coment = 0;
@@ -378,6 +381,10 @@ export class MisSuscripcionesComponent implements OnInit {
       alert("ERROR AL GUARDAR" + error);
     });
 
+  }
+
+  getOpcion():number{
+    return this.opcio
   }
 
 }

@@ -59,3 +59,14 @@
 
   </form>
 </body>
+
+<button (click)="pedirReporte()" class="btn btn-lg btn-primary btn-block" type="submit">pedir reporte</button>
+<div *ngIf="archivopdf">
+  <h3>Mostrando el archivo: </h3>
+  <div class="container">
+    <pdf-viewer [src]="archivopdf"></pdf-viewer>
+    <br>
+  </div>
+</div> 
+
+AQUI PRUEBA DE PEDIR PDF<!---->

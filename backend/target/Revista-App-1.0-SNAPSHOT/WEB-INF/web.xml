@@ -172,6 +172,14 @@
         <servlet-name>GetTiposAnun</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GetTiposAnun</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestReport</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.TestReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportRev_Coment</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ReportRev_Coment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -343,6 +351,14 @@
     <servlet-mapping>
         <servlet-name>GetTiposAnun</servlet-name>
         <url-pattern>/GetTiposAnun</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestReport</servlet-name>
+        <url-pattern>/TestReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportRev_Coment</servlet-name>
+        <url-pattern>/ReportRev_Coment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,3 +1,4 @@
+import { MenuAdminService } from 'service/menu-admin.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ObtenerInfoUserService } from './../../../../service/obtener-info-user.service';
 import { NewUsuarioService } from 'service/new-usuario.service';
@@ -6,6 +7,7 @@ import { User } from './../../../objects/User';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Form, FormControl, Validators } from '@angular/forms';
 import { LoginSService } from 'service/login-s.service';
+import { Respuesta } from 'src/objects/Respuesta';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +17,11 @@ import { LoginSService } from 'service/login-s.service';
 export class RegisterComponent implements OnInit {
   previsualizacion!: string;
   arch!:string;
+  archivopdf!:string;
 public myForm!: FormGroup;
+
   constructor(private NewUsuarioService:NewUsuarioService,private FormBuilder:FormBuilder, private service:ServiceHomeService,
-    private ObtenerInfoUserService:ObtenerInfoUserService, private sanitizer:DomSanitizer) {}
+    private ObtenerInfoUserService:ObtenerInfoUserService, private sanitizer:DomSanitizer, private MenuAdminService:MenuAdminService) {}
 
   ngOnInit(): void {
     this.myForm=this.FormBuilder.group({
@@ -87,4 +91,14 @@ public myForm!: FormGroup;
       return null;
     }
   });
+
+  pedirReporte(){
+    this.MenuAdminService.getTestReport().subscribe((created:Respuesta)=>{
+      console.log(created.respuesta)
+
+      this.archivopdf="data:application/pdf;base64,"+created
+      
+
+    })
+  }
 }

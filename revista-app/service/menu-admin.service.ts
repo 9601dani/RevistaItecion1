@@ -41,4 +41,7 @@ export class MenuAdminService {
     return this.httpClient.post<Respuesta>(this.API_URL+"/tiposAnuncio","jeje",{ params: httpParams});
   }
 
+  public getTestReport(): Observable<Respuesta>{
+    return this.httpClient.get<Respuesta>(this.API_URL+"/testReport");
+  }
 }

@@ -48,6 +48,7 @@ import { RenovarSuscripcionComponent } from './body/perfil-home/renovar-suscripc
 import { YouTubePlayerModule } from "@angular/youtube-player";
 import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-anuncios/solicitud-anuncios.component';
 import { ModCostAnunComponent } from './body/login/login-admin/mod-cost-anun/mod-cost-anun.component';
+import { REPORTE1Component } from './REPORTS/reports-autor/reporte1/reporte1.component';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -88,6 +89,7 @@ import { ModCostAnunComponent } from './body/login/login-admin/mod-cost-anun/mod
     RenovarSuscripcionComponent,
     SolicitudAnunciosComponent,
     ModCostAnunComponent,
+    REPORTE1Component,
     
 
    ],
