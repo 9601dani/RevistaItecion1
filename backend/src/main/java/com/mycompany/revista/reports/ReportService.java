@@ -5,10 +5,14 @@
 package com.mycompany.revista.reports;
 
 import com.mycompany.revista.conexion.Conexion;
+import com.mycompany.revista.dao.RevistaDaoImpl;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -94,5 +98,9 @@ public class ReportService {
          System.out.println(fin);
        return fin;
     }
+    
+    //REPORTE DE GANANCIAS
+    
+     
 
 }

@@ -55,6 +55,8 @@ import { Report4Component } from './REPORTS/reports-autor/report4/report4.compon
 import { MasComentReportComponent } from './REPORTS/reports-admin/mas-coment-report/mas-coment-report.component';
 import { ReportMasSusComponent } from './REPORTS/reports-admin/report-mas-sus/report-mas-sus.component';
 import { Report3Component } from './REPORTS/reports-autor/report3/report3.component';
+import { ReporAnunciosComponent } from './REPORTS/reports-admin/repor-anuncios/repor-anuncios.component';
+import { GananciaRevistaComponent } from './REPORTS/reports-admin/ganancia-revista/ganancia-revista.component';
 
 @NgModule({
   declarations: [	
@@ -102,6 +104,8 @@ import { Report3Component } from './REPORTS/reports-autor/report3/report3.compon
     MasComentReportComponent,
     ReportMasSusComponent,
     Report3Component,
+    ReporAnunciosComponent,
+    GananciaRevistaComponent,
     
     
 

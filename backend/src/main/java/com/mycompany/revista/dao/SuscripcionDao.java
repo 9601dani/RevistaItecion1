@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public interface SuscripcionDao extends CRUD<Suscripcion> {
     String consultar(Suscripcion t);
     ArrayList<Suscripcion> consultarRep(String t, String startDate, String endDate);
+     ArrayList<Recaudacion> getRecaudaciones(String t);
+      ArrayList<Recaudacion> getRecaudacionesWhitDate(String t,String startDate, String endDate);
     String guardarRecaudacion(Recaudacion t);
     Suscripcion getInfo(String name, int id);
     String darLike(int id,String n);

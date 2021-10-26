@@ -34,4 +34,16 @@ export class Report2Component implements OnInit {
      
     })
   }
+  pedirReporteGeneral(){
+    this.MenuAutorService.getSusReport("1900-01-30","2090-12-12").subscribe((created:Respuesta)=>{
+      console.log(created.respuesta)
+      if(created.respuesta=="no"){
+        alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")
+      }else{
+         this.archivoPdf= "data:application/pdf;base64,"+created.respuesta
+         console.log("aqui jeje"+this.archivoPdf)
+      }
+     
+    })
+  }
 }

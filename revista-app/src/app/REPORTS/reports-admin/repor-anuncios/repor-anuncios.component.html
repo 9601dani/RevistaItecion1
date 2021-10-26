@@ -1,0 +1,16 @@
+<br><br>
+<h3>Reporte Anuncios</h3>
+
+    <form (ngSubmit)="pedirReporte()" style="background-color: bisque;">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Ver Reporte Anuncios</button>
+    </form>
+    <br><br><br>
+    <br><br><br><br><br><br><br>
+    <div *ngIf=" this.archivoPdf">
+        <h3>Mostrando el archivo: </h3>
+        <div class="container">
+            <ngx-extended-pdf-viewer [src]="this.archivoPdf" height="80vh"></ngx-extended-pdf-viewer>
+            <br>
+        </div>
+    </div>

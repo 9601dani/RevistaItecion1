@@ -18,8 +18,10 @@ com/mycompany/revista/controller/registroController$1.class
 com/mycompany/revista/controller/GetAnuncio.class
 com/mycompany/revista/controller/UpdateAdmin$1.class
 com/mycompany/revista/controller/GetBytesArchvio.class
+com/mycompany/revista/controller/GananciaAdmin.class
 com/mycompany/revista/controller/SavEtiquetaRev.class
 com/mycompany/revista/converter/AdminConverter.class
+com/mycompany/revista/clases/GananciaBean.class
 com/mycompany/revista/clases/Porcentaje_soft.class
 com/mycompany/revista/controller/AceptarRev.class
 com/mycompany/revista/controller/GetRevistasUser.class
@@ -29,6 +31,7 @@ com/mycompany/revista/clases/Etiqueta_autor.class
 com/mycompany/revista/controller/ReportRev_Coment.class
 com/mycompany/revista/converter/ComentarioConverter.class
 com/mycompany/revista/Enum/COMENTARIO_E.class
+com/mycompany/revista/clases/OtherMagazineBeans.class
 com/mycompany/revista/controller/UpdateEstadoAnuncio.class
 com/mycompany/revista/converter/CategoriaConverter.class
 com/mycompany/revista/controller/ChangeLikeSus.class
@@ -60,6 +63,7 @@ com/mycompany/revista/converter/RevistaForUserConverter.class
 com/mycompany/revista/dao/UsuarioDaoImpl.class
 com/mycompany/revista/converter/PorcentajeConverter.class
 com/mycompany/revista/converter/EtiquetaRevConverter.class
+com/mycompany/revista/controller/ReportAnuncio.class
 com/mycompany/revista/controller/UpdateSuscripcion.class
 com/mycompany/revista/controller/GetInfoSus.class
 com/mycompany/revista/modelsE/RevistaInfoForUser.class

@@ -25,6 +25,8 @@ import java.util.logging.Logger;
  */
 public class SuscripcionDaoImpl implements SuscripcionDao{
 private final String SELECTEXISTENCIA = "SELECT * FROM suscripcion WHERE id_revista=? AND nombre_usuario=?";
+private final String SELECTRECAUDACION = "SELECT * FROM recaudacion WHERE nombre_revista=?";
+private final String SELECTRECAUDACIONWithDate = "SELECT * FROM recaudacion WHERE nombre_revista=? AND fecha_pago BETWEEN ? AND ? ";
 private final String SELECTREPOR = "SELECT * FROM suscripcion WHERE id_revista=? AND fecha_inicial BETWEEN ? AND ? ORDER BY fecha_inicial DESC";
 private final String DARLIKE = "UPDATE suscripcion SET me_gusta= 'DIO_LIKE' WHERE id_revista=? AND nombre_usuario=?";
 private final String CANCELARSUS = "UPDATE suscripcion SET estado_suscripcion= 'DESACTIVA' WHERE fecha_final<CURDATE() AND estado_suscripcion='ACTIVA'";
@@ -208,6 +210,54 @@ public SuscripcionDaoImpl() {
         }
         
         return null;
+    }
+
+    @Override
+    public ArrayList<Recaudacion> getRecaudaciones(String t) {
+        ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Recaudacion> listSus= new ArrayList<>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTRECAUDACION);
+            query.setString(1,t);
+            datosObtenidos = query.executeQuery();
+            
+            while(datosObtenidos.next()){
+                listSus.add(new Recaudacion(datosObtenidos.getInt("registro"),datosObtenidos.getString("nombre_revista"), datosObtenidos.getBigDecimal("total_pagar"),datosObtenidos.getBigDecimal("costo_con_descuento"),datosObtenidos.getString("fecha_pago"),datosObtenidos.getString("nombre_usuario"),datosObtenidos.getString("autor")));
+            }
+            return listSus;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return null;
+    
+    }
+
+    @Override
+    public ArrayList<Recaudacion> getRecaudacionesWhitDate(String i, String string, String string1) {
+       ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<Recaudacion> listSus= new ArrayList<>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTRECAUDACIONWithDate);
+            query.setString(1,i);
+             query.setString(2,string);
+              query.setString(3,string1);
+            datosObtenidos = query.executeQuery();
+            
+            while(datosObtenidos.next()){
+                listSus.add(new Recaudacion(datosObtenidos.getInt("registro"),datosObtenidos.getString("nombre_revista"), datosObtenidos.getBigDecimal("total_pagar"),datosObtenidos.getBigDecimal("costo_con_descuento"),datosObtenidos.getString("fecha_pago"),datosObtenidos.getString("nombre_usuario"),datosObtenidos.getString("autor")));
+            }
+            return listSus;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return null;
+    
     }
 
 

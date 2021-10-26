@@ -18,7 +18,7 @@
   <br><br><br>
   <form [formGroup]="myForm2" (ngSubmit)="pedirRepForName()" style="background-color: beige;" >
     <div class="form-label-group">
-      <a>Ingresa el nombre de revista (Recuerda que debe pertenecerte para poder ver):</a>
+      <a>Ingresa el nombre de revista:</a>
 
       <input formControlName="name" type="text" class="form-control"
         placeholder="Nombre Revista" required autofocus>
@@ -26,6 +26,11 @@
     <br>
     <button [disabled]= "myForm2.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR POR NOMBRE</button>
   </form>
+  <br><br>
+  <form (ngSubmit)="pedirReporteGeneral()">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Reporte General</button>
+  </form>
+
   <br><br><br><br><br><br><br>
   <div *ngIf= " this.archivoPdf">
     <h3>Mostrando el archivo: </h3>

@@ -43,6 +43,7 @@ export class Report3Component implements OnInit {
      
     })
   }
+  
   pedirRepForName(){
     this.MenuAutorService.getLikeNameReport(this.myForm2.value.name).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)

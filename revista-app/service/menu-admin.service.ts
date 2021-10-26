@@ -56,5 +56,14 @@ export class MenuAdminService {
     .append("fechaF", fechaF)
     return this.httpClient.post<Respuesta>(this.API_URL+"/revConMasComents", "Es",{params:httpParams} );
   }
+  public getMAnunReport(): Observable<Respuesta>{
+    return this.httpClient.get<Respuesta>(this.API_URL+"/reportAnuncio");
+  }
+  public getGananciasReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/gananciaAdminFinal",{params:httpParams} );
+  }
 
 }

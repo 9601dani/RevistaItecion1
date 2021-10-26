@@ -49,6 +49,8 @@ public class RepComentsAdmin extends HttpServlet {
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
+            System.out.println(request.getParameter("fechaI"));
+            System.out.println(request.getParameter("fechaF"));
             String result=  reportService.ReportMasComents(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
             
@@ -81,6 +83,8 @@ public class RepComentsAdmin extends HttpServlet {
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
+            System.out.println(request.getParameter("fechaI"));
+            System.out.println(request.getParameter("fechaF"));
             String result=  reportService.ReportMasSus(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
             
