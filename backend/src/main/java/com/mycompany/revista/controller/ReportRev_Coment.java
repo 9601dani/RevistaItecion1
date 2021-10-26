@@ -52,6 +52,7 @@ public class ReportRev_Coment extends HttpServlet {
             String fechaF = request.getParameter("fechaF");
           String result=  reportService.printReportWithParams(LocalDate.parse(fechaI), LocalDate.parse(fechaF), request.getParameter("user"),"Rep1.jasper");
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            
         } catch (JRException ex) {
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
         } catch (IOException ex){
@@ -70,7 +71,23 @@ public class ReportRev_Coment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        try {
+            ReportService reportService = null;
+            
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            
+            String report = request.getParameter("report");
+            System.out.println("---"+request.getParameter("user"));
+            reportService = new ReportService();
+            String nom_rev = request.getParameter("nom_rev");
+          String result=  reportService.printReportWithParamsRep1(nom_rev, request.getParameter("user"),"Rep1ForRev.jasper");
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+        } catch (JRException ex) {
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        } catch (IOException ex){
+             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        }
     }
 
     /**

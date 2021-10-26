@@ -122,7 +122,8 @@
             <br>
             <h3>Mostrando el archivo: </h3>
             <div class="container" *ngIf="this.previsualizacion">
-                <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+
+                <ngx-extended-pdf-viewer [src]="previsualizacion"height="80vh"></ngx-extended-pdf-viewer>
                 <br>
             </div>
             <br>

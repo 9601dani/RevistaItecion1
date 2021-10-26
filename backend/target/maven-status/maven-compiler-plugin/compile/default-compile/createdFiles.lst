@@ -7,6 +7,7 @@ com/mycompany/revista/controller/ModiEtiquetas$1.class
 com/mycompany/revista/clases/Usuario.class
 com/mycompany/revista/converter/RespuestaConverter.class
 com/mycompany/revista/dao/EtiquetaDao.class
+com/mycompany/revista/modelsE/Report2User.class
 com/mycompany/revista/dao/RevistaDao.class
 com/mycompany/revista/controller/UpdateAnuncio.class
 com/mycompany/revista/controller/GetTiposAnun.class
@@ -43,6 +44,7 @@ com/mycompany/revista/dao/ComentarioDaoImpl.class
 com/mycompany/revista/controller/getEtiquetas.class
 com/mycompany/revista/controller/SaveEtiqueta.class
 com/mycompany/revista/dao/EAutorDao.class
+com/mycompany/revista/clases/ABeans.class
 com/mycompany/revista/controller/GetRevistasForName.class
 com/mycompany/revista/controller/NewAdmin$1.class
 com/mycompany/revista/controller/SaveRevista.class
@@ -51,6 +53,7 @@ com/mycompany/revista/Enum/SUSCRIP_E.class
 com/mycompany/revista/dao/SuscripcionDao.class
 com/mycompany/revista/controller/DeleteCategoria.class
 com/mycompany/revista/controller/UpdateA$1.class
+com/mycompany/revista/controller/ReportForUser4.class
 com/mycompany/revista/controller/UpdateUser$1.class
 com/mycompany/revista/converter/RevistaForUserConverter.class
 com/mycompany/revista/dao/UsuarioDaoImpl.class
@@ -67,16 +70,19 @@ com/mycompany/revista/controller/SaveComentario.class
 com/mycompany/revista/converter/EAutorConverter.class
 com/mycompany/revista/converter/RecaudacionConverter.class
 com/mycompany/revista/Enum/ESTADO_ADM.class
+com/mycompany/revista/clases/AdminBeans.class
 com/mycompany/revista/converter/FinalFileConverter.class
 com/mycompany/revista/clases/Etiqueta_revista.class
 com/mycompany/revista/controller/GetRevistaSus.class
 com/mycompany/revista/Enum/TIP_USUARIO.class
 com/mycompany/revista/controller/UpdateAdmin.class
 com/mycompany/revista/controller/TestReport.class
+com/mycompany/revista/controller/RepComentsAdmin.class
 com/mycompany/revista/controller/GetComentarios.class
 com/mycompany/revista/controller/UpdateVideo.class
 com/mycompany/revista/Enum/ESTADO_SUS.class
 com/mycompany/revista/controller/SaveSuscripcion.class
+com/mycompany/revista/controller/Rep1Export.class
 com/mycompany/revista/converter/ConverterApi.class
 com/mycompany/revista/clases/Anuncio.class
 com/mycompany/revista/converter/RevistaConverter.class
@@ -117,5 +123,6 @@ com/mycompany/revista/controller/SaveCategoria.class
 com/mycompany/revista/dao/AnuncioDaoImpl.class
 com/mycompany/revista/dao/SuscripcionDaoImpl.class
 com/mycompany/revista/controller/getCategoria.class
+com/mycompany/revista/controller/GetReport2.class
 com/mycompany/revista/converter/AnuncioConverter.class
 com/mycompany/revista/clases/Etiqueta.class

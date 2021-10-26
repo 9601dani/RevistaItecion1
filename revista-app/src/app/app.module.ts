@@ -36,6 +36,7 @@ import { ModAdminComponent } from './body/login/login-admin/mod-admin/mod-admin.
 import { ModAdminFinalComponent } from './body/login/login-admin/mod-admin-final/mod-admin-final.component';
 import { SubirRevistaComponent } from './body/perfil-home/subir-revista/subir-revista.component';
 import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { MostrarPdfComponent } from './spam/mostrar-pdf/mostrar-pdf.component';
 import { VerMisRevistasComponent } from './body/perfil-home/ver-mis-revistas/ver-mis-revistas.component';
 import { SolicitudRevistaComponent } from './body/login/login-admin/solicitud-revista/solicitud-revista.component';
@@ -49,6 +50,11 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
 import { SolicitudAnunciosComponent } from './body/login/login-admin/solicitud-anuncios/solicitud-anuncios.component';
 import { ModCostAnunComponent } from './body/login/login-admin/mod-cost-anun/mod-cost-anun.component';
 import { REPORTE1Component } from './REPORTS/reports-autor/reporte1/reporte1.component';
+import { Report2Component } from './REPORTS/reports-autor/report2/report2.component';
+import { Report4Component } from './REPORTS/reports-autor/report4/report4.component';
+import { MasComentReportComponent } from './REPORTS/reports-admin/mas-coment-report/mas-coment-report.component';
+import { ReportMasSusComponent } from './REPORTS/reports-admin/report-mas-sus/report-mas-sus.component';
+
 @NgModule({
   declarations: [	
     AppComponent,
@@ -90,6 +96,11 @@ import { REPORTE1Component } from './REPORTS/reports-autor/reporte1/reporte1.com
     SolicitudAnunciosComponent,
     ModCostAnunComponent,
     REPORTE1Component,
+    Report2Component,
+    Report4Component,
+    MasComentReportComponent,
+    ReportMasSusComponent,
+    
     
 
    ],
@@ -101,7 +112,10 @@ import { REPORTE1Component } from './REPORTS/reports-autor/reporte1/reporte1.com
     ReactiveFormsModule,
     FormsModule,
     PdfViewerModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    NgxExtendedPdfViewerModule
+    
+
     
   ],
   providers: [ServiceHomeService, NewUsuarioService,LoginSService, ObtenerInfoUserService],

@@ -43,7 +43,7 @@ public class ReportService {
         return null;
         
     }
-     public String printReportWithParams(LocalDate startDate, LocalDate endDate,String usuario, String name) throws JRException {
+    public String printReportWithParams(LocalDate startDate, LocalDate endDate,String usuario, String name) throws JRException {
         Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date end = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/"+name);
@@ -56,6 +56,39 @@ public class ReportService {
         params.put("EndDate", end);
         JasperPrint printer = JasperFillManager.fillReport(compiledReport, params, Conexion.getInstancia());
 
+       byte[] exportToPdf= JasperExportManager.exportReportToPdf(printer);
+       String fin= Base64.getEncoder().encodeToString(exportToPdf);
+         System.out.println(fin);
+       return fin;
+    }
+     public void ExportReportWithParams(OutputStream targetStream, LocalDate startDate, LocalDate endDate,String usuario, String name) throws JRException {
+        Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date end = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/"+name);
+        Map<String, Object> params = new HashMap<>();
+        params.put("StartDate", start);
+        params.put("EndDate", end);
+        JasperPrint printer = JasperFillManager.fillReport(compiledReport, params, Conexion.getInstancia());
+         System.out.println("VOT A ESPORT");
+        JasperExportManager.exportReportToPdfStream(printer, targetStream);
+         System.out.println("aqui acabo");
+    }
+    
+    public void ExportReportWithParamsRep1(OutputStream targetStream,String nom_rev,String usuario, String name) throws JRException {
+        InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/"+name);
+        Map<String, Object> params = new HashMap<>();
+        params.put("USER", usuario);
+        params.put("REV", nom_rev);
+        JasperPrint printer = JasperFillManager.fillReport(compiledReport, params, Conexion.getInstancia());
+        JasperExportManager.exportReportToPdfStream(printer, targetStream);
+    }
+    
+    public String printReportWithParamsRep1(String nom_rev,String usuario, String name) throws JRException {
+        InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/"+name);
+        Map<String, Object> params = new HashMap<>();
+        params.put("USER", usuario);
+        params.put("REV", nom_rev);
+        JasperPrint printer = JasperFillManager.fillReport(compiledReport, params, Conexion.getInstancia());
        byte[] exportToPdf= JasperExportManager.exportReportToPdf(printer);
        String fin= Base64.getEncoder().encodeToString(exportToPdf);
          System.out.println(fin);

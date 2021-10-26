@@ -44,6 +44,16 @@
                     <a (click)="CambiarPagina('repComentariosRevista')" class="nav-link">Reporte Comentarios</a>
                 </li>
             </div>
+            <div *ngIf=" getOptionMenu() == 'AUTOR' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('rep2User')" class="nav-link">Reporte Suscripciones</a>
+                </li>
+            </div>
+            <div *ngIf=" getOptionMenu() == 'AUTOR' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('rep4User')" class="nav-link">Reporte Ganancias</a>
+                </li>
+            </div>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
                     <a (click)="CambiarPagina('misSusccripciones')" class="nav-link">Ver Mis Suscripciones</a>

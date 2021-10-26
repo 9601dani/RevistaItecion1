@@ -146,7 +146,8 @@
     <div class="text-center" *ngIf="previsualizacion">
         <h2>Mostrando previsualizacion del archivo: </h2>
         <div class="container">
-            <pdf-viewer [src]="previsualizacion"></pdf-viewer>
+            <ngx-extended-pdf-viewer [src]="previsualizacion"height="80vh"></ngx-extended-pdf-viewer>
+
             <br>
         </div>
         <br>

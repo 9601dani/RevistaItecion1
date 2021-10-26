@@ -49,6 +49,11 @@ public class Usuario {
         this.foto = foto;
         this.tipo_usuario = tipo_usuario;
     }
+
+    public Usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
+    }
+    
     
     
     

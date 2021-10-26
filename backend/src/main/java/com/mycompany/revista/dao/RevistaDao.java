@@ -4,6 +4,8 @@
  */
 package com.mycompany.revista.dao;
 
+import com.mycompany.revista.clases.ABeans;
+import com.mycompany.revista.clases.AdminBeans;
 import com.mycompany.revista.clases.Revista;
 import com.mycompany.revista.clases.Suscripcion;
 import java.sql.ResultSet;
@@ -15,6 +17,9 @@ import java.util.ArrayList;
  */
 public interface RevistaDao extends CRUD<Revista>{
     ArrayList<Revista> listarAlgunos(String name);
+    Revista listarRev(String id_revista);
+    ArrayList<AdminBeans> listarMasComentada(String startDate, String endDate);
+    ArrayList<ABeans> listarMasSuscrita(String startDate, String endDate);
     ArrayList<Revista> listarAlgunosForName(String name_revista);
     ArrayList<Revista> listarAlgunosForCategoria(String categoria);
     ArrayList<Revista> listarforSus(String name);

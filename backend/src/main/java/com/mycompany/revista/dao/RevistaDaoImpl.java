@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import static com.mycompany.revista.Enum.ESTADO_REV.getRev1;
 import static com.mycompany.revista.Enum.ESTADO_REV.getRev;
 import static com.mycompany.revista.Enum.ESTADO_REV.getRev1;
+import com.mycompany.revista.clases.ABeans;
+import com.mycompany.revista.clases.AdminBeans;
 import com.mycompany.revista.clases.Suscripcion;
 import java.sql.ResultSet;
 
@@ -37,6 +39,8 @@ public class RevistaDaoImpl implements RevistaDao {
     private final String UPDATE = "UPDATE revista SET nombre_revista=?, descripcion=?,costo_suscripcion=?, me_gusta=?,comentario=?,suscripciones=? WHERE id_revista=?";
     private final String GETLIKES = "SELECT COUNT(s.me_gusta) as MG FROM revista as rv INNER JOIN suscripcion as s WHERE rv.id_revista=? AND rv.id_revista= s.id_revista AND s.me_gusta='DIO_LIKE'";
     private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE r.estado_revista='ACEPTADA' AND r.id_revista=s.id_revista AND s.nombre_usuario=? ";
+    private final String SELECTMASCOMENTADA="SELECT id_revista,count(id_revista) as total FROM comentario WHERE fecha_comentario BETWEEN ? AND ? GROUP BY id_revista ORDER BY 2 DESC, 1 LIMIT 5";
+     private final String SELECTMASSUSCRITA="SELECT id_revista,count(id_revista) as total FROM suscripcion WHERE fecha_inicial BETWEEN ? AND ? GROUP BY id_revista ORDER BY 2 DESC, 1 LIMIT 5;";
     public RevistaDaoImpl() {
         new Conexion();
     }
@@ -200,7 +204,7 @@ public class RevistaDaoImpl implements RevistaDao {
     public String AceptarRevista(Revista r) {
         try {
             PreparedStatement query = Conexion.getInstancia().prepareStatement(ACEPTARREV);
-            query.setDate(1, r.getFecha_aceptacion());
+            query.setString(1, r.getFecha_aceptacion());
             query.setString(2, getRev(r.getEstado_revista()));
             query.setBigDecimal(3, r.getCosto_dia());
             query.setDate(4, r.getFecha_mod_costo());
@@ -343,6 +347,92 @@ public class RevistaDaoImpl implements RevistaDao {
 
                     System.out.println(ex);
                     return null;
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+
+    @Override
+    public ArrayList<AdminBeans> listarMasComentada(String startDate, String endDate) {
+         ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<AdminBeans> listA = new ArrayList<AdminBeans>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTMASCOMENTADA);
+            query.setString (1, startDate);
+            query.setString (2, endDate);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        AdminBeans admin= new AdminBeans(datosObtenidos.getInt("id_revista"),datosObtenidos.getInt("total"));
+                        listA.add(admin);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+
+    @Override
+    public Revista listarRev(String id_revista) {
+       ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECT);
+            query.setString (1, id_revista);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null && datosObtenidos.next() ) {
+                return new Revista(datosObtenidos.getInt("id_revista"), datosObtenidos.getString("nombre_revista"), datosObtenidos.getString("archivo"), datosObtenidos.getString("fecha_publicacion"),  getRev1(datosObtenidos.getString("estado_revista")),datosObtenidos.getString("descripcion"), datosObtenidos.getBigDecimal("costo_suscripcion"), getLike(datosObtenidos.getString("me_gusta")), getCom(datosObtenidos.getString("comentario")), getSus(datosObtenidos.getString("suscripciones")), datosObtenidos.getString("nombre_categoria"), datosObtenidos.getString("nombre_usuario")) ;
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2 3");
+        return null;
+    
+    }
+
+    @Override
+    public ArrayList<ABeans> listarMasSuscrita(String startDate, String endDate) {
+         ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<ABeans> listA = new ArrayList<ABeans>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTMASSUSCRITA);
+            query.setString (1, startDate);
+            query.setString (2, endDate);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        ABeans admin= new ABeans(datosObtenidos.getInt("id_revista"),datosObtenidos.getInt("total"));
+                        listA.add(admin);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
                 }
             } else {
                 System.out.println("mande nulo 1");

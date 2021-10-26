@@ -134,6 +134,16 @@ public class Revista {
         this.nombre_categoria = nombre_categoria;
         this.nombre_usuario = nombre_usuario;
     }
+
+    public Revista(int id_revista, String nombre_revista) {
+        this.id_revista = id_revista;
+        this.nombre_revista = nombre_revista;
+    }
+
+    public String getFecha_aceptacion() {
+        return fecha_aceptacion;
+    }
+    
     
     
     
@@ -183,10 +193,7 @@ public class Revista {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha_aceptacion() {
-        
-        return Date.valueOf(fecha_aceptacion);
-    }
+
 
     public void setFecha_aceptacion(String fecha_aceptacion) {
         this.fecha_aceptacion = fecha_aceptacion;

@@ -21,14 +21,20 @@
                 <app-ver-mis-revistas></app-ver-mis-revistas>
             </div>
             <div *ngIf="getOp()=='buscarRevista'">
-               <app-buscar-revista></app-buscar-revista>
+                <app-buscar-revista></app-buscar-revista>
             </div>
             <div *ngIf="getOp()=='misSusccripciones'">
-               <app-mis-suscripciones></app-mis-suscripciones>
-             </div>
-             <div *ngIf="getOp()=='repComentariosRevista'">
-               <app-reporte1></app-reporte1>
-              </div>
+                <app-mis-suscripciones></app-mis-suscripciones>
+            </div>
+            <div *ngIf="getOp()=='repComentariosRevista'">
+                <app-reporte1></app-reporte1>
+            </div>
+            <div *ngIf="getOp()=='rep2User'">
+                <app-report2></app-report2>
+            </div>
+            <div *ngIf="getOp()=='rep4User'">
+               <app-report4></app-report4>
+            </div>
         </div>
         <div *ngIf="getSpan()==(0)" class="col">
             <app-spam></app-spam>

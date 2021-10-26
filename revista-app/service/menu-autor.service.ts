@@ -79,5 +79,50 @@ export class MenuAutorService {
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/oneReport", {params:httpParams} );
   }
+  public getComeExport(fechaI:string, fechaF:string){
+    console.log("mande"+fechaI)
+    console.log("mande"+fechaF)
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get(this.API_URL+"/exportReporte1", {params:httpParams} );
+  }
+    //REPORTES DE AUTOR
+    public getComenReportForRev(name:string): Observable<Respuesta>{
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("nom_rev", name)
+      .append("user",this.user.nombre_usuario)
+      return this.httpClient.post<Respuesta>(this.API_URL+"/oneReport","yes", {params:httpParams} );
+    }
 
+    public getComenReportForRevExport(name:string){
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("nom_rev", name)
+      .append("user",this.user.nombre_usuario)
+      return this.httpClient.post(this.API_URL+"/exportReporte1t","yes", {params:httpParams} );
+    }
+
+  //REPORTE 2
+  public getSusReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/report2User", {params:httpParams} );
+  }
+
+  //REPORTE 4
+  public getGananciasReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/RepFour", {params:httpParams} );
+  }
 }

@@ -1,22 +1,36 @@
-<form [formGroup]="myForm" (ngSubmit)="pedirReporte()">
+<br><br>
+<h3>Reporte de Comentarios</h3>
+
+<form [formGroup]="myForm" (ngSubmit)="pedirReporte()" style="background-color: bisque;" >
     <div class="form-label-group">
-      <a>Ingresa tu nombre nombre de usuario:</a>
+      <a>Ingresa fecha inicio</a>
       <input formControlName="fechaI" type="date" maxlength="45" class="form-control"
         placeholder="Nombre Usuario" required autofocus>
     </div>
     <br>
     <div class="form-label-group">
-      <a>Ingresa tu contraseña:</a>
+      <a>Ingresa fecha final:</a>
       <input formControlName="fechaF" type="date" class="form-control" required autofocus>
     </div>
     <br>
-    <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR</button>
+    <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
   </form>
   <br><br><br>
+  <form [formGroup]="myForm2" (ngSubmit)="pedirRepForName()" style="background-color: beige;" >
+    <div class="form-label-group">
+      <a>Ingresa el nombre de revista (Recuerda que debe pertenecerte para poder ver):</a>
+
+      <input formControlName="name" type="text" class="form-control"
+        placeholder="Nombre Revista" required autofocus>
+    </div>
+    <br>
+    <button [disabled]= "myForm2.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR POR NOMBRE</button>
+  </form>
+  <br><br><br><br><br><br><br>
   <div *ngIf= " this.archivoPdf">
     <h3>Mostrando el archivo: </h3>
     <div class="container">
-      <pdf-viewer [src]="this.archivoPdf"></pdf-viewer>
+      <ngx-extended-pdf-viewer [src]="this.archivoPdf"height="80vh"></ngx-extended-pdf-viewer>
       <br>
     </div>
   </div> 

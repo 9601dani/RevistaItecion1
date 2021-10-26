@@ -15,7 +15,11 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +31,7 @@ public class ComentarioDaoImpl implements ComentarioDao {
     private final String SELECTCOMFORID = "SELECT c.id_comentario, c.descripcion, c.fecha_comentario, s.nombre_usuario,r.nombre_usuario FROM comentario as c INNER JOIN revista as r INNER JOIN suscripcion as s WHERE c.id_revista=? AND c.id_revista=r.id_revista AND c.id_suscripcion=s.id_suscripcion";
     private final String SELECTTIPO = "SELECT * FROM tipo_anuncio";
     private final String UPDATETIPO = "UPDATE tipo_anuncio SET costo_dia=? WHERE nombre_tipo=? ";
+    private final String GETCOM="SELECT * FROM comentario WHERE id_revista=? AND fecha_comentario BETWEEN ? AND ? ORDER BY fecha_comentario DESC";
 
     public ComentarioDaoImpl() {
         new Conexion();
@@ -154,5 +159,25 @@ public class ComentarioDaoImpl implements ComentarioDao {
             System.out.println(ex);
             return "no";
         }
+    }
+
+    @Override
+    public ArrayList<Comentario> listComentarioDeRevistaPorFechas(int id_revista, String startDate, String endDate) {
+        try {
+            ArrayList<Comentario> list= new ArrayList<>();
+            PreparedStatement query = Conexion.getInstancia().prepareStatement(GETCOM);
+            query.setInt(1,id_revista);
+            query.setString(2,startDate);
+            query.setString(3, endDate);
+            ResultSet datosObtenidos= query.executeQuery();
+            while(datosObtenidos.next()){
+                list.add(new Comentario(datosObtenidos.getInt("id_comentario"), datosObtenidos.getString("descripcion"), datosObtenidos.getString("fecha_comentario"), datosObtenidos.getInt("id_revista"), datosObtenidos.getInt("id_revista")));
+            }
+            
+            return list;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
     }
 }

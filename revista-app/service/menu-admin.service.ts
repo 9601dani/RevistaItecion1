@@ -44,4 +44,17 @@ export class MenuAdminService {
   public getTestReport(): Observable<Respuesta>{
     return this.httpClient.get<Respuesta>(this.API_URL+"/testReport");
   }
+  public getSusReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/revConMasComents", {params:httpParams} );
+  }
+  public getMoreSusReport(fechaI:string, fechaF:string): Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    return this.httpClient.post<Respuesta>(this.API_URL+"/revConMasComents", "Es",{params:httpParams} );
+  }
+
 }

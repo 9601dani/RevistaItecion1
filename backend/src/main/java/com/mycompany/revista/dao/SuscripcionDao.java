@@ -6,6 +6,9 @@ package com.mycompany.revista.dao;
 
 import com.mycompany.revista.clases.Recaudacion;
 import com.mycompany.revista.clases.Suscripcion;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +16,7 @@ import com.mycompany.revista.clases.Suscripcion;
  */
 public interface SuscripcionDao extends CRUD<Suscripcion> {
     String consultar(Suscripcion t);
+    ArrayList<Suscripcion> consultarRep(String t, String startDate, String endDate);
     String guardarRecaudacion(Recaudacion t);
     Suscripcion getInfo(String name, int id);
     String darLike(int id,String n);
