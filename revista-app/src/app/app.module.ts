@@ -54,6 +54,7 @@ import { Report2Component } from './REPORTS/reports-autor/report2/report2.compon
 import { Report4Component } from './REPORTS/reports-autor/report4/report4.component';
 import { MasComentReportComponent } from './REPORTS/reports-admin/mas-coment-report/mas-coment-report.component';
 import { ReportMasSusComponent } from './REPORTS/reports-admin/report-mas-sus/report-mas-sus.component';
+import { Report3Component } from './REPORTS/reports-autor/report3/report3.component';
 
 @NgModule({
   declarations: [	
@@ -100,6 +101,7 @@ import { ReportMasSusComponent } from './REPORTS/reports-admin/report-mas-sus/re
     Report4Component,
     MasComentReportComponent,
     ReportMasSusComponent,
+    Report3Component,
     
     
 

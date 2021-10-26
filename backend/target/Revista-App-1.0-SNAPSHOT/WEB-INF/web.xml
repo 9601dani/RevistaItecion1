@@ -196,6 +196,10 @@
         <servlet-name>RepComentsAdmin</servlet-name>
         <servlet-class>com.mycompany.revista.controller.RepComentsAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportLikesUser</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ReportLikesUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -391,6 +395,10 @@
     <servlet-mapping>
         <servlet-name>RepComentsAdmin</servlet-name>
         <url-pattern>/RepComentsAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportLikesUser</servlet-name>
+        <url-pattern>/ReportLikesUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

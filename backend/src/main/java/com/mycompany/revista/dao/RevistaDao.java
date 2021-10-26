@@ -8,6 +8,7 @@ import com.mycompany.revista.clases.ABeans;
 import com.mycompany.revista.clases.AdminBeans;
 import com.mycompany.revista.clases.Revista;
 import com.mycompany.revista.clases.Suscripcion;
+import com.mycompany.revista.clases.Usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public interface RevistaDao extends CRUD<Revista>{
     Revista listarRev(String id_revista);
     ArrayList<AdminBeans> listarMasComentada(String startDate, String endDate);
     ArrayList<ABeans> listarMasSuscrita(String startDate, String endDate);
+    ArrayList<Usuario> listarMaslike(int id_revista);
+    ArrayList<Usuario> listarMaslikeWhitName(int id_revista, String name);
     ArrayList<Revista> listarAlgunosForName(String name_revista);
     ArrayList<Revista> listarAlgunosForCategoria(String categoria);
     ArrayList<Revista> listarforSus(String name);

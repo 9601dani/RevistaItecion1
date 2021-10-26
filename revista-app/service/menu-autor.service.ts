@@ -115,6 +115,18 @@ export class MenuAutorService {
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/report2User", {params:httpParams} );
   }
+  //REPORTE 3
+  public getLikeReport(): Observable<Respuesta>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get<Respuesta>(this.API_URL+"/reportLikesUser", {params:httpParams} );
+  }
+  public getLikeNameReport(name:string): Observable<Respuesta>{
+    let httpParams = new HttpParams()
+    .append("name",name)
+    return this.httpClient.post<Respuesta>(this.API_URL+"/reportLikesUser","je", {params:httpParams} );
+  }
 
   //REPORTE 4
   public getGananciasReport(fechaI:string, fechaF:string): Observable<Respuesta>{

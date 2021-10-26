@@ -24,6 +24,8 @@ public class ABeans {
     private ArrayList<Comentario> listaComents;
     private ArrayList<Suscripcion> listaSuscripcion;
     private ArrayList<Recaudacion> listaAutor;
+    private ArrayList<Usuario> listUser;
+    
 
     public ABeans(int id_revista, String magazineName) {
         this.id_revista = id_revista;
@@ -34,6 +36,18 @@ public class ABeans {
         this.id_revista = id_revista;
         this.totalApariciones = totalApariciones;
     }
+
+    public ArrayList<Usuario> getListUser() {
+        return listUser;
+    }
+
+    public void setListUser(ArrayList<Usuario> listUser) {
+        this.listUser = listUser;
+    }
+    
+    
+    
+    
     
 
     public int getTotalApariciones() {

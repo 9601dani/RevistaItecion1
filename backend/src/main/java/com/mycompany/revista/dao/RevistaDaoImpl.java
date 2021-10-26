@@ -21,6 +21,7 @@ import static com.mycompany.revista.Enum.ESTADO_REV.getRev1;
 import com.mycompany.revista.clases.ABeans;
 import com.mycompany.revista.clases.AdminBeans;
 import com.mycompany.revista.clases.Suscripcion;
+import com.mycompany.revista.clases.Usuario;
 import java.sql.ResultSet;
 
 /**
@@ -41,7 +42,9 @@ public class RevistaDaoImpl implements RevistaDao {
     private final String SELECTSUS = "SELECT * FROM revista as r INNER JOIN suscripcion as s WHERE r.estado_revista='ACEPTADA' AND r.id_revista=s.id_revista AND s.nombre_usuario=? ";
     private final String SELECTMASCOMENTADA="SELECT id_revista,count(id_revista) as total FROM comentario WHERE fecha_comentario BETWEEN ? AND ? GROUP BY id_revista ORDER BY 2 DESC, 1 LIMIT 5";
      private final String SELECTMASSUSCRITA="SELECT id_revista,count(id_revista) as total FROM suscripcion WHERE fecha_inicial BETWEEN ? AND ? GROUP BY id_revista ORDER BY 2 DESC, 1 LIMIT 5;";
-    public RevistaDaoImpl() {
+    private final String SELECTMASLIKES="SELECT COUNT(*) as likes, nombre_usuario FROM suscripcion WHERE id_revista=? AND me_gusta='DIO_LIKE' GROUP BY nombre_usuario";
+    
+     public RevistaDaoImpl() {
         new Conexion();
     }
 
@@ -444,6 +447,50 @@ public class RevistaDaoImpl implements RevistaDao {
         System.out.println("mande nulo 2");
         return null;
     
+    }
+
+    @Override
+    public ArrayList<Usuario> listarMaslike(int id_revista) {
+        ResultSet datosObtenidos = null;
+        ResultSet datosObtenidos1 = null;
+        PreparedStatement query = null;
+        PreparedStatement query1 = null;
+        ArrayList<Usuario> listA = new ArrayList<Usuario>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTMASLIKES);
+            query.setInt (1, id_revista);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                         query1 = Conexion.getInstancia().prepareStatement("SELECT * FROM usuario WHERE nombre_usuario=?");
+                         query1.setString (1, datosObtenidos.getString("nombre_usuario"));
+                         System.out.println(datosObtenidos.getString("nombre_usuario"));
+                         datosObtenidos1= query1.executeQuery();
+                         while(datosObtenidos1.next()){
+                             Usuario usu= new Usuario(datosObtenidos1.getString("nombre_usuario"),datosObtenidos1.getString("nombre"),datosObtenidos1.getString("des_personal"));
+                             listA.add(usu);
+                         }
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+
+    @Override
+    public ArrayList<Usuario> listarMaslikeWhitName(int i, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

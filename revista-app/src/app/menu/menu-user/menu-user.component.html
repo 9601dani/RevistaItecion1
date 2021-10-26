@@ -54,6 +54,11 @@
                     <a (click)="CambiarPagina('rep4User')" class="nav-link">Reporte Ganancias</a>
                 </li>
             </div>
+            <div *ngIf=" getOptionMenu() == 'AUTOR' ">
+                <li class="nav-item active">
+                    <a (click)="CambiarPagina('rep3User')" class="nav-link">Reporte Mas Likes</a>
+                </li>
+            </div>
             <div *ngIf=" getOptionMenu() == 'USUARIO' ">
                 <li class="nav-item active">
                     <a (click)="CambiarPagina('misSusccripciones')" class="nav-link">Ver Mis Suscripciones</a>

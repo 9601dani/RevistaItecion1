@@ -53,6 +53,13 @@ public class Usuario {
     public Usuario(String nombre_usuario) {
         this.nombre_usuario = nombre_usuario;
     }
+
+    public Usuario(String nombre_usuario, String nombre, String des_personal) {
+        this.nombre_usuario = nombre_usuario;
+        this.nombre = nombre;
+        this.des_personal = des_personal;
+    }
+    
     
     
     

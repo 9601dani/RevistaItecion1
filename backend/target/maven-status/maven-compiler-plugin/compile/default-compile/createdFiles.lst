@@ -52,6 +52,7 @@ com/mycompany/revista/clases/Recaudacion.class
 com/mycompany/revista/Enum/SUSCRIP_E.class
 com/mycompany/revista/dao/SuscripcionDao.class
 com/mycompany/revista/controller/DeleteCategoria.class
+com/mycompany/revista/controller/ReportLikesUser.class
 com/mycompany/revista/controller/UpdateA$1.class
 com/mycompany/revista/controller/ReportForUser4.class
 com/mycompany/revista/controller/UpdateUser$1.class
