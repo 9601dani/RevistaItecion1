@@ -15,7 +15,8 @@ import java.util.ArrayList;
  * @author daniel
  */
 public class OtherMagazineBeans {
-     private int magazineRecord;
+    private int magazineRecord;
+    private String nombreRevista;
     private BigDecimal dayCost;
     private BigDecimal totalDayCost;
     private BigDecimal gananciaTotal;
@@ -29,6 +30,15 @@ public class OtherMagazineBeans {
         this.magazineRecord = magazineRecord;
         this.dayCost = dayCost;
     }
+
+    public String getNombreRevista() {
+        return nombreRevista;
+    }
+
+    public void setNombreRevista(String nombreRevista) {
+        this.nombreRevista = nombreRevista;
+    }
+    
 
     public int getMagazineRecord() {
         return magazineRecord;
@@ -70,6 +80,20 @@ public class OtherMagazineBeans {
         totalDayCost = BigDecimal.valueOf((dayCost.doubleValue() * days));
 
         gananciaTotal = BigDecimal.valueOf(gananciaTotal.doubleValue() - totalDayCost.doubleValue());
+
+    }
+    public void setGananciaTotalUser(LocalDate start, LocalDate end) {
+
+        Period period = Period.between(start, end);
+        int days = period.getDays() + (period.getMonths()*30) + (period.getYears()*365);
+
+        for(Recaudacion subscription: subscriptionList){
+            gananciaTotal = BigDecimal.valueOf(gananciaTotal.doubleValue() + subscription.getTotal_pagar().doubleValue());
+        }
+
+      //  totalDayCost = BigDecimal.valueOf((dayCost.doubleValue() * days));
+
+       // gananciaTotal = BigDecimal.valueOf(gananciaTotal.doubleValue() - totalDayCost.doubleValue());
 
     }
 

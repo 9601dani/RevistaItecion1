@@ -30,8 +30,9 @@
           <tbody>
             <tr *ngFor="let  ABeanArray of  ABeansArray">
               <table class="table table-striped">
-                <thead>
+                <thead style="background-color:coral;" >
                   <tr>
+                    <th scope="col">Nombre Revista</th>
                     <th scope="col">Costo por Dia</th>
                     <th scope="col">Total costo por Dia</th>
                     <th scope="col">Identificador Revista</th>
@@ -39,16 +40,17 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let  othermaga of  ABeanArray.otherMagazineBeans">
+                    <td>{{ othermaga.nombreRevista }}</td>
                     <td>Q.{{ othermaga.dayCost }}</td>
                     <td>Q.{{ othermaga.totalDayCost }}</td>
                     <td>{{ othermaga.magazineRecord }}</td>
-                    <thead>
+                    <thead style="background-color: aquamarine;" >
                       <tr>
                         <th scope="col">Suscriptor</th>
-                        <th scope="col">Total Autor</th>
+                        <th scope="col">Pago Autor</th>
                         <th scope="col">Autor</th>
-                        <th scope="col">Fecha de Pago</th>
-                        <th scope="col">Ganancia para Admin.</th>
+                        <th scope="col">Fecha Pago</th>
+                        <th scope="col">Ganancia Admin.</th>
                         <th scope="col">Ganancia Total</th>
                       </tr>
                     </thead>

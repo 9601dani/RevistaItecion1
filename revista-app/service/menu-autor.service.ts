@@ -11,6 +11,7 @@ import { RevistaForAdmin } from 'src/objects/RevistaForAdmin';
 import { AdmitirRevista } from 'src/objects/AdmitirRevista';
 import { Respuesta } from 'src/objects/Respuesta';
 import { ABeans } from 'src/objects/ObjectsForReports/ABeans';
+import { GananciaBean } from 'src/objects/ObjectsForReports/GananciaBean';
 
 @Injectable({
   providedIn: 'root'
@@ -156,12 +157,12 @@ export class MenuAutorService {
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/RepFour", {params:httpParams} );
   }
-  public getGananciasReportHtml(fechaI:string, fechaF:string): Observable<Array<ABeans>>{
+  public getGananciasReportHtml(fechaI:string, fechaF:string): Observable<Array<GananciaBean>>{
     this.user=JSON.parse(<string>localStorage.getItem('userS'));
     let httpParams = new HttpParams()
     .append("fechaI", fechaI)
     .append("fechaF", fechaF)
     .append("user",this.user.nombre_usuario)
-    return this.httpClient.post<Array<ABeans>>(this.API_URL+"/RepFour","je", {params:httpParams} );
+    return this.httpClient.post<Array<GananciaBean>>(this.API_URL+"/RepFour","je", {params:httpParams} );
   }
 }

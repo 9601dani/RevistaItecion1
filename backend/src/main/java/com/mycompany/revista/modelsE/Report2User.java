@@ -73,7 +73,8 @@ public class Report2User {
         }
         return null;
     }
-    public ArrayList<ABeans>  ReportSusForRevHtml(Usuario profile, LocalDate starDate, LocalDate endDate) {
+
+    public ArrayList<ABeans> ReportSusForRevHtml(Usuario profile, LocalDate starDate, LocalDate endDate) {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/RepRev.jasper");
             ArrayList<ABeans> revistas = getRevistaList(profile);
@@ -147,7 +148,8 @@ public class Report2User {
         }
         return null;
     }
-        public ArrayList<ABeans> ReportSusForLikesHtml(Usuario profile) throws JRException {
+
+    public ArrayList<ABeans> ReportSusForLikesHtml(Usuario profile) throws JRException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
             ArrayList<ABeans> revistas = getRevistaListLikes(profile);
@@ -208,7 +210,6 @@ public class Report2User {
         return fin;
 
     }
-    
 
     //REPORTES ADMIN, MAS COMENTADAS EN INTERVALO DE TIEMPO
     public String ReportMasComents(LocalDate starDate, LocalDate endDate) throws JRException {
@@ -243,7 +244,8 @@ public class Report2User {
         }
         return null;
     }
-     public ArrayList<AdminBeans> ReportMasComentsHtml(LocalDate starDate, LocalDate endDate) throws JRException {
+
+    public ArrayList<AdminBeans> ReportMasComentsHtml(LocalDate starDate, LocalDate endDate) throws JRException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/PopularComents.jasper");
             ArrayList<AdminBeans> revista = getRevistaListForAdmin(starDate.toString(), endDate.toString());
@@ -262,7 +264,6 @@ public class Report2User {
             for (AdminBeans beans : revista) {
                 beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(), starDate.toString(), endDate.toString()));
             }
-            
 
             JRDataSource source = new JRBeanCollectionDataSource(revista);
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
@@ -318,6 +319,7 @@ public class Report2User {
         }
         return null;
     }
+
     public ArrayList<ABeans> ReportMasSusHtml(LocalDate starDate, LocalDate endDate) throws JRException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/RepMasSuscrito.jasper");
@@ -386,6 +388,7 @@ public class Report2User {
         }
         return null;
     }
+
     public ArrayList<ABeans> ReportSusForLikesWhithNameHtml(String name_revista) throws JRException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
@@ -449,9 +452,9 @@ public class Report2User {
         return null;
     }
 
-     public ArrayList<Anuncio> ReportAnunciosHtml() throws JRException {
+    public ArrayList<Anuncio> ReportAnunciosHtml() throws JRException {
         try {
-            ArrayList<Anuncio> anun= new AnuncioDaoImpl().listarTodos();
+            ArrayList<Anuncio> anun = new AnuncioDaoImpl().listarTodos();
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/Anuncio.jasper");
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, Conexion.getInstancia());
             JasperExportManager.exportReportToPdf(printer);
@@ -464,10 +467,11 @@ public class Report2User {
         }
         return null;
     }
-    public ArrayList<GananciaBean> printMagazineGainsReport(String startDate, String endDate) throws  IOException {
+
+    public ArrayList<GananciaBean> printMagazineGainsReport(String startDate, String endDate) throws IOException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadre.jasper");
-            
+
             ArrayList<Revista> magazineList = new RevistaDaoImpl().listarTodos();
             ArrayList<OtherMagazineBeans> otherMagazineBeans = new ArrayList<>();
             if (startDate.equals("null") || endDate.equals("null")) {
@@ -475,34 +479,37 @@ public class Report2User {
                     otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
                     otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudaciones(magazineList.get(i).getNombre_revista()));
                     otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(magazineList.get(i).getFecha_aceptacion()), LocalDate.now());
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
                 }
             } else {
                 for (int i = 0; i < magazineList.size(); i++) {
                     otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
                     otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudacionesWhitDate(magazineList.get(i).getNombre_revista(), startDate, endDate));
                     otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(startDate), LocalDate.parse(endDate));
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
                 }
             }
-            
+
             ArrayList<GananciaBean> gananciaBeans = new ArrayList<>();
             gananciaBeans.add(new GananciaBean(otherMagazineBeans));
             gananciaBeans.get(0).updateTotal();
-            
+
             JRDataSource source = new JRBeanCollectionDataSource(gananciaBeans);
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
             byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
-           return gananciaBeans;
+            return gananciaBeans;
         } catch (JRException ex) {
             System.out.println(ex);
             return null;
         }
     }
-     public String printMagazineGainsReportExport(String startDate, String endDate) throws  IOException {
+
+    public String printMagazineGainsReportExport(String startDate, String endDate) throws IOException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadre.jasper");
-            
+
             ArrayList<Revista> magazineList = new RevistaDaoImpl().listarTodos();
             ArrayList<OtherMagazineBeans> otherMagazineBeans = new ArrayList<>();
             if (startDate.equals("null") || endDate.equals("null")) {
@@ -510,29 +517,106 @@ public class Report2User {
                     otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
                     otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudaciones(magazineList.get(i).getNombre_revista()));
                     otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(magazineList.get(i).getFecha_aceptacion()), LocalDate.now());
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
                 }
             } else {
                 for (int i = 0; i < magazineList.size(); i++) {
                     otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
                     otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudacionesWhitDate(magazineList.get(i).getNombre_revista(), startDate, endDate));
                     otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(startDate), LocalDate.parse(endDate));
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
                 }
             }
-            
+
             ArrayList<GananciaBean> gananciaBeans = new ArrayList<>();
             gananciaBeans.add(new GananciaBean(otherMagazineBeans));
             gananciaBeans.get(0).updateTotal();
-            
+
             JRDataSource source = new JRBeanCollectionDataSource(gananciaBeans);
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
             byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
-           return fin;
+            return fin;
         } catch (JRException ex) {
             System.out.println(ex);
             return null;
         }
     }
-    
+
+    public ArrayList<GananciaBean> printMagazineGainsReportUser(String startDate, String endDate, String name) throws IOException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadreUser.jasper");
+
+            ArrayList<Revista> magazineList = new RevistaDaoImpl().listarAlgunos(name);
+            ArrayList<OtherMagazineBeans> otherMagazineBeans = new ArrayList<>();
+            if (startDate.equals("null") || endDate.equals("null")) {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudaciones(magazineList.get(i).getNombre_revista()));
+                    otherMagazineBeans.get(i).setGananciaTotalUser(LocalDate.parse(magazineList.get(i).getFecha_aceptacion()), LocalDate.now());
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
+                }
+            } else {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudacionesWhitDate(magazineList.get(i).getNombre_revista(), startDate, endDate));
+                    otherMagazineBeans.get(i).setGananciaTotalUser(LocalDate.parse(startDate), LocalDate.parse(endDate));
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
+                }
+            }
+
+            ArrayList<GananciaBean> gananciaBeans = new ArrayList<>();
+            gananciaBeans.add(new GananciaBean(otherMagazineBeans));
+            gananciaBeans.get(0).updateTotal();
+
+            JRDataSource source = new JRBeanCollectionDataSource(gananciaBeans);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return gananciaBeans;
+        } catch (JRException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+     public String printMagazineGainsReportUserExport(String startDate, String endDate, String name) throws IOException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadreUser.jasper");
+
+            ArrayList<Revista> magazineList = new RevistaDaoImpl().listarAlgunos(name);
+            ArrayList<OtherMagazineBeans> otherMagazineBeans = new ArrayList<>();
+            if (startDate.equals("null") || endDate.equals("null")) {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudaciones(magazineList.get(i).getNombre_revista()));
+                    otherMagazineBeans.get(i).setGananciaTotalUser(LocalDate.parse(magazineList.get(i).getFecha_aceptacion()), LocalDate.now());
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
+                }
+            } else {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudacionesWhitDate(magazineList.get(i).getNombre_revista(), startDate, endDate));
+                    otherMagazineBeans.get(i).setGananciaTotalUser(LocalDate.parse(startDate), LocalDate.parse(endDate));
+                    otherMagazineBeans.get(i).setNombreRevista(magazineList.get(i).getNombre_revista());
+                }
+            }
+
+            ArrayList<GananciaBean> gananciaBeans = new ArrayList<>();
+            gananciaBeans.add(new GananciaBean(otherMagazineBeans));
+            gananciaBeans.get(0).updateTotal();
+
+            JRDataSource source = new JRBeanCollectionDataSource(gananciaBeans);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+
 }

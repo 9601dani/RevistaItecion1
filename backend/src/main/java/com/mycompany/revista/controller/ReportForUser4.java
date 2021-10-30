@@ -4,14 +4,17 @@
  */
 package com.mycompany.revista.controller;
 
+import com.mycompany.revista.clases.GananciaBean;
 import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.converter.RespuestaConverter;
+import static com.mycompany.revista.dao.RevistaDaoImpl.toJsonABeans;
 import com.mycompany.revista.modelsE.Report2User;
 import com.mycompany.revista.modelsE.Respuesta;
 import com.mycompany.revista.reports.ReportService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,17 +49,13 @@ public class ReportForUser4 extends HttpServlet {
             response.setContentType("application/pdf");
             response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
             
-            String report = request.getParameter("report");
+            String user = request.getParameter("user");
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
-            String result=reportService.ReportGanancias(new Usuario(request.getParameter("user")),fechaI, fechaF);
-            System.out.println("1.  "+result);
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            String result=reportService.printMagazineGainsReportUserExport(fechaI, fechaF,user);
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));  
             
-        } catch (JRException ex) {
-            System.out.println("error");
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
         } catch (IOException ex){
             System.out.println("error2");
              response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
@@ -79,17 +78,12 @@ public class ReportForUser4 extends HttpServlet {
             response.setContentType("application/pdf");
             response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
             
-            String report = request.getParameter("report");
+            String user = request.getParameter("user");
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
-            String result=reportService.ReportGanancias(new Usuario(request.getParameter("user")),fechaI, fechaF);
-            System.out.println("1.  "+result);
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
-            
-        } catch (JRException ex) {
-            System.out.println("error");
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+            ArrayList<GananciaBean> result=reportService.printMagazineGainsReportUser(fechaI, fechaF,user);
+            response.getWriter().append(toJsonABeans(result));            
         } catch (IOException ex){
             System.out.println("error2");
              response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
