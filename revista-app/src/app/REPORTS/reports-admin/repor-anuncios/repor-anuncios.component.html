@@ -1,11 +1,44 @@
 <br><br>
 <h3>Reporte Anuncios</h3>
 
-    <form (ngSubmit)="pedirReporte()" style="background-color: bisque;">
-
+    <form (ngSubmit)="pedirReporte()">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Ver Reporte Anuncios</button>
     </form>
     <br><br><br>
+<div *ngIf="this.anuncios" >
+    <div class="table-style" >
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Numero de Apariciones</th>
+            <th scope="col">Tipo de Anuncio</th>
+            <th scope="col">Total de Pago</th>
+            <th scope="col">Fecha de Suspension</th>
+            <th scope="col">Descripcion de Anuncio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let  anuncio of  anuncios" >
+            <th scope="row">{{anuncio.apariciones}} </th>
+            <td>{{anuncio.nombre_tipo}}</td>
+            <td>Q.{{anuncio.total_pago}}</td>
+            {{this.sumTotal(anuncio.total_pago)}}
+            <td>{{anuncio.fecha_final}}</td>
+            <td>{{anuncio.texto}}</td>
+          </tr>
+          <td>Total Q. {{this.getTotal()}} </td>
+        </tbody>
+      </table>
+    </div>
+    
+      <br><br>
+      
+</div>
+<div *ngIf="this.getYes()==(1)"  >
+    <button class="btn btn-lg btn-primary btn-block"  (click)="this.pedirReporteHtml()"> EXPORTAR </button>
+</div>
+
+
     <br><br><br><br><br><br><br>
     <div *ngIf=" this.archivoPdf">
         <h3>Mostrando el archivo: </h3>

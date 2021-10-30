@@ -22,6 +22,12 @@ export class Report4Component implements OnInit {
     })
   }
   pedirReporte(){
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
     this.MenuAutorService.getGananciasReport(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)
       if(created.respuesta=="no"){
@@ -34,7 +40,13 @@ export class Report4Component implements OnInit {
     })
   }
   pedirReporteGeneral(){
-    this.MenuAutorService.getGananciasReport("1900-01-30","2090-12-12").subscribe((created:Respuesta)=>{
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
+    this.MenuAutorService.getGananciasReport(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)
       if(created.respuesta=="no"){
         alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")

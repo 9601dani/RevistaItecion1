@@ -27,9 +27,6 @@
     <button [disabled]= "myForm2.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR POR NOMBRE</button>
   </form>
   <br><br>
-  <form (ngSubmit)="pedirReporteGeneral()">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Reporte General</button>
-  </form>
 
   <br><br><br><br><br><br><br>
   <div *ngIf= " this.archivoPdf">

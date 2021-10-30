@@ -4,14 +4,17 @@
  */
 package com.mycompany.revista.controller;
 
+import com.mycompany.revista.clases.ABeans;
 import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.converter.RespuestaConverter;
+import static com.mycompany.revista.dao.RevistaDaoImpl.toJsonABeansOficial;
 import com.mycompany.revista.modelsE.Report2User;
 import com.mycompany.revista.modelsE.Respuesta;
 import com.mycompany.revista.reports.ReportService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +52,13 @@ public class GetReport2 extends HttpServlet {
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
+             if (fechaI.equals(null)) {
+                    fechaI = "1900-01-01";
+                }
+                if (fechaF.equals(null)) {
+                    fechaF = "2031-01-01";
+                }
+                
             String rep=   reportService.ReportSusForRev(new Usuario(request.getParameter("user")),LocalDate.parse(fechaI), LocalDate.parse(fechaF));
             System.out.println(rep);
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(rep)));
@@ -70,7 +80,31 @@ public class GetReport2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        try {
+            Report2User reportService = null;
+            
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            
+            String report = request.getParameter("report");
+            System.out.println("---"+request.getParameter("user"));
+            reportService = new Report2User();
+            String fechaI = request.getParameter("fechaI");
+            String fechaF = request.getParameter("fechaF");
+             if (fechaI.equals(null)) {
+                    fechaI = "1900-01-01";
+                }
+                if (fechaF.equals(null)) {
+                    fechaF = "2031-01-01";
+                }
+                
+            ArrayList<ABeans> result = reportService.ReportSusForRevHtml(new Usuario(request.getParameter("user")),LocalDate.parse(fechaI), LocalDate.parse(fechaF));
+            response.getWriter().append(toJsonABeansOficial(result));
+            
+        } catch (IOException ex){
+            System.out.println("error2");
+             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        }
     }
 
     /**

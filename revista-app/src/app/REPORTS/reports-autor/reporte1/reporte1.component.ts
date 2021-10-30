@@ -39,6 +39,12 @@ export1:number=0
     return this.export1
   }
   pedirReporte(){
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
     this.MenuAutorService.getComenReport(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)
       if(created.respuesta=="no"){

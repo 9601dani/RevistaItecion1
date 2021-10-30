@@ -12,12 +12,60 @@
     <input formControlName="fechaF" type="date" class="form-control" required autofocus>
   </div>
   <br>
-  <button [disabled]="myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
 </form>
 <br><br>
-<form (ngSubmit)="pedirReporteGeneral()">
-  <button  class="btn btn-lg btn-primary btn-block" type="submit">Reporte General</button>
-</form>
+
+<div class="container" *ngIf="this.adminbeans">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-style">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let  adminbean of  adminbeans">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Identificador Revista</th>
+                    <th scope="col">Nombre de Revista</th>
+                    <th scope="col">Total de Comentarios</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"> {{adminbean.id_revista}}</th>
+                    <td>{{adminbean.magazineName}}</td>
+                    <td>{{adminbean.totalApariciones}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha de Comentario</th>
+                    <th scope="col">Comentario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let  othermaga of  adminbean.listaComents">
+                    <td>{{ othermaga.fecha_comentario }}</td>
+                    <td>{{ othermaga.descripcion }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" (click)="pedirReporteGeneral()">EXPORTAR </button>
+</div>
+
 
 <br><br><br><br><br><br><br>
 <div *ngIf="archivoPdf">

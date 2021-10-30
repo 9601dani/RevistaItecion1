@@ -4,13 +4,16 @@
  */
 package com.mycompany.revista.controller;
 
+import com.mycompany.revista.clases.GananciaBean;
 import com.mycompany.revista.converter.RespuestaConverter;
+import static com.mycompany.revista.dao.RevistaDaoImpl.toJsonABeans;
 import com.mycompany.revista.modelsE.Report2User;
 import com.mycompany.revista.modelsE.Respuesta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -53,8 +56,8 @@ public class GananciaAdmin extends HttpServlet {
             String fechaF = request.getParameter("fechaF");
             System.out.println(request.getParameter("fechaI"));
             System.out.println(request.getParameter("fechaF"));
-            String result=  reportService.printMagazineGainsReport(fechaI,fechaF);
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            ArrayList<GananciaBean> result=  reportService.printMagazineGainsReport(fechaI,fechaF);
+            response.getWriter().append(toJsonABeans(result));
             
         } catch (IOException ex){
              response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
@@ -72,7 +75,25 @@ public class GananciaAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+         try {
+            Report2User reportService = null;
+            
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            
+            String report = request.getParameter("report");
+            System.out.println("---"+request.getParameter("user"));
+            reportService = new Report2User();
+            String fechaI = request.getParameter("fechaI");
+            String fechaF = request.getParameter("fechaF");
+            System.out.println(request.getParameter("fechaI"));
+            System.out.println(request.getParameter("fechaF"));
+            String result=  reportService.printMagazineGainsReportExport(fechaI,fechaF);
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            
+        } catch (IOException ex){
+             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        }
     }
 
     /**

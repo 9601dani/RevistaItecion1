@@ -208,6 +208,18 @@
         <servlet-name>GananciaAdmin</servlet-name>
         <servlet-class>com.mycompany.revista.controller.GananciaAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetComentsAdmin2</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetComentsAdmin2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAnuncioFinal</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.GetAnuncioFinal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportLikeForUser2</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ReportLikeForUser2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -415,6 +427,18 @@
     <servlet-mapping>
         <servlet-name>GananciaAdmin</servlet-name>
         <url-pattern>/GananciaAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetComentsAdmin2</servlet-name>
+        <url-pattern>/GetComentsAdmin2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAnuncioFinal</servlet-name>
+        <url-pattern>/GetAnuncioFinal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportLikeForUser2</servlet-name>
+        <url-pattern>/ReportLikeForUser2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

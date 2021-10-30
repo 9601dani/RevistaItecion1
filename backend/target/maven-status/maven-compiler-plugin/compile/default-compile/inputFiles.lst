@@ -14,6 +14,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/UpdateEstadoAnuncio.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/AdminDaoImpl.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/getPorcentaje.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/ABeansConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/AnuncioDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/RepComentsAdmin.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/AdminDao.java
@@ -28,6 +29,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Recaudacion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ME_GUSTA_E.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveEtiqueta.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetComentsAdmin2.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/clases/Porcentaje_soft.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetReport2.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetInfoAdmin.java
@@ -58,6 +60,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GananciaAdmin.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveAnuncio.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/ComentarioDaoImpl.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetAnuncioFinal.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/registroController.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveCategoria.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/getEtiquetas.java
@@ -82,6 +85,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/AnuncioConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveSuscripcion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/CRUD.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ReportLikeForUser2.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/PorcentajeConverter.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/conexion/Conexion.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/saveEtiquetaUser.java

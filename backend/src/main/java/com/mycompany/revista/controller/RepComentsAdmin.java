@@ -4,13 +4,18 @@
  */
 package com.mycompany.revista.controller;
 
+import com.mycompany.revista.clases.AdminBeans;
 import com.mycompany.revista.converter.RespuestaConverter;
+import static com.mycompany.revista.dao.RevistaDaoImpl.toJsonABeansAdmin;
 import com.mycompany.revista.modelsE.Report2User;
 import com.mycompany.revista.modelsE.Respuesta;
 import com.mycompany.revista.reports.ReportService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +30,6 @@ import net.sf.jasperreports.engine.JRException;
 @WebServlet("/revConMasComents")
 public class RepComentsAdmin extends HttpServlet {
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,26 +42,34 @@ public class RepComentsAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
-            Report2User reportService = null;
-            
-            response.setContentType("application/pdf");
-            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
-            
-            String report = request.getParameter("report");
-            System.out.println("---"+request.getParameter("user"));
-            reportService = new Report2User();
-            String fechaI = request.getParameter("fechaI");
-            String fechaF = request.getParameter("fechaF");
-            System.out.println(request.getParameter("fechaI"));
-            System.out.println(request.getParameter("fechaF"));
-            String result=  reportService.ReportMasComents(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
-            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
-            
+        System.out.println(request.getParameter("op"));
+        try {
+                Report2User reportService = null;
+
+                response.setContentType("application/pdf");
+                response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+
+                String report = request.getParameter("report");
+                System.out.println("---" + request.getParameter("user"));
+                reportService = new Report2User();
+                String fechaI = request.getParameter("fechaI");
+                String fechaF = request.getParameter("fechaF");
+                if (fechaI.equals(null)) {
+                    fechaI = "1900-01-01";
+                }
+                if (fechaF.equals(null)) {
+                    fechaF = "2031-01-01";
+                }
+                System.out.println(request.getParameter("fechaI"));
+                System.out.println(request.getParameter("fechaF"));
+
+                ArrayList<AdminBeans> result = reportService.ReportMasComentsHtml(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
+                response.getWriter().append(toJsonABeansAdmin(result));
+
         } catch (JRException ex) {
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
-        } catch (IOException ex){
-             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        } catch (IOException ex) {
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
         }
     }
 
@@ -72,28 +84,36 @@ public class RepComentsAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
+        try {
             Report2User reportService = null;
-            
+
             response.setContentType("application/pdf");
             response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
-            
+
             String report = request.getParameter("report");
-            System.out.println("---"+request.getParameter("user"));
+            System.out.println("---" + request.getParameter("user"));
             reportService = new Report2User();
             String fechaI = request.getParameter("fechaI");
             String fechaF = request.getParameter("fechaF");
             System.out.println(request.getParameter("fechaI"));
             System.out.println(request.getParameter("fechaF"));
-            String result=  reportService.ReportMasSus(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
+            if (fechaI.equals(null)) {
+                fechaI = "1900-01-01";
+            }
+            if (fechaF.equals(null)) {
+                fechaF = "2031-01-01";
+            }
+
+            String result = reportService.ReportMasSus(LocalDate.parse(fechaI), LocalDate.parse(fechaF));
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
-            
+
         } catch (JRException ex) {
             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
-        } catch (IOException ex){
-             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        } catch (IOException ex) {
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
         }
     }
+
 
     /**
      * Returns a short description of the servlet.

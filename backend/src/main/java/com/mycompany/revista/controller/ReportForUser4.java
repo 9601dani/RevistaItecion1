@@ -74,7 +74,26 @@ public class ReportForUser4 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        try {
+            Report2User reportService = null;
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            
+            String report = request.getParameter("report");
+            reportService = new Report2User();
+            String fechaI = request.getParameter("fechaI");
+            String fechaF = request.getParameter("fechaF");
+            String result=reportService.ReportGanancias(new Usuario(request.getParameter("user")),fechaI, fechaF);
+            System.out.println("1.  "+result);
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            
+        } catch (JRException ex) {
+            System.out.println("error");
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        } catch (IOException ex){
+            System.out.println("error2");
+             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        }
     }
 
     /**

@@ -1,6 +1,8 @@
 <br><br>
-<h3>Reporte de revista con mas Comentarios</h3>
-<form [formGroup]="myForm" (ngSubmit)="pedirReporte()" style="background-color: bisque;">
+<h3>Reporte Ganancias Por Revista</h3>
+
+<br><br>
+<form [formGroup]="myForm" (ngSubmit)="pedirReporteHtml()" style="background-color: bisque;">
   <div class="form-label-group">
     <a>Ingresa fecha inicio</a>
     <input formControlName="fechaI" type="date" maxlength="45" class="form-control" placeholder="Nombre Usuario"
@@ -12,9 +14,72 @@
     <input formControlName="fechaF" type="date" class="form-control" required autofocus>
   </div>
   <br>
-  <button  class="btn btn-lg btn-primary btn-block" type="submit">BUSCA </button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR </button>
+  
 </form>
 <br><br>
+<div class="container" *ngIf="this.ABeansArray">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-style">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let  ABeanArray of  ABeansArray">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Costo por Dia</th>
+                    <th scope="col">Total costo por Dia</th>
+                    <th scope="col">Identificador Revista</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let  othermaga of  ABeanArray.otherMagazineBeans">
+                    <td>Q.{{ othermaga.dayCost }}</td>
+                    <td>Q.{{ othermaga.totalDayCost }}</td>
+                    <td>{{ othermaga.magazineRecord }}</td>
+                    <thead>
+                      <tr>
+                        <th scope="col">Suscriptor</th>
+                        <th scope="col">Total Autor</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Fecha de Pago</th>
+                        <th scope="col">Ganancia para Admin.</th>
+                        <th scope="col">Ganancia Total</th>
+                      </tr>
+                    </thead>
+                <tbody>
+                    <tr *ngFor="let  sucri of othermaga.subscriptionList">
+                      <td>{{ sucri.nombre_usuario }}</td>
+                      <td>Q.{{ sucri.total_pagar }}</td>
+                      <td>{{ sucri.autor }}</td>
+                      <td>{{ sucri.fecha_pago }}</td>
+                      <td>Q.{{ sucri.costo_con_descuento }}</td>
+                    </tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Q.{{ othermaga.gananciaTotal }}</td>
+                </tbody>
+            </tr>
+          </tbody>
+        </table>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" (click)="pedirReporte()">EXPORTAR </button>
+</div>
+
+
 
 <br><br><br><br><br><br><br>
 <div *ngIf="archivoPdf">
@@ -24,3 +89,77 @@
     <br>
   </div>
 </div>
+
+
+
+
+
+
+<!--
+  
+
+<tr *ngFor="let  othermaga of  ABeanArray.otherMagazineBeans">
+  <td>{{ othermaga.dayCost }}</td>
+  <td>{{ othermaga.totalDayCost }}</td>
+  <td>{{ othermaga.magazineRecord }}</td>
+</tr>  
+
+
+
+<tr *ngFor="let  sucri of othermaga.subscriptionList">
+  <td>{{ sucri.nombre_usuario }}</td>
+  <td>{{ sucri.total_pagar }}</td>
+  <td>{{ sucri.autor }}</td>
+  <td>{{ sucri.fecha_pago }}</td>
+  <td>{{ sucri.costo_con_descuento }}</td>
+</tr>  
+
+
+                        <thead>
+                          <tr>
+                            <th scope="col">Suscriptor</th>
+                            <th scope="col">Total Autor</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Fecha de Pago</th>
+                            <th scope="col">Ganancia para Admin.</th>
+                            <th scope="col">Ganancia Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let  sucri of othermaga.subscriptionList">
+                            <td>{{ sucri.nombre_usuario }}</td>
+                            <td>Q.{{ sucri.total_pagar }}</td>
+                            <td>{{ sucri.autor }}</td>
+                            <td>{{ sucri.fecha_pago }}</td>
+                            <td>Q.{{ sucri.costo_con_descuento }}</td>
+                          </tr>
+
+
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>Q.{{ othermaga.gananciaTotal }}</td>
+                        </tbody>
+
+
+                        <form [formGroup]="myForm" (ngSubmit)="pedirReporte()" style="background-color: bisque;">
+  <div class="form-label-group">
+    <a>Ingresa fecha inicio</a>
+    <input formControlName="fechaI" type="date" maxlength="45" class="form-control" placeholder="Nombre Usuario"
+      required autofocus>
+  </div>
+  <br>
+  <div class="form-label-group">
+    <a>Ingresa fecha final:</a>
+    <input formControlName="fechaF" type="date" class="form-control" required autofocus>
+  </div>
+  <br>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">BUSCA </button>
+</form>
+
+
+
+-->

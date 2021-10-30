@@ -12,12 +12,66 @@
     <input formControlName="fechaF" type="date" class="form-control" required autofocus>
   </div>
   <br>
-  <button [disabled]="myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
+  <button  class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
 </form>
 <br><br>
-<form (ngSubmit)="pedirReporteGeneral()">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Reporte General</button>
-</form>
+<div class="container" *ngIf="this.adminbeans">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-style">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let  adminbean of  adminbeans">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Identificador Revista</th>
+                    <th scope="col">Nombre de Revista</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"> {{adminbean.id_revista}}</th>
+                    <td>{{adminbean.magazineName}}</td>
+                  </tr>
+                  <table class="table table-striped">
+                    <thead>
+                      <th class="text-center">*** Info Suscripciones: ***</th>
+                      <tr>
+                        <th scope="col">Identificador Suscripcion</th>
+                        <th scope="col">Fecha De Inicio</th>
+                        <th scope="col">Ingreso Total</th>
+                        <th scope="col">Suscriptor</th>
+                        <th scope="col">Fecha Final</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let  sucrip of  adminbean.listaSuscripcion">
+                        <th scope="col"> {{sucrip.id_suscripcion}} </th>
+                        <th scope="col"> {{sucrip.fecha_inicial}} </th>
+                        <th scope="col"> Q.{{sucrip.valor_sus}} </th>
+                        <th scope="col"> {{sucrip.nombre_usuario}} </th>
+                        <th scope="col"> {{sucrip.fecha_final}} </th>
+                      </tr>
+                    </tbody>
+                    
+                  </table>
+                </tbody>
+              </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" (click)="pedirReporteGeneral()">EXPORTAR </button>
+</div>
+
+
 <br><br><br><br><br><br><br>
 <div *ngIf="archivoPdf">
   <h3>Mostrando el archivo: </h3>

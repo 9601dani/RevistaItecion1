@@ -10,6 +10,7 @@ import { User } from 'src/objects/User';
 import { RevistaForAdmin } from 'src/objects/RevistaForAdmin';
 import { AdmitirRevista } from 'src/objects/AdmitirRevista';
 import { Respuesta } from 'src/objects/Respuesta';
+import { ABeans } from 'src/objects/ObjectsForReports/ABeans';
 
 @Injectable({
   providedIn: 'root'
@@ -80,8 +81,6 @@ export class MenuAutorService {
     return this.httpClient.get<Respuesta>(this.API_URL+"/oneReport", {params:httpParams} );
   }
   public getComeExport(fechaI:string, fechaF:string){
-    console.log("mande"+fechaI)
-    console.log("mande"+fechaF)
     this.user=JSON.parse(<string>localStorage.getItem('userS'));
     let httpParams = new HttpParams()
     .append("fechaI", fechaI)
@@ -115,6 +114,14 @@ export class MenuAutorService {
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/report2User", {params:httpParams} );
   }
+  public getSusReportHtml(fechaI:string, fechaF:string): Observable<Array<ABeans>>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.post<Array<ABeans>>(this.API_URL+"/report2User", "je",{params:httpParams} );
+  }
   //REPORTE 3
   public getLikeReport(): Observable<Respuesta>{
     this.user=JSON.parse(<string>localStorage.getItem('userS'));
@@ -122,10 +129,22 @@ export class MenuAutorService {
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/reportLikesUser", {params:httpParams} );
   }
+  public getLikeReportHtml(): Observable<Array<ABeans>>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.get<Array<ABeans>>(this.API_URL+"/reportLikesUser2", {params:httpParams} );
+  }
+  //*********** */
   public getLikeNameReport(name:string): Observable<Respuesta>{
     let httpParams = new HttpParams()
     .append("name",name)
     return this.httpClient.post<Respuesta>(this.API_URL+"/reportLikesUser","je", {params:httpParams} );
+  }
+  public getLikeNameReportHtml(name:string): Observable<Array<ABeans>>{
+    let httpParams = new HttpParams()
+    .append("name",name)
+    return this.httpClient.post<Array<ABeans>>(this.API_URL+"/reportLikesUser2","je", {params:httpParams} );
   }
 
   //REPORTE 4
@@ -136,5 +155,13 @@ export class MenuAutorService {
     .append("fechaF", fechaF)
     .append("user",this.user.nombre_usuario)
     return this.httpClient.get<Respuesta>(this.API_URL+"/RepFour", {params:httpParams} );
+  }
+  public getGananciasReportHtml(fechaI:string, fechaF:string): Observable<Array<ABeans>>{
+    this.user=JSON.parse(<string>localStorage.getItem('userS'));
+    let httpParams = new HttpParams()
+    .append("fechaI", fechaI)
+    .append("fechaF", fechaF)
+    .append("user",this.user.nombre_usuario)
+    return this.httpClient.post<Array<ABeans>>(this.API_URL+"/RepFour","je", {params:httpParams} );
   }
 }

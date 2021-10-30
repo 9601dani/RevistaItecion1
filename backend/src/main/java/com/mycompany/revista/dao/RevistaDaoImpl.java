@@ -20,6 +20,7 @@ import static com.mycompany.revista.Enum.ESTADO_REV.getRev;
 import static com.mycompany.revista.Enum.ESTADO_REV.getRev1;
 import com.mycompany.revista.clases.ABeans;
 import com.mycompany.revista.clases.AdminBeans;
+import com.mycompany.revista.clases.GananciaBean;
 import com.mycompany.revista.clases.Suscripcion;
 import com.mycompany.revista.clases.Usuario;
 import java.sql.ResultSet;
@@ -491,6 +492,37 @@ public class RevistaDaoImpl implements RevistaDao {
     @Override
     public ArrayList<Usuario> listarMaslikeWhitName(int i, String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static String toJsonABeans(ArrayList<GananciaBean> object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String string = "[";
+        for (GananciaBean data : object) {
+            string += gson.toJson(data, GananciaBean.class) + ",";
+        }
+        string = string.substring(0, string.length() - 1) + "]";
+        System.out.println(string);
+        return string;
+    }
+    public static String toJsonABeansOficial(ArrayList<ABeans> object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String string = "[";
+        for (ABeans data : object) {
+            string += gson.toJson(data, ABeans.class) + ",";
+        }
+        string = string.substring(0, string.length() - 1) + "]";
+        System.out.println(string);
+        return string;
+    }
+     public static String toJsonABeansAdmin(ArrayList<AdminBeans> object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String string = "[";
+        for (AdminBeans data : object) {
+            string += gson.toJson(data, AdminBeans.class) + ",";
+        }
+        string = string.substring(0, string.length() - 1) + "]";
+        System.out.println(string);
+        return string;
     }
 
 }

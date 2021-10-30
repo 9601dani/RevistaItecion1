@@ -6,11 +6,13 @@ package com.mycompany.revista.modelsE;
 
 import com.mycompany.revista.clases.ABeans;
 import com.mycompany.revista.clases.AdminBeans;
+import com.mycompany.revista.clases.Anuncio;
 import com.mycompany.revista.clases.GananciaBean;
 import com.mycompany.revista.clases.OtherMagazineBeans;
 import com.mycompany.revista.clases.Revista;
 import com.mycompany.revista.clases.Usuario;
 import com.mycompany.revista.conexion.Conexion;
+import com.mycompany.revista.dao.AnuncioDaoImpl;
 import com.mycompany.revista.dao.ComentarioDaoImpl;
 import com.mycompany.revista.dao.RevistaDaoImpl;
 import com.mycompany.revista.dao.SuscripcionDaoImpl;
@@ -71,6 +73,32 @@ public class Report2User {
         }
         return null;
     }
+    public ArrayList<ABeans>  ReportSusForRevHtml(Usuario profile, LocalDate starDate, LocalDate endDate) {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/RepRev.jasper");
+            ArrayList<ABeans> revistas = getRevistaList(profile);
+            ArrayList<Revista> revistList = getRevistaLists(profile);
+            for (ABeans beans : revistas) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setListaSuscripcion(new SuscripcionDaoImpl().consultarRep(Integer.toString(beans.getId_revista()), starDate.toString(), endDate.toString()));
+            }
+            for (ABeans beans : revistas) {
+                beans.setRevistaList(revistList);
+            }
+
+            System.out.println("size " + revistas.size());
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revistas;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 
     private ArrayList<ABeans> getRevistaList(Usuario profile) {
         ArrayList<Revista> listaRevistas = new RevistaDaoImpl().listarAlgunos(profile.getNombre_usuario());
@@ -119,6 +147,31 @@ public class Report2User {
         }
         return null;
     }
+        public ArrayList<ABeans> ReportSusForLikesHtml(Usuario profile) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
+            ArrayList<ABeans> revistas = getRevistaListLikes(profile);
+            ArrayList<Revista> revistList = getRevistaListsLikes(profile);
+            for (ABeans beans : revistas) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setListUser(new RevistaDaoImpl().listarMaslike(beans.getId_revista()));
+                beans.setTotalApariciones(beans.getListUser().size());
+            }
+            for (ABeans beans : revistas) {
+                beans.setRevistaList(revistList);
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revistas;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 
     private ArrayList<ABeans> getRevistaListLikes(Usuario profile) {
         ArrayList<Revista> listaRevistas = new RevistaDaoImpl().listarAlgunos(profile.getNombre_usuario());
@@ -155,6 +208,7 @@ public class Report2User {
         return fin;
 
     }
+    
 
     //REPORTES ADMIN, MAS COMENTADAS EN INTERVALO DE TIEMPO
     public String ReportMasComents(LocalDate starDate, LocalDate endDate) throws JRException {
@@ -172,6 +226,10 @@ public class Report2User {
             for (AdminBeans beans : revista) {
                 beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(), starDate.toString(), endDate.toString()));
             }
+            for (AdminBeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setMagazineName(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())).getNombre_revista());
+            }
 
             JRDataSource source = new JRBeanCollectionDataSource(revista);
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
@@ -180,6 +238,39 @@ public class Report2User {
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
             return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+     public ArrayList<AdminBeans> ReportMasComentsHtml(LocalDate starDate, LocalDate endDate) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/PopularComents.jasper");
+            ArrayList<AdminBeans> revista = getRevistaListForAdmin(starDate.toString(), endDate.toString());
+            ArrayList<Revista> revistList = new ArrayList<>();
+            for (AdminBeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                revistList.add(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())));
+            }
+            for (AdminBeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setMagazineName(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())).getNombre_revista());
+            }
+            for (AdminBeans beans : revista) {
+                beans.setRevistaList(revistList);
+            }
+            for (AdminBeans beans : revista) {
+                beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(), starDate.toString(), endDate.toString()));
+            }
+            
+
+            JRDataSource source = new JRBeanCollectionDataSource(revista);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revista;
         } catch (JRException ex) {
             System.out.println(ex);
         }
@@ -211,7 +302,10 @@ public class Report2User {
             for (ABeans beans : revista) {
                 beans.setListaSuscripcion(new SuscripcionDaoImpl().consultarRep(Integer.toString(beans.getId_revista()), starDate.toString(), endDate.toString()));
             }
-
+            for (ABeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setMagazineName(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())).getNombre_revista());
+            }
             JRDataSource source = new JRBeanCollectionDataSource(revista);
             JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
             JasperExportManager.exportReportToPdf(printer);
@@ -219,6 +313,38 @@ public class Report2User {
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
             return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+    public ArrayList<ABeans> ReportMasSusHtml(LocalDate starDate, LocalDate endDate) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/RepMasSuscrito.jasper");
+            ArrayList<ABeans> revista = getRevistaListForSus(starDate.toString(), endDate.toString());
+            ArrayList<Revista> revistList = new ArrayList<>();
+            for (ABeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                revistList.add(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())));
+            }
+            for (ABeans beans : revista) {
+                beans.setRevistaList(revistList);
+            }
+            for (ABeans beans : revista) {
+                beans.setListaSuscripcion(new SuscripcionDaoImpl().consultarRep(Integer.toString(beans.getId_revista()), starDate.toString(), endDate.toString()));
+            }
+            for (ABeans beans : revista) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setMagazineName(new RevistaDaoImpl().listarRev(Integer.toString(beans.getId_revista())).getNombre_revista());
+            }
+
+            JRDataSource source = new JRBeanCollectionDataSource(revista);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revista;
         } catch (JRException ex) {
             System.out.println(ex);
         }
@@ -255,6 +381,31 @@ public class Report2User {
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
             return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+    public ArrayList<ABeans> ReportSusForLikesWhithNameHtml(String name_revista) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
+            ArrayList<ABeans> revistas = getRevistaListLikesWhitName(name_revista);
+            ArrayList<Revista> revistList = getRevistaListsLikesWhitName(name_revista);
+            for (ABeans beans : revistas) {
+                System.out.println(beans.getId_revista() + "--------");
+                beans.setListUser(new RevistaDaoImpl().listarMaslike(beans.getId_revista()));
+                beans.setTotalApariciones(beans.getListUser().size());
+            }
+            for (ABeans beans : revistas) {
+                beans.setRevistaList(revistList);
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revistas;
         } catch (JRException ex) {
             System.out.println(ex);
         }
@@ -298,7 +449,22 @@ public class Report2User {
         return null;
     }
 
-    public String printMagazineGainsReport(String startDate, String endDate) throws  IOException {
+     public ArrayList<Anuncio> ReportAnunciosHtml() throws JRException {
+        try {
+            ArrayList<Anuncio> anun= new AnuncioDaoImpl().listarTodos();
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/Anuncio.jasper");
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, Conexion.getInstancia());
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return anun;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+    public ArrayList<GananciaBean> printMagazineGainsReport(String startDate, String endDate) throws  IOException {
         try {
             InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadre.jasper");
             
@@ -327,7 +493,42 @@ public class Report2User {
             byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
             String fin = Base64.getEncoder().encodeToString(exportToPdf);
             System.out.println(fin);
-            return fin;
+           return gananciaBeans;
+        } catch (JRException ex) {
+            System.out.println(ex);
+            return null;
+        }
+    }
+     public String printMagazineGainsReportExport(String startDate, String endDate) throws  IOException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/GananciaPadre.jasper");
+            
+            ArrayList<Revista> magazineList = new RevistaDaoImpl().listarTodos();
+            ArrayList<OtherMagazineBeans> otherMagazineBeans = new ArrayList<>();
+            if (startDate.equals("null") || endDate.equals("null")) {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudaciones(magazineList.get(i).getNombre_revista()));
+                    otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(magazineList.get(i).getFecha_aceptacion()), LocalDate.now());
+                }
+            } else {
+                for (int i = 0; i < magazineList.size(); i++) {
+                    otherMagazineBeans.add(new OtherMagazineBeans(magazineList.get(i).getId_revista(), magazineList.get(i).getCosto_dia()));
+                    otherMagazineBeans.get(i).setSubscriptionList(new SuscripcionDaoImpl().getRecaudacionesWhitDate(magazineList.get(i).getNombre_revista(), startDate, endDate));
+                    otherMagazineBeans.get(i).setGananciaTotal(LocalDate.parse(startDate), LocalDate.parse(endDate));
+                }
+            }
+            
+            ArrayList<GananciaBean> gananciaBeans = new ArrayList<>();
+            gananciaBeans.add(new GananciaBean(otherMagazineBeans));
+            gananciaBeans.get(0).updateTotal();
+            
+            JRDataSource source = new JRBeanCollectionDataSource(gananciaBeans);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+           return fin;
         } catch (JRException ex) {
             System.out.println(ex);
             return null;
