@@ -1,3 +1,5 @@
+import { Comentario } from 'src/objects/Comentario';
+import { ABeans } from 'src/objects/ObjectsForReports/ABeans';
 import { MenuUserService } from './../../../../../service/menu-user.service';
 import { ServiceHomeService } from 'service/service-home.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -25,6 +27,10 @@ fechaI!:string
 fechaF!:string
 //botones
 export1:number=0
+// MORE VARIABLES
+adminbeans!:Array<ABeans>
+adminbean!:ABeans
+Coment!:Comentario
   ngOnInit(): void {
     this.ServiceHomeService.span=0;
     this.myForm=this.FormBuilder.group({
@@ -45,19 +51,45 @@ export1:number=0
     if(this.myForm.value.fechaF==null){
       this.myForm.value.fechaF="2030-01-01"
     }
-    this.MenuAutorService.getComenReport(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:Respuesta)=>{
-      console.log(created.respuesta)
-      if(created.respuesta=="no"){
+    this.MenuAutorService.getComenReportFinal(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:ABeans[])=>{
+      console.log(created)
+      if(created==null){
         alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")
       }else{
-         this.archivoPdf= "data:application/pdf;base64,"+created.respuesta
-         console.log(this.archivoPdf)
+        this.adminbeans= created
+        this.export1=1
+        this.archivoPdf=""
       }
      
     })
   }
   pedirReporteGeneral(){
-    this.MenuAutorService.getComenReport("1900-01-30","2090-12-12").subscribe((created:Respuesta)=>{
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
+    this.MenuAutorService.getComenReportFinalWithName(this.myForm.value.fechaI,this.myForm.value.fechaF,this.myForm2.value.name).subscribe((created:ABeans[])=>{
+      console.log(created)
+      if(created==null){
+        alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")
+      }else{
+        this.adminbeans= created
+        this.export1=2
+        this.archivoPdf=""
+      }
+     
+    })
+  }
+  exportPedirReporte(){
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
+    this.MenuAutorService.getComenReportFinalExport(this.myForm.value.fechaI,this.myForm.value.fechaF).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)
       if(created.respuesta=="no"){
         alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")
@@ -68,8 +100,14 @@ export1:number=0
      
     })
   }
-  pedirRepForName(){
-    this.MenuAutorService.getComenReportForRev(this.myForm2.value.name).subscribe((created:Respuesta)=>{
+  exportPedirReporteGeneral(){
+    if(this.myForm.value.fechaI==null){
+      this.myForm.value.fechaI="1900-01-01"
+    }
+    if(this.myForm.value.fechaF==null){
+      this.myForm.value.fechaF="2030-01-01"
+    }
+    this.MenuAutorService.getComenReportFinalWithNameExport(this.myForm.value.fechaI,this.myForm.value.fechaF,this.myForm2.value.name).subscribe((created:Respuesta)=>{
       console.log(created.respuesta)
       if(created.respuesta=="no"){
         alert("ALGO SALIO MAL REVISA LOS DATOS INGRESADOS")

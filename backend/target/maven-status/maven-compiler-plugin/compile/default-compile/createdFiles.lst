@@ -46,6 +46,7 @@ com/mycompany/revista/modelsE/ComentarioMostrar.class
 com/mycompany/revista/converter/UsConverter.class
 com/mycompany/revista/controller/GetEtiquetasUser.class
 com/mycompany/revista/dao/ComentarioDaoImpl.class
+com/mycompany/revista/controller/ComentsAutoFinalExport.class
 com/mycompany/revista/controller/getEtiquetas.class
 com/mycompany/revista/controller/SaveEtiqueta.class
 com/mycompany/revista/dao/EAutorDao.class
@@ -130,6 +131,7 @@ com/mycompany/revista/modelsE/Respuesta.class
 com/mycompany/revista/controller/ValidacionUsuario$1.class
 com/mycompany/revista/controller/SaveCategoria.class
 com/mycompany/revista/dao/AnuncioDaoImpl.class
+com/mycompany/revista/controller/ComentsAutorFInal.class
 com/mycompany/revista/dao/SuscripcionDaoImpl.class
 com/mycompany/revista/controller/getCategoria.class
 com/mycompany/revista/controller/GetReport2.class

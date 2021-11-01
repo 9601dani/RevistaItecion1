@@ -4,9 +4,12 @@
  */
 package com.mycompany.revista.controller;
 
+import com.mycompany.revista.converter.RespuestaConverter;
 import com.mycompany.revista.dao.ComentarioDaoImpl;
 import static com.mycompany.revista.dao.ComentarioDaoImpl.toJsonCom;
 import com.mycompany.revista.modelsE.ComentarioMostrar;
+import com.mycompany.revista.modelsE.Report2User;
+import com.mycompany.revista.modelsE.Respuesta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -57,6 +60,29 @@ public class GetComentarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       /* ESTA ES UNA PRUEBA PARA EL GET DE LOS COMENTARIOS DE LAS REVISTAS DEL AUTOR, REPORTE*/
+       String fechaI= request.getParameter("fechaI");
+       String fechaF= request.getParameter("fechaF");
+       String autor= request.getParameter("autor");
+       try {
+            Report2User reportService = null;
+            
+            response.setContentType("application/pdf");
+            response.setHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            
+            String report = request.getParameter("report");
+            System.out.println("---"+request.getParameter("user"));
+            reportService = new Report2User();
+            
+            String result=  reportService.printMagazineGainsReportExport(fechaI,fechaF);
+            response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta(result)));
+            
+        } catch (IOException ex){
+             response.getWriter().append(new RespuestaConverter(Respuesta.class).toJson(new Respuesta("no")));
+        }
+       
+       
+       
        
     }
 

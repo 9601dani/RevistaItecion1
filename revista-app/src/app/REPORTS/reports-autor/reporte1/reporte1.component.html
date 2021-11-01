@@ -13,20 +13,76 @@
       <input formControlName="fechaF" type="date" class="form-control" required autofocus>
     </div>
     <br>
-    <button [disabled]= "myForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCA POR FECHAS</button>
+    <button  class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR</button>
   </form>
   <br><br><br>
-  <form [formGroup]="myForm2" (ngSubmit)="pedirRepForName()" style="background-color: beige;" >
+  <form [formGroup]="myForm2" (ngSubmit)="pedirReporteGeneral()" style="background-color: beige;" >
     <div class="form-label-group">
       <a>Ingresa el nombre de revista:</a>
 
       <input formControlName="name" type="text" class="form-control"
         placeholder="Nombre Revista" required autofocus>
     </div>
+
     <br>
     <button [disabled]= "myForm2.invalid" class="btn btn-lg btn-primary btn-block" type="submit">BUSCAR POR NOMBRE</button>
   </form>
   <br><br>
+  <div class="container" *ngIf="this.adminbeans">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-style">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let  adminbean of  adminbeans">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Identificador Revista</th>
+                      <th scope="col">Nombre de Revista</th>
+                      <th scope="col">Cantidad de Comentarios</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"> {{adminbean.id_revista}}</th>
+                      <td>{{adminbean.magazineName}}</td>
+                      <td>{{adminbean.totalApariciones}}</td>
+                    </tr>
+                    <table class="table table-striped">
+                      <thead>
+                        <th class="text-center">*** Info Comentario: ***</th>
+                        <tr>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Comentario</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let  sucrip of  adminbean.listaComents">
+                          <th scope="col"> {{sucrip.fecha_comentario}} </th>
+                          <th scope="col"> {{sucrip.descripcion}} </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </tbody>
+                </table>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.getOp()==1" >
+      <button class="btn btn-lg btn-primary btn-block" (click)="exportPedirReporte()">EXPORTAR </button>
+  </div>
+  <div *ngIf="this.getOp()==2" >
+      <button class="btn btn-lg btn-primary btn-block" (click)=" exportPedirReporteGeneral()">EXPORTAR </button>
+  </div>
+  </div>
 
   <br><br><br><br><br><br><br>
   <div *ngIf= " this.archivoPdf">

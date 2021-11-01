@@ -97,6 +97,42 @@ export class MenuAutorService {
       .append("user",this.user.nombre_usuario)
       return this.httpClient.post<Respuesta>(this.API_URL+"/oneReport","yes", {params:httpParams} );
     }
+    //FINAL COMENTS
+    public getComenReportFinal(fechaI:string,fechaF:string): Observable<Array<ABeans>>{
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("autor",this.user.nombre_usuario)
+      .append("fechaI",fechaI)
+      .append("fechaF",fechaF)
+      return this.httpClient.get<Array<ABeans>>(this.API_URL+"/comentsFinalAutor", {params:httpParams} );
+    }
+    public getComenReportFinalExport(fechaI:string,fechaF:string): Observable<Respuesta>{
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("autor",this.user.nombre_usuario)
+      .append("fechaI",fechaI)
+      .append("fechaF",fechaF)
+      return this.httpClient.get<Respuesta>(this.API_URL+"/comentsFinalAutorExport", {params:httpParams} );
+    }
+    public getComenReportFinalWithName(fechaI:string,fechaF:string, nom_revista:string): Observable<Array<ABeans>>{
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("autor",this.user.nombre_usuario)
+      .append("fechaI",fechaI)
+      .append("fechaF",fechaF)
+      .append("nom_rev", nom_revista)
+      return this.httpClient.post<Array<ABeans>>(this.API_URL+"/comentsFinalAutor", "je",{params:httpParams} );
+    }
+    public getComenReportFinalWithNameExport(fechaI:string,fechaF:string, nom_revista:string): Observable<Respuesta>{
+      this.user=JSON.parse(<string>localStorage.getItem('userS'));
+      let httpParams = new HttpParams()
+      .append("autor",this.user.nombre_usuario)
+      .append("fechaI",fechaI)
+      .append("fechaF",fechaF)
+      .append("nom_rev", nom_revista)
+      return this.httpClient.post<Respuesta>(this.API_URL+"/comentsFinalAutorExport", "je",{params:httpParams} );
+    }
+
 
     public getComenReportForRevExport(name:string){
       this.user=JSON.parse(<string>localStorage.getItem('userS'));

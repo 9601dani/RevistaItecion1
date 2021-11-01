@@ -23,6 +23,12 @@ public class AdminBeans {
         this.id_revista = id_revista;
         this.totalApariciones=totalApariciones;
     }
+
+    public AdminBeans(int id_revista, String magazineName) {
+        this.id_revista = id_revista;
+        this.magazineName = magazineName;
+    }
+    
     
 
     public int getTotalApariciones() {

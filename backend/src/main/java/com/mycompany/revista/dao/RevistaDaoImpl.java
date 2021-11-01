@@ -32,6 +32,7 @@ import java.sql.ResultSet;
 public class RevistaDaoImpl implements RevistaDao {
 
     private final String SELECTSPECIAL = "SELECT * FROM revista WHERE nombre_usuario=?";
+     private final String SELECTSPECIAL2 = "SELECT * FROM revista WHERE nombre_usuario=? AND nombre_revista=?";
     private final String SELECTFORCATEGORIA = "SELECT * FROM revista WHERE nombre_categoria=? AND estado_revista='ACEPTADA'";
     private final String SELECT = "SELECT * FROM revista WHERE id_revista=?";
     private final String SAVER = "INSERT INTO revista(nombre_revista,archivo,fecha_publicacion,descripcion,estado_revista,costo_suscripcion,me_gusta,comentario,suscripciones,nombre_categoria,nombre_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -395,6 +396,66 @@ public class RevistaDaoImpl implements RevistaDao {
         return null;
     
     }
+    public ArrayList<ABeans> listarComentada(String name) {
+         ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<ABeans> listA = new ArrayList<ABeans>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTSPECIAL);
+            query.setString (1, name);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        ABeans admin= new ABeans(datosObtenidos.getInt("id_revista"),datosObtenidos.getString("nombre_revista"));
+                        listA.add(admin);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+    public ArrayList<ABeans> listarComentada2(String name, String name_magazine) {
+         ResultSet datosObtenidos = null;
+        PreparedStatement query = null;
+        ArrayList<ABeans> listA = new ArrayList<ABeans>();
+        try {
+            query = Conexion.getInstancia().prepareStatement(SELECTSPECIAL2);
+            query.setString (1, name);
+             query.setString (2, name_magazine);
+            datosObtenidos = query.executeQuery();
+            if (datosObtenidos != null) {
+                try {
+                    while (datosObtenidos.next()) {
+                        ABeans admin= new ABeans(datosObtenidos.getInt("id_revista"),datosObtenidos.getString("nombre_revista"));
+                        listA.add(admin);
+                    }
+                    return listA;
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                System.out.println("mande nulo 1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println("mande nulo 2");
+        return null;
+    
+    }
+
 
     @Override
     public Revista listarRev(String id_revista) {

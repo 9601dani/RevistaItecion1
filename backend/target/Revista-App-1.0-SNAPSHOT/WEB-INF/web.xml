@@ -220,6 +220,14 @@
         <servlet-name>ReportLikeForUser2</servlet-name>
         <servlet-class>com.mycompany.revista.controller.ReportLikeForUser2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComentsAutorFInal</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ComentsAutorFInal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ComentsAutoFinalExport</servlet-name>
+        <servlet-class>com.mycompany.revista.controller.ComentsAutoFinalExport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registroController</servlet-name>
         <url-pattern>/registroController</url-pattern>
@@ -439,6 +447,14 @@
     <servlet-mapping>
         <servlet-name>ReportLikeForUser2</servlet-name>
         <url-pattern>/ReportLikeForUser2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComentsAutorFInal</servlet-name>
+        <url-pattern>/ComentsAutorFInal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComentsAutoFinalExport</servlet-name>
+        <url-pattern>/ComentsAutoFinalExport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

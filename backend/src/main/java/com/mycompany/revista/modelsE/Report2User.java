@@ -618,5 +618,95 @@ public class Report2User {
             return null;
         }
     }
-
+     
+     //ESTE METODO ES EL DE COMENNTARIOS POR REVISTAS DEL AUTOR 
+     public ArrayList<ABeans> ReportComents(String nombre_usuario, String fechaI, String fechaF) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
+            ArrayList<ABeans> revistas = new RevistaDaoImpl().listarComentada(nombre_usuario);
+            ArrayList<Revista> revistList = getRevistaLists(new Usuario(nombre_usuario));
+            // me quede aqui, sigue poder jalar los comentarios de las revistas
+            for (ABeans beans : revistas) {
+                beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(),fechaI,fechaF));
+                beans.setTotalApariciones(beans.getListaComents().size());
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revistas;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+     public String ReportComentsExport(String nombre_usuario, String fechaI, String fechaF) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ComentarioExportPadre.jasper");
+            ArrayList<ABeans> revistas = new RevistaDaoImpl().listarComentada(nombre_usuario);
+            ArrayList<Revista> revistList = getRevistaLists(new Usuario(nombre_usuario));
+            // me quede aqui, sigue poder jalar los comentarios de las revistas
+            for (ABeans beans : revistas) {
+                beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(),fechaI,fechaF));
+                beans.setTotalApariciones(beans.getListaComents().size());
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+     public ArrayList<ABeans> ReportComentsWithName(String nombre_usuario, String fechaI, String fechaF, String name_magazine) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ReportLikes.jasper");
+            ArrayList<ABeans> revistas = new RevistaDaoImpl().listarComentada2(nombre_usuario, name_magazine);
+            
+            // me quede aqui, sigue poder jalar los comentarios de las revistas
+            for (ABeans beans : revistas) {
+                beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(),fechaI,fechaF));
+                beans.setTotalApariciones(beans.getListaComents().size());
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return revistas;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+     public String ReportComentsWithNameExport(String nombre_usuario, String fechaI, String fechaF, String name_magazine) throws JRException {
+        try {
+            InputStream compiledReport = getClass().getClassLoader().getResourceAsStream("com/mycompany/revista/rep/ComentarioExportPadre.jasper");
+            ArrayList<ABeans> revistas = new RevistaDaoImpl().listarComentada2(nombre_usuario, name_magazine);
+            
+            // me quede aqui, sigue poder jalar los comentarios de las revistas
+            for (ABeans beans : revistas) {
+                beans.setListaComents(new ComentarioDaoImpl().listComentarioDeRevistaPorFechas(beans.getId_revista(),fechaI,fechaF));
+                beans.setTotalApariciones(beans.getListaComents().size());
+            }
+            JRDataSource source = new JRBeanCollectionDataSource(revistas);
+            JasperPrint printer = JasperFillManager.fillReport(compiledReport, null, source);
+            JasperExportManager.exportReportToPdf(printer);
+            byte[] exportToPdf = JasperExportManager.exportReportToPdf(printer);
+            String fin = Base64.getEncoder().encodeToString(exportToPdf);
+            System.out.println(fin);
+            return fin;
+        } catch (JRException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+      
 }

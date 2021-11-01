@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Porcentaje } from 'src/objects/Porcentaje';
 import { Admin } from 'src/objects/Admin';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-porcentaje-soft',
@@ -61,5 +62,9 @@ objetPo!:Porcentaje[];
       alert("ERROR AL GUARDAR"+ error);
     });
 
+  }
+  public formarearFecha(fecha:string):string{
+    let da=  formatDate(fecha,'dd-MM-yyyy','en-US')
+    return da
   }
 }

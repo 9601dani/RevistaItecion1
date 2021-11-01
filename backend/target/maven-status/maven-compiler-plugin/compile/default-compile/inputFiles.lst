@@ -55,6 +55,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetRevistaEspera.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/dao/PorcentajeDao.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/converter/EtiquetaRevConverter.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ComentsAutoFinalExport.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/reports/ReportService.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GetTiposAnun.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/GananciaAdmin.java
@@ -122,6 +123,7 @@
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ActuRev.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/Report2User.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/SaveRecaudacion.java
+/home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/ComentsAutorFInal.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/controller/DeleteCategoria.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/Enum/ME_GUSTA_SUSCRIPCION.java
 /home/daniel/NetBeansProjects/Revista-App/backend/src/main/java/com/mycompany/revista/modelsE/FinalFile2.java
